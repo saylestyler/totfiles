@@ -1,0 +1,20 @@
+# freshshell.com
+#
+# Examples:
+#
+#   fresh twe4ked/dotfiles shell/functions/\*
+#   fresh jasoncodes/dotfiles shell/aliases/rails.sh
+#   fresh jasoncodes/dotfiles config/tmux.conf --file
+#
+# See http://freshshell.com/readme for documentation.
+
+fresh freshshell/fresh bin/fresh --bin
+
+fresh saylestyler/totfiles home/\.zprofile
+fresh saylestyler/totfiles home/\.zshrc
+fresh saylestyler/totfiles home/\.zpreztorc
+fresh saylestyler/totfiles home/\.aliasesrc
+fresh saylestyler/totfiles home/\.vimrc --file
+fresh saylestyler/totfiles home/\.gitconfig --file
+fresh saylestyler/totfiles home/\.functionsrc --file
+fresh saylestyler/totfiles home/\.ivim/vimrc --file
