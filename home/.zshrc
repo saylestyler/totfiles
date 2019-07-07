@@ -1,322 +1,329 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-# Path to your oh-my-zsh installation.
-export ZSH="/Users/tyler/.oh-my-zsh"
+#####################################################################
+# init | sourcing
+#####################################################################
 
-# Uncomment the following line to display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="true"
+# export DOTFILEDIR=/Users/t/totfiles
 
-ZSH_THEME="simple"
+#####################################################################
+# zplug
+#####################################################################
 
-# type dir name to cd into
-setopt autocd
+# Essential
+source ~/.zplug/init.zsh
 
-# ~/.oh-my-zsh/plugins/*
-autoload -U compinit && compinit
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-source $ZSH/oh-my-zsh.sh
+zplug "zplug/zplug"
+zplug "zsh-users/zsh-syntax-highlighting"
+zplug "zsh-users/zsh-autosuggestions"
+zplug "lukechilds/zsh-nvm"
+zplug "knu/z", use:z.sh, defer:3 # zplug "rupa/z", use:z.sh
 
-plugins=(gitfast)
+# zsh bookmarks  (oh my zsh)
+zplug "jocelynmallon/zshmarks"
 
-# you've got no mail
-MAILCHECK=0
+#####################################################################
+# profiling
+#####################################################################
 
-# aliases and functions
-source /Users/tyler/.homesick/repos/totfiles/.functionsrc
-source /Users/tyler/.homesick/repos/totfiles/.aliasesrc
+if [ ! -f ~/.zshrc.zwc -o ~/.zshrc -nt ~/.zshrc.zwc ]; then
+zcompile ~/.zshrc
+fi
+zmodload zsh/zprof && zprof
+zmodload zsh/zprof
 
-# manually set your language environment
+#####################################################################
+# environment
+#####################################################################
+
+# Better umask
+# umask 022
 export LANG=en_US.UTF-8
+export EDITOR=nvim
+export FCEDIT=nvim
+export PAGER=less
+export LESS='-RQM'
+export GZIP='-v9N'
+export SHELL=zsh
+# export GOPATH="$HOME/.go"
+# export PATH="$HOME/bin:/usr/local/bin:$GOPATH/bin:$PATH"
 
-# editors
-EDITOR=nvim
-VISUAL=$EDITOR
-export EDITOR VISUAL
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='nvim'
-else
-  export EDITOR='nvim'
+# Prezto framework
+zplug "sorin-ionescu/prezto", \
+use:"init.zsh", \
+hook-build:"ln -s $~.zplug/repos/sorin-ionescu/prezto ~/.zprezto"
+
+zstyle ':prezto:*:*' color 'yes'
+zstyle ':prezto:load' pmodule \
+'environment' \
+'terminal' \
+'editor' \
+'history' \
+'directory' \
+'utility' \
+'completion' \
+'prompt' \
+'python' \
+'fasd'
+#  'tmux'
+
+zstyle ':prezto:module:editor' key-bindings 'vi'
+zstyle ':prezto:module:prompt' theme 'pure'
+
+# zplug "~/.zsh", \
+#   use:"*.zsh", \
+#   from:local
+
+# Add a bunch more of your favorite packages!
+
+# Install packages that have not been installed yet
+if ! zplug check --verbose; then
+printf "Install? [y/N]: "
+  if read -q; then
+    echo; zplug install
+  else
+    echo
+  fi
 fi
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# Display directory contents after cd.
-function cd {
-    builtin cd "$@" && ls -F
-    }
-
-# z
-. /usr/local/etc/profile.d/z.sh
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
-
-export PATH="/usr/local/sbin:$PATH"
-export PATH="/usr/local/opt/ruby/bin:$PATH"
-# export PATH="/Users/tyler/.deno/bin:$PATH"
-export PATH="/Users/tyler/Library/Python/3.7/bin:$PATH"
-export PATH="/Users/tyler/Library/Python/2.7/bin:$PATH"
-export PATH="$PATH:`yarn global bin`"
-
-# show most used commands
-# alias hist='history | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl |  head -n10'
-
-# du | sort -r -n | awk '{split("K M G",v); s=1; while($1>1024){$1/=1024; s++} print int($1)" "v[s]"\t"$2}' | head -n 20"
-
-# ls alias ld='ls -ld'   # Show info about the directory
-alias lla='ls -lAF' # Show hidden all files
-alias ll='ls -lF'   # Show long file information
-alias la='ls -AF'   # Show hidden files
-alias lx='ls -lXB'  # Sort by extension
-alias lk='ls -lSr'  # Sort by size, biggest last
-alias lc='ls -ltcr' # Sort by and show change time, most recent last
-alias lu='ls -ltur' # Sort by and show access time, most recent last
-alias lt='ls -ltr'  # Sort by date, most recent last
-alias lr='ls -lR'   # Recursive ls
-alias lsd='ls -l | grep "^d"'
-
-# OS
-alias localip="ipconfig getifaddr en1"
-alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ and print $1'"
-alias whois="whois -h whois-servers.net"
-alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
-alias myip="curl -s checkip.dyndns.org | grep -Eo '[0-9\.]+'"
-alias c="tr -d '\n' | pbcopy"
-alias fs="stat -f \"%z bytes\""
-alias rot13='tr a-zA-Z n-za-mN-ZA-M'
-alias flush="dscacheutil -flushcache"
-alias emptytrash="rm -rfv ~/.Trash"
-alias cleanup="find . -name '*.DS_Store' -type f -ls -delete"
-alias show="defaults write com.apple.Finder AppleShowAllFiles -bool true and killall Finder"
-alias hide="defaults write com.apple.Finder AppleShowAllFiles -bool false and killall Finder"
-alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false and killall Finder"
-alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true and killall Finder"
-alias spf="splash -f"
-alias kewl="ps -e -orss=,args= | sort -b -k1,1n| head -10"
-
-# npm
-alias npmg="npm i -g "
-alias npmS="npm i -S "
-alias npmD="npm i -D "
-# Execute command from node_modules folder based on current directory
-# i.e npmE gulp
-alias npmE='PATH="$(npm bin)":"$PATH"'
-alias npmO="npm outdated"
-alias npmV="npm -v"
-alias npmL="npm list"
-alias npmL0="npm ls --depth=0"
-alias npmst="npm start"
-alias npmt="npm test"
-alias npmR="npm run"
-alias npmP="npm publish"
-alias npmI="npm init"
-alias pnpm="node /usr/local/lib/node_modules/pnpm/lib/bin/pnpm.js"
-
-alias kp="/usr/local/lib/node_modules/kill-port/cli.js"
-
-alias sodb="source ~/db.sh"
-# alias debb='echo 'docker exec --user www-data =i =t vfiles_shop_cli_<TAB FOR ID> /bin/bash"'
-alias rcl="redis-cli"
-alias code="open . -a Visual\ Studio\ Code"
-alias purity="purifycss ./**/*.css ./**/*.html --rejected --info --min >> lol.css"
-alias phps="php -S localhost:8000 && open localhost:8000 -a Google\ Chrome"
-alias phelp='http-server /usr/local/Cellar/python@2/2.7.15_1/share/doc/python@2/library/'
-alias css="stylelint \"src/layouts/*.css\" --config /usr/local/lib/node_modules/stylelint-config-standard/ --fix"
-alias tags="ctags -R --exclude=node_modules --exclude=bower_components --exclude=public --exclude=.git --exclude=dist --exclude=.tmp ."
-alias agn="fc -e : -1"
-alias ccc="pbcopy <"
-alias ppp="pbpaste"
-
-# git guide for the gods https://github.com/k88hudson/git-flight-rules
-alias g="git"
-alias gd="git diff"
-alias gdc="git diff --cached"
-alias gd="git diff -- ':!package-lock.json' ':!yarn.lock'" # ignore package-lock on git diff
-alias gco="git checkout"
-alias glp="git log --pretty=oneline"
-alias ga="git add"
-alias ggg="git add . && git commit -m 'standard' && git push"
-alias kewl="ps -e -orss=, args= | sort -b -k1,1n| head -10"
-alias gitdiscard="git checkout -- . "
-alias gpl="git pull"
-alias gcm="git commit -m"
-alias gs="git status"
-alias co="git checkout"
-alias gpsh="git push"
-alias dev="git checkout dev"
-alias master="git checkout master"
-alias gc="git clone"
-alias gphm="git push heroku master"
-alias gpuom="git push -u origin master"
-alias gcp="git cherry-pick"
-alias undopush="git push -f origin HEAD^:master"
-alias grs="git reset --soft"
-alias gcp="git cherry-pick"
-alias gb="git branch -a" # g(i)t all branches local and remote
-alias gcob="git checkout -b"
-
-# task warrior
-alias twmail="mail -s '$' e07c124d-9982-4921-b7b9-7a640e3c14bb@inthe.am"
-alias tl="task all"
-alias ta="task add"
-
-# config files
-alias vim="/usr/local/bin/nvim"
-alias nn="/usr/local/bin/nvim"
-alias zrc="nvim ~/.zshrc"
-alias vrc="nvim ~/.config/nvim/init.vim"
-
-alias ..='cd ..'
-alias c="clear"
-alias cs="cd ~/cs"
-alias tree="tree -C"
-alias rf="rm -rf"
-
-# misc / utils
-alias hqq="youtube-dl -x --audio-format m4a --audio-quality 0"
-alias music="open 'https://www.youtube.com/watch?v=faHomJimjLc' -a Safari"
-alias transf="trans -shell fr:fr+en"
-alias transes="trans -shell es:es+en"
-alias bubo='brew update && brew outdated'
-alias bubc='brew upgrade && brew cleanup'
-alias bubu='bubo && bubc'
-alias jj="gatsby develop --verbose --open"
-alias fs="screencapture -S ~/Desktop/fs.jpg"
-alias fps="screencapture -iC ~/Desktop/fs.jpg"
-alias google='web_search google' # arguments to websearch fn
-alias github='web_search github'
-alias sos='web_search stackoverflow'
-alias ppaas='pbcopy < https://ppaas.herokuapp.com/partyparrot/mega?overlay=http://vignette3.wikia.nocookie.net/runescape2/images/0/0a/Wizard_hat_(t)_detail.png&overlayWidth=100&overlayHeight=100&overlayOffsetY=-150'
-
-# postgrestuff
-alias pg_start="launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
-alias pg_stop="launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
-alias yrd='yarn run dev'
-
-# hs
-alias hi='hs -i'
-function hs
-{
-    history | grep $*
-}
+zplug load
 
 
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-git_create_new_repo() {
-  curl -u $1 https://api.github.com/user/repos -d '{"name": '$2', "private": "true"}'
-}
+setopt appendhistory autocd extendedglob nomatch notify
+unsetopt beep
+bindkey -e
 
-octalf() {
-  stat -f '%A %a %n' $1
-}
+export NVM_DIR="$HOME/.nvm"
+# [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+# [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
 
-# get the 20 most used commands
-# https://github.com/trimstray/the-book-of-secret-knowledge#tool-terminal
-hist() {
-  history |
-    awk '''
-    {
-      CMD[$2]++;
-      count++;
-    }
-    END
-    {
-      for (a in CMD)
-        print CMD[a] " " CMD[a]/count * 100 "% " a;
-    }
-  ''' | grep -v "./" | column -c -s ' ' -t | sort -nr | nl | head -n 20
-  # note that line 16 will ruin everything if u break it up over multiple lines
-}
+source ~/.aliasesrc
+source ~/.functionsrc
 
-shce() {
-  # Read  commands  but  do  not execute them.  This may be
-  # used to check a shell script for syntax  errors.   This
-  # is ignored by interactive shells.
-  bash -n
-}
+# dunno
+# WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+# Print core files?
+#unlimit
+#limit core 0
+#limit -s
+#limit coredumpsize  0
+# Enable math functions
+# zmodload zsh/mathfunc
 
-# kill process running on port <port>
-# use node_module :) kp
-# kill_port() {
-#   # kill -9 $(lsof -i :<port> | awk `{l=$2} END {print l}`)
-# }
+# if ( which zprof > /dev/null ); then
+#     zprof | less
+# fi
 
-# find last reboot time
-who_boot() {
-  who -b
-}
-# show 20 biggest directories with K M G
-biggest_loosers() {
-  du |
-    sort -r -n |
-    awk '{split("K M G",v); s=1; while($1>1024){$1/=1024; s++} print int($1)" "v[s]"\t"$2}' |
-    head -n 20
-}
 
-# add note
-n() {
-  echo "${*}" >>~/notes.md
-  echo "noted"
-}
+#####################################################################
+# others
+######################################################################
 
-# add todo
-td() {
-  echo "${*}" >>~/todo.md
-  cat ~/todo.md
-}
+# Improve terminal title
+# case "${TERM}" in
+#     kterm*|xterm*|vt100|st*|rxvt*)
+#         precmd() {
+#             echo -ne "\033]0;${PWD}\007"
+#             vcs_info
+#         }
+#     ;;
+# esac
 
-# howdoi
-hdi() {
-  howdoi "$*" -a -c -n 3
-}
+# emacs keybinds
+bindkey -e
 
-rmd() {
-  pandoc "$1" | lynx -stdin
-}
+# History completion
+autoload history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
+bindkey "^p" history-beginning-search-backward-end
+bindkey "^n" history-beginning-search-forward-end
 
-pman() {
-  man -t "${@}" | open -f -a /Applications/Preview.app/
-}
+# Like bash
+bindkey "^u" backward-kill-line
 
-hman() {
-  groff -Thtml -man $(man -w ${@}) >/tmp/hman$$.html
-  open /tmp/hman$$.html
-}
+# # improved less option
+# export LESS='--tabs=4 --no-init --LONG-PROMPT --ignore-case --quit-if-one-screen --RAW-CONTROL-CHARS'
+#
+# #####################################################################
+# # completions
+# #####################################################################
+#
+# Enable completions
+if [ -d ~/.zsh/comp ]; then
+  fpath=(~/.zsh/comp $fpath)
+  autoload -U ~/.zsh/comp/*(:t)
+fi
 
-dud() {
-  du |
-    sort -r -n |
-    awk '{ split("K M G",v);
-        s=1;
-        while ($1>1024) {
-          $1/=1024; s++
-        }
-        print int($1) " " v[s] "\t" $2
-      }' |
-    head -n 20
-}
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*:messages' format '%d'
+zstyle ':completion:*:descriptions' format '%d'
+zstyle ':completion:*:options' verbose yes
+zstyle ':completion:*:values' verbose yes
+zstyle ':completion:*:options' prefix-needed yes
 
-# Display directory contents after cd.
-function cd() {
-  builtin cd "$@" && ls -F
-}
+# Use cache completion
+# homebrew, dpkg (Debian), rpm (Redhat), urpmi (Mandrake), perl -M,
+# bogofilter (zsh 4.2.1 >=), fink, mac_apps...
+zstyle ':completion:*' use-cache true
+zstyle ':completion:*:default' menu select=1
+zstyle ':completion:*' matcher-list \
+'' \
+'m:{a-z}={A-Z}' \
+'l:|=* r:|[.,_-]=* r:|=* m:{a-z}={A-Z}'
+# sudo completions
+zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
+/usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
+zstyle ':completion:*' menu select
+zstyle ':completion:*' keep-prefix
+zstyle ':completion:*' completer _oldlist _complete _match _ignored \
+_approximate _list _history
 
-# performance timing
-performance() {
-  for i in $(seq 1 10); do /usr/bin/time zsh -i -c exit; done
-}
 
-source "$HOME/.homesick/repos/homeshick/homeshick.sh"
-fpath=($HOME/.homesick/repos/homeshick/completions $fpath)
+# this must be done before compinit is called
+# generate brew completions
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+fi
 
-homeshick check
+autoload -U compinit
+  if [ ! -f ~/.zcompdump -o ~/.zshrc -nt ~/.zcompdump ]; then
+  compinit -d ~/.zcompdump
+fi
 
-#if [[ $ZSH_PROFILE_RC -gt 0 ]] ; then
-    #zmodload zsh/zprof
-#fi
+# cd search path
+cdpath=($HOME)
+
+zstyle ':completion:*:processes' command "ps -u $USER -o pid,stat,%cpu,%mem,cputime,command"
+
+# #####################################################################
+# # options
+# ######################################################################
+#
+# setopt auto_resume
+# # Ignore <C-d> logout
+# setopt ignore_eof
+# # Disable beeps
+# setopt no_beep
+# # {a-c} -> a b c
+# setopt brace_ccl
+# # Enable spellcheck
+# setopt correct
+# # Enable "=command" feature
+# setopt equals
+# # Disable flow control
+# setopt no_flow_control
+# # Ignore dups
+# setopt hist_ignore_dups
+# # Reduce spaces
+# setopt hist_reduce_blanks
+# # Ignore add history if space
+# setopt hist_ignore_space
+# # Save time stamp
+# setopt extended_history
+# # Expand history
+# setopt hist_expand
+# # Better jobs
+# setopt long_list_jobs
+# # Enable completion in "--option=arg"
+# setopt magic_equal_subst
+# # Add "/" if completes directory
+# setopt mark_dirs
+# # Disable menu complete for vimshell
+# setopt no_menu_complete
+# setopt list_rows_first
+# # Expand globs when completion
+# setopt glob_complete
+# # Enable multi io redirection
+# setopt multios
+# # Can search subdirectory in $PATH
+# setopt path_dirs
+# # For multi byte
+# setopt print_eightbit
+# # Print exit value if return code is non-zero
+# # setopt print_exit_value
+# setopt pushd_ignore_dups
+# setopt pushd_silent
+# # Short statements in for, repeat, select, if, function
+# setopt short_loops
+# # Ignore history (fc -l) command in history
+# setopt hist_no_store
+# setopt hash_cmds
+# setopt numeric_glob_sort
+# # Enable comment string
+# setopt interactive_comments
+# # Improve rm *
+# setopt rm_star_wait
+# # Enable extended glob
+# setopt extended_glob
+# # Note: It is a lot of errors in script
+# # setopt no_unset
+# setopt transient_rprompt
+# unsetopt promptcr
+# # Prompt substitution
+# setopt prompt_subst
+# setopt always_last_prompt
+# # List completion
+# setopt auto_list
+# setopt auto_param_slash
+# setopt auto_param_keys
+# # List like "ls -F"
+# setopt list_types
+# # Compact completion
+# setopt list_packed
+# setopt auto_cd
+# setopt auto_pushd
+# setopt pushd_minus
+# setopt pushd_ignore_dups
+# # Check original command in alias completion
+# setopt complete_aliases
+# unsetopt hist_verify
+
+
+# #####################################################################
+# # alias
+# ######################################################################
+# source "$DOTFILEDIR/.aliasesrc"
+
+# # Better mv, cp, mkdir
+# alias mv='nocorrect mv'
+# alias cp='nocorrect cp'
+# alias mkdir='nocorrect mkdir'
+
+# # Improve du, df
+# alias du="du -h"
+# alias df="df -h"
+
+# # Improve od for hexdump
+# alias od='od -Ax -tx1z'
+# alias hexdump='hexdump -C'
+
+alias vim='TERM=xterm-256color vim'
+alias nvim-qt='nvim-qt --geometry 1800x1200'
+alias gonvim='~/Downloads/gonvim/gonvim &>/dev/null &'
+# # alias lock='i3exit lock'
+
+# HSTR configuration - add this to ~/.bashrc
+# history | hstr
+alias hh=hstr                    # hh to be alias for hstr
+# export HSTR_CONFIG=hicolor       # get more colors
+HISTFILE=$HOME/.zsh-history
+HISTSIZE=20000
+SAVEHIST=20000
+SAVEHIST=50000
+export HISTSIZE=${HISTFILESIZE}  # increase history size (default is 500)
+export HISTCONTROL=ignorespace   # leading space hides commands from history
+# ensure synchronization between Bash memory and history file
+export PROMPT_COMMAND="history -a; history -n; ${PROMPT_COMMAND}"
+setopt inc_append_history
+setopt share_history
+# shopt -s histappend              # append new history items to .bash_history
+
+# if this is interactive shell, then bind hstr to Ctrl-r (for Vi mode check doc)
+# if [[ $- =~ .*i.* ]]; then bind '"\C-r": "\C-a hstr -- \C-j"'; fi
+# if this is interactive shell, then bind 'kill last command' to Ctrl-x k
+# if [[ $- =~ .*i.* ]]; then bind '"\C-xk": "\C-a hstr -k \C-j"'; fi
+
