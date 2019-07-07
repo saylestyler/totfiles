@@ -1,0 +1,192 @@
+import os, sys
+import pandas as pd
+
+xontrib load coreutils
+xontrib load bashisms
+xontrib load distributed
+xontrib load mpl
+xontrib load prompt_ret_code
+xontrib load free_cwd
+xontrib load whole_word_jumping
+xontrib load vox
+xontrib load powerline
+xontrib load prompt_vi_mode
+
+$PATH=["/Users/jlangley/miniconda3/envs/py3k/bin","/Users/jlangley/miniconda3/bin","/usr/local/bin","/usr/bin","/bin","/usr/sbin","/sbin"]
+
+source-bash activate py3k
+
+def reformat_line(line):
+    """ 'mounted on' is misparsed if volume or column name has spaces"""
+    data = line[:8]
+    mounted = ' '.join(line[8:])
+    data.append(mounted)
+    return data
+
+def diskfree():
+    diskfree_output = $(df -l).split('\n')[:-1] #take out extra carrage return
+    diskfree_data = [line.split() for line in diskfree_output]
+    diskfree_data = list(map(reformat_line, diskfree_data))
+    titles = pd.Series(diskfree_data[0]) #"Mounted on" is misparsed
+    diskfree_data = pd.DataFrame(diskfree_data[1:], columns=titles.values)
+    diskfree_data.Capacity = diskfree_data.Capacity.str.strip('%').astype(float)
+
+    output = ''
+    for x in diskfree_data[['Mounted on', 'Capacity']][diskfree_data.Capacity>=97].values:
+        output+='{color}{0}={1:.2f}% full '.format(x[0], x[1], color="{BOLD_RED}")
+    for x in diskfree_data[['Mounted on', 'Capacity']][diskfree_data.Capacity<97].values:
+        output+='{color}{0}={1:.2f}% full '.format(x[0], x[1], color="{BOLD_GREEN}")
+    return output
+
+def get_current_environment():
+    """ changing current environements doesn't work currently"""
+    current_env = $(conda info --envs)
+    for line in current_env:
+        if '*' in line:
+            return line.split()[0]
+
+$PROMPT = '{BOLD_GREEN}'+$(uptime)+diskfree()+'\n'
+$PROMPT += '{WHITE}('+get_current_environment()+') {BOLD_BLUE}{cwd}{branch_color}{curr_branch} {BOLD_BLUE}:{NO_COLOR} '
+
+# import os
+# import sys
+# import binascii
+# 
+# _ORIG_PATH = list($PATH)
+# _ORIG_PROMPT = $PROMPT
+# 
+# #
+# # convenience stuff, such as killing recent commands
+# #
+# 
+# def _kill_last(args, stdin=None):
+# 	if __xonsh_active_job__ is None:
+# 		print("No active job. Aborting.")
+# 		return
+# 	cmd = 'kill %s %d' % (''.join(args), __xonsh_all_jobs__[__xonsh_active_job__]['pgrp'])
+# 	os.system(cmd)
+# aliases['kill_last'] = _kill_last
+# 
+# #
+# # python virtual environment stuff
+# #
+# 
+# def _workon(args, stdin=None):
+# 	venv = args[0]
+# 	venv_path = os.path.join($HOME, '.virtualenvs', venv)
+# 	if not os.path.exists(venv_path):
+# 		raise OSError("No such virtualenv: %s", venv_path)
+# 	$PATH = [ os.path.join(venv_path, 'bin') ] + _ORIG_PATH
+# 	$VIRTUAL_ENV = venv_path
+# 	$PROMPT = "(%s)" % venv + _ORIG_PROMPT
+# 
+# def _deactivate(args, stdin=None):
+# 	del $VIRTUAL_ENV
+# 	$PATH = list(_ORIG_PATH)
+# 	$PROMPT = _ORIG_PROMPT
+# 
+# aliases['workon'] = _workon
+# aliases['deactivate'] = _deactivate
+# 
+# #
+# # encoding
+# #
+# 
+# def _to_bytes(what):
+# 	if isinstance(what, bytes):
+# 		return bytes
+# 	else:
+# 		return str.encode(what)
+# 
+# def _write_bytes(what):
+# 	sys.stdout.buffer.write(what)
+# 
+# aliases['hex_encode'] = lambda a,i=None: _write_bytes(binascii.hexlify(_to_bytes(i.strip() or a[0])) + b'\n')
+# aliases['hex_decode'] = lambda a,i=None: _write_bytes(binascii.unhexlify(_to_bytes(i.strip() or a[0])) + b'\n')
+# aliases['wtf'] = lambda a,i=None: print(repr(a),repr(i))
+# 
+# #
+# # multiple commands
+# #
+# 
+# def _snip_start(args):
+# 	if len(set([ a[0] for a in args])) == 1:
+# 		return _snip_start([ a[1:] for a in args])
+# 	else:
+# 		return args
+# 
+# def _snip_end(args):
+# 	if len(set([ a[-1] for a in args])) == 1:
+# 		return _snip_end([ a[:-1] for a in args])
+# 	else:
+# 		return args
+# 
+# def _make_callback(tag):
+# 	def callback(line, stdin, process):
+# 		sys.stdout.buffer.write(_to_bytes('%s: '%tag) + _to_bytes(line))
+# 	return callback
+# 
+# try:
+# 	import sh
+# 	import mulpyplexer
+# 
+# 	def pyrallel(args):
+# 		return mulpyplexer.MP([sh.Command(a) for a in args])
+# 
+# 	def pyrallel_ssh(hosts, base_cmd="ssh", output=False, callback=None, bg=False):
+# 		sshs = [ ]
+# 		snipped = _snip_end(_snip_start(hosts))
+# 		for h,s in zip(hosts, snipped):
+# 			cmd = sh.Command(base_cmd)
+# 			cb = _make_callback(s) if output else callback
+# 			sshs.append(cmd.bake(h, _out=cb, _err=cb, _bg=bg))
+# 		return mulpyplexer.MP(sshs)
+# 
+# 	running_cmds = None
+# 	def _cmd_pyrallel_ssh(args, stdin=None):
+# 		global running_cmds
+# 
+# 		if not stdin:
+# 			print("Please provide some hosts on stdin.")
+# 			return
+# 		hosts = stdin.strip().split()
+# 		cmds = pyrallel_ssh(hosts, output=True, bg=True)
+# 		for a in args:
+# 			cmds = cmds.bake(a)
+# 		running_cmds[:] = cmds()
+# 		try:
+# 			running_cmds.wait()
+# 		except KeyboardInterrupt:
+# 			[ r.process.kill() for r in running_cmds ]
+# 
+# 	aliases['pyrallel_ssh'] = _cmd_pyrallel_ssh
+# except ImportError:
+#	pass
+
+# # XONSH WIZARD START
+# $AUTO_CD = '1'
+# $AUTO_PUSHD = '1'
+# $AUTO_SUGGEST = '1'
+# $AUTO_SUGGEST_IN_COMPLETIONS = '1'
+# $COMPLETIONS_MENU_ROWS = '7'
+# $COMPLETION_QUERY_LIMIT = '1000'
+# # $MULTILINE_PROMPT = '`·.,¸,.·*¯`·.,¸,.·*¯'
+# # $XONSH_SHOW_TRACEBACK = True
+# # $XONSH_STORE_STDOUT = True
+# # $XONSH_HISTORY_MATCH_ANYWHERE = True
+# # $COMPLETIONS_CONFIRM = True
+# # $XONSH_AUTOPAIR = True
+
+# # source-foreign  "echo loading xonsh foreign shell"
+# #
+# xontrib load bashisms coreutils
+# # XONSH WIZARD END
+# #
+# #
+# $LESS_TERMCAP_mb = "\033[01;31m"     # begin blinking
+# $LESS_TERMCAP_md = "\033[01;31m"     # begin bold
+# $LESS_TERMCAP_me = "\033[0m"         # end mode
+# $LESS_TERMCAP_so = "\033[01;44;36m"  # begin standout-mode (bottom of screen)
+# $LESS_TERMCAP_se = "\033[0m"         # end standout-mode
+# $LESS_TERMCAP_us = "\033[00;36m"     # begin underline
+# $LESS_TERMCAP_ue = "\033[0m"         # end underline

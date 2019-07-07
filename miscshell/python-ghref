@@ -1,0 +1,21 @@
+#!/usr/bin/python
+
+# ghref - takes a string on command line, looks it up in Google, outputs
+# the HTML for a hyperlink for the I'm feeling lucky URL.
+import google
+import sys
+import re
+
+def main(argv):
+  search = argv[0]
+  data = google.doGoogleSearch(search)
+  if (data.results[0].summary):
+    title = data.results[0].summary
+  else:
+    title = data.results[0].title
+    title = re.sub('</*b>','',title)
+    print '<a href="%s" title="%s">%s</a>' % (data.results[0].URL, title, argv[0])
+
+if __name__ == '__main__':
+  main(sys.argv[1:])
+

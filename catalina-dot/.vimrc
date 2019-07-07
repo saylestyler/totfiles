@@ -1,0 +1,1 @@
+/Users/ty/.ivim/vimrc
