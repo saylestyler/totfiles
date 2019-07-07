@@ -210,7 +210,7 @@ endif
 "         Plug 'sirver/ultisnips' " Snippet engine
 "     endif
 " endif
-" 
+"
 " if count(g:ivim_bundle_groups, 'compile') " Compiling
 "     Plug 'scrooloose/syntastic' " Syntax checking
 "     Plug 'xuhdev/SingleCompile' " Single compile
@@ -580,7 +580,7 @@ if count(g:ivim_bundle_groups, 'enhance')
             exe 'TCommentBlock'
             normal! j
         else
-            normal! A   
+            normal! A
             exe 'TCommentRight'
             normal! l
             normal! x
@@ -720,12 +720,12 @@ endif
 "         let g:UltiSnipsJumpForwardTrigger="<Tab>"
 "         let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
 "     endif
-" 
+"
 "     " Setting info for snips
 "     let g:snips_author=g:ivim_user
 "     let g:snips_email=g:ivim_email
 "     let g:snips_github=g:ivim_github
-" 
+"
 " endif
 
 " Setting for compiling plugins

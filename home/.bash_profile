@@ -54,3 +54,4 @@ export NVM_DIR="$HOME/.nvm"
   [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
 
 source ~/totfiles/.aliasesrc
+source ~/totfiles/.functionsrc
