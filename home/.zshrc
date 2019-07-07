@@ -26,11 +26,11 @@ zplug "jocelynmallon/zshmarks"
 # profiling
 #####################################################################
 
-if [ ! -f ~/.zshrc.zwc -o ~/.zshrc -nt ~/.zshrc.zwc ]; then
-zcompile ~/.zshrc
-fi
-zmodload zsh/zprof && zprof
-zmodload zsh/zprof
+# if [ ! -f ~/.zshrc.zwc -o ~/.zshrc -nt ~/.zshrc.zwc ]; then
+# zcompile ~/.zshrc
+# fi
+# zmodload zsh/zprof && zprof
+# zmodload zsh/zprof
 
 #####################################################################
 # environment
