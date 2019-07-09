@@ -4,42 +4,7 @@ tyler's dotfiles
 
 ## SETUP
 
-running `./install.sh` will symlink all files in $CWD with "rc" in the name to to `$HOME/$FILENAME`, `homeshick refresh` will check on each login to shell if the files have changed in the remote, and if so, `homeshick pull will update them`
-
-## coc-nvim
-
-**to see a function's type**: 
-
-hover over and type `gd`
-
-**to see a description of an attribute, property**: 
-
-hover & `shift+k`
-
-![def]('./def.png')
-
-extensions are node modules installed to `~/.config/coc/node_modules/*`
-
-to [see which ones are active](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#manage-extensions-using-coclist), do `:CocList`, or `cat ~/.config/coc/extensions/package.json`
-
-```json
-{
-  "dependencies": {
-    "coc-css": "^1.0.7",
-    "coc-diagnostic": "^0.0.7",
-    "coc-emmet": "^1.0.9",
-    "coc-eslint": "^1.1.3",
-    "coc-json": "^1.0.17",
-    "coc-neosnippet": "^1.2.2",
-    "coc-prettier": "^1.1.1",
-    "coc-snippets": "^2.0.16",
-    "coc-tslint-plugin": "^1.0.4",
-    "coc-tsserver": "^1.3.2",
-    "coc-ultisnips": "^1.2.3",
-    "jest-snippets": "https://github.com/andys8/vscode-jest-snippets.git#master"
-  }
-}
-```
+`ln -s ~/Dropbox/totfiles/home/.whatever ~/.whatever`
 
 ### git thangs
 
