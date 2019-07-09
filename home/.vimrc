@@ -1,1 +1,1 @@
-source ~/.ivim/vimrc
+/Users/tyler/.vimrc
