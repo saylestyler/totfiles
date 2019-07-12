@@ -2,72 +2,9 @@
 
 tyler's dotfiles
 
-## SETUP
-
-running `./install.sh` will symlink all files in $CWD with "rc" in the name to to `$HOME/$FILENAME`, `homeshick refresh` will check on each login to shell if the files have changed in the remote, and if so, `homeshick pull will update them`
-
-## coc-nvim
-
-**to see a function's type**: 
-
-hover over and type `gd`
-
-**to see a description of an attribute, property**: 
-
-hover & `shift+k`
-
-![def]('./def.png')
-
-extensions are node modules installed to `~/.config/coc/node_modules/*`
-
-to [see which ones are active](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#manage-extensions-using-coclist), do `:CocList`, or `cat ~/.config/coc/extensions/package.json`
-
-```json
-{
-  "dependencies": {
-    "coc-css": "^1.0.7",
-    "coc-diagnostic": "^0.0.7",
-    "coc-emmet": "^1.0.9",
-    "coc-eslint": "^1.1.3",
-    "coc-json": "^1.0.17",
-    "coc-neosnippet": "^1.2.2",
-    "coc-prettier": "^1.1.1",
-    "coc-snippets": "^2.0.16",
-    "coc-tslint-plugin": "^1.0.4",
-    "coc-tsserver": "^1.3.2",
-    "coc-ultisnips": "^1.2.3",
-    "jest-snippets": "https://github.com/andys8/vscode-jest-snippets.git#master"
-  }
-}
-```
-
-### git thangs
-
-*to make a branch replace master*
-
-```sh
-git checkout seotweaks
-git merge -s ours master
-git checkout master
-git merge seotweaks
-```
-
-*to revert master back to a commit* (:danger: rewrites history / nicht-nicht in collabos)
-
-```
-git log (2 find commit id thither 2 revert)
-git reset --hard <old-commit-id>
-git push -f <remote-name> <branch-name>
-```
-
-### kp <PORT>, <PORT2>
-
-kill a comma separated list of ports
-
 ### .inputrc
 
 [see here](https://www.topbug.net/blog/2017/07/31/inputrc-for-humans/)
-
 ```
 # $include /etc/inputrc: This line carries over site-wide readline configuration to the user configuration. Usually /etc/inputrc includes some goodies.
 $include /etc/inputrc
@@ -117,16 +54,6 @@ They will install into the site-package directory
 
 See: https://docs.brew.sh/Homebrew-and-Python
 
-### vim 
-
-current config = 
-
-- neovim
-- coc-nvim
-- denite
-
-[good starter](https://github.com/technicalpickles/pickled-vim.git)
-
 ### brew (casks) installation
 
 `xargs brew (cask) install < Brew(casks)file`
@@ -134,13 +61,10 @@ current config =
 ### postgres nonsense
 
 > _"is the database running on port 5432 & accepting connections blah blah"_
-
 ```
 rm -rf /usr/local/var/postgres && initdb /usr/local/var/postgres -E utf8
-```
 
 *output*:
-
 ```
 The files belonging to this database system will be owned by user "tyler".
 This user must also own the server process.
@@ -164,9 +88,7 @@ WARNING: enabling "trust" authentication for local connections
 You can change this by editing pg_hba.conf or using the option -A, or
 --auth-local and --auth-host, the next time you run initdb.
 ```
-
 *then, vitally:*
-
 ```
 Success. You can now start the database server using:
 
