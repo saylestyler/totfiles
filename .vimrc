@@ -1,12 +1,7 @@
 call plug#begin('~/.vim/plugged')
 
-Plug 'vim-scripts/xterm16.vim'
-Plug 'fugalh/desert.vim'
 Plug 'vimwiki/vimwiki'
 
-Plug 'nanotech/jellybeans.vim'
-Plug 'chriskempson/vim-tomorrow-theme'
-Plug 'dracula/vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'szw/vim-g'
 Plug 'pangloss/vim-javascript' " for react
@@ -36,14 +31,39 @@ syntax on
 
 set belloff=all
 
+" Use qq in insert and command mode to Esc and to exit when in normal mode
+inoremap qq <Esc>
+cnoremap qq <Esc>
+nnoremap qq :q<cr>
+nnoremap q1 :q!<cr>
+
+" Use qs to save while in insert mode
+inoremap qs <Esc>:w<cr>a
+
+" Use ,s to refresh
+nnoremap <leader>s :so $MYVIMRC<cr>
+
+" Use ,w to save
+nnoremap <leader>w :w<cr>
+
+" Handle Cursor
+set cursorline
+set nostartofline
+set ruler
+" Set mode-specific cursor shapes
+let &t_SI = "\<Esc>[6 q"
+let &t_SR = "\<Esc>[4 q"
+let &t_EI = "\<Esc>[2 q"
+
 set wrap
 
-let xterm16_colormap    = 'soft'
-let xterm16_brightness  = 'high'
-colorscheme xterm16
+colorscheme default
 
 "" Easy access to the shell ,,
 map <Leader><Leader> :!
+
+" Allow stylesheets to autocomplete hyphenated words
+autocmd FIleType css,scss,sass,less setlocal iskeyword+=-
 
 let g:python3_host_prog = '/usr/local/bin/python3'
 let g:python2_host_prog = '/usr/local/bin/python2'
@@ -59,7 +79,7 @@ let g:bookmark_auto_save = 1
 " '<,'> ! awk '{ print length(), $0 | \"sort -n | cut -d\\  -f2-\" }'
 
 map <leader>vimrc :tabe ~/.vim/.vimrc<cr>
-autocmd bufwritepost .vimrc source $MYVIMRC
+" autocmd bufwritepost .vimrc source $MYVIMRC
 
 " for same as set in chrome://settings, (l <space> term)
 let g:vim_g_command = "Go"
@@ -90,13 +110,13 @@ set completeopt-=noselect  " select first match
 
 " running :ALEFix on a file will standard-ize it
 let g:ale_linters = {
-\   'javascript': ['standard'],
+\   'javascript': [''],
 \   'css': ['prettier'],
 \   'html': ['htmlhint']
 \}
-let g:ale_fixers = {'javascript': ['standard']}
-let g:ale_lint_on_save = 1
-let g:ale_fix_on_save = 1
+" let g:ale_fixers = {'javascript': ['standard']}
+" let g:ale_lint_on_save = 1
+" let g:ale_fix_on_save = 1
 
 " DELETE ALL TRAILING WHITESPACE ON SAVE
 autocmd BufWritePre * %s/\s\+$//e
@@ -393,7 +413,7 @@ cmap <C-A> <C-B>
 " Plug 'tomtom/tcomment_vim' " Commenter
 " Plug 'haya14busa/incsearch.vim' " Incremental highlighting
 " Plug 'haya14busa/vim-asterisk' " Improved asterisk
-" " Plug 'easymotion/vim-easymotion' " Easy motion
+" Plug 'easymotion/vim-easymotion' " Easy motion
 " Plug 'terryma/vim-multiple-cursors' " Multiple cursors
 " Plug 'tommcdo/vim-exchange' " Exchange text
 " Plug 'tpope/vim-surround' " Surround
@@ -509,7 +529,7 @@ cmap <C-A> <C-B>
 " endif
 "
 " syntax on " Enable syntax
-" set background=dark " Set background
+set background=light
 set t_Co=256 " Use 256 colors
 "
 " " Enable italic
@@ -517,11 +537,7 @@ set t_Co=256 " Use 256 colors
 " let g:nord_italic_comments=1
 " let &t_ZH="\e[3m"
 " let &t_ZR="\e[23m"
-"
-" " Set mode-specific cursor shapes
-" let &t_SI = "\<Esc>[6 q"
-" let &t_SR = "\<Esc>[4 q"
-" let &t_EI = "\<Esc>[2 q"
+
 "
 " " Load a colorscheme
 " colorscheme nord
@@ -761,20 +777,20 @@ set t_Co=256 " Use 256 colors
 " endif
 "
 " " -> NERD Tree
-" nnoremap <Leader>f :NERDTreeToggle<CR>
-" let NERDTreeChDirMode=2
-" let NERDTreeShowBookmarks=1
-" let NERDTreeShowHidden=1
-" let NERDTreeShowLineNumbers=1
-" augroup nerd_loader
-"     autocmd!
-"     autocmd VimEnter * silent! autocmd! FileExplorer
-"     autocmd BufEnter,BufNew *
-"                 \  if isdirectory(expand('<amatch>'))
-"                 \|   call plug#load('nerdtree')
-"                 \|   execute 'autocmd! nerd_loader'
-"                 \| endif
-" augroup END
+nnoremap <Leader>n :NERDTreeToggle<CR>
+let NERDTreeChDirMode=2
+let NERDTreeShowBookmarks=1
+let NERDTreeShowHidden=1
+let NERDTreeShowLineNumbers=1
+augroup nerd_loader
+    autocmd!
+    autocmd VimEnter * silent! autocmd! FileExplorer
+    autocmd BufEnter,BufNew *
+                \  if isdirectory(expand('<amatch>'))
+                \|   call plug#load('nerdtree')
+                \|   execute 'autocmd! nerd_loader'
+                \| endif
+augroup END
 "
 " " -> Ale
 " let g:airline#extensions#ale#enabled=1
@@ -790,17 +806,4 @@ let g:user_emmet_leader_key='<C-Y>'
 let g:user_emmet_settings={'indentation':'  '}
 let g:use_emmet_complete_tag=1
 
-" " -> Gundo
-" nnoremap <Leader>u :GundoToggle<CR>
-"
-" " -> Matchit
-" if !has('nvim')
-"     " Start matchit
-"     packadd! matchit
-" endif
-" " Use Tab instead of % to switch
-" nmap <Tab> %
-" vmap <Tab> %
-"
-" " -> Vim-polyglot
-" let g:vim_markdown_conceal=0
+let g:vim_markdown_conceal=0
