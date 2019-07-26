@@ -1,14 +1,50 @@
-# Executes commands at the start of an interactive session.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#   
-export PATH="/Users/tyler/.local/bin:$PATH"
+# export dir to my dotfiles
 
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
+
+# and rest of the dirs
+export ZDOTDIR=~
+export TERM="xterm-256color"
+#export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-~/.config}
+#export XDG_CACHE_HOME=${XDG_CACHE_HOME:-~/.cache}
+
+unset CHECK_MAIL
+
+# this settings covers macOS
+if [[ "$OSTYPE" == darwin* ]]; then
+  export BROWSER='open'
+fi
+
+# no you've got mail
+MAILCHECK=0
+
+export PAGER='less'
+export VISUAL="${EDITOR}"
+
+export EDITOR=/usr/local/Cellar/macvim/HEAD-af41f91/bin/vim
+export VISUAL=/usr/local/Cellar/macvim/HEAD-af41f91/bin/vim
+
+export PYTHONIOENCODING='UTF-8'             # make Python use UTF-8 encoding for output to stdin, stdout, and stderr.
+export PYTHONUTF8=1                         # ---/---
+export PYTHONDONTWRITEBYTECODE=1            # prevent Python from making .pyc files that may become stale and cause weird bugs
+
+# Prefer US English and use UTF-8.
+export LANG='en_US.UTF-8';
+export LC_ALL='en_US.UTF-8';
+
+# Ensure path arrays do not contain duplicates.
+typeset -gU cdpath fpath mailpath path
+
+# Set the list of directories that Zsh searches for programs.
+path=(
+  /usr/local/{bin,sbin}
+  $HOME/.local/bin
+  $path
+)
+
 
 # why would you type 'cd dir' if you could just type 'dir'?
 setopt AUTO_CD
@@ -52,30 +88,9 @@ bindkey -M vicmd "q" push-line
 bindkey -M viins ' ' magic-space
 
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/Dropbox/totfiles/home/.aliasesrc
-source ~/.nvm/nvm.sh
+source ~/.aliasesrc
+source ~/.functionsrc
 
-# place this after nvm initialization!
-autoload -U add-zsh-hook
-load-nvmrc() {
-  local node_version="$(nvm version)"
-  local nvmrc_path="$(nvm_find_nvmrc)"
-
-  if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-    if [ "$nvmrc_node_version" = "N/A" ]; then
-      nvm install
-    elif [ "$nvmrc_node_version" != "$node_version" ]; then
-      nvm use
-    fi
-  elif [ "$node_version" != "$(nvm version default)" ]; then
-    echo "Reverting to nvm default version"
-    nvm use default
-  fi
-}
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
 
 # set options for less
 export LESS='--quit-if-one-screen --ignore-case --status-column --LONG-PROMPT --RAW-CONTROL-CHARS --HILITE-UNREAD --tabs=4 --no-init --window=-4'
@@ -90,6 +105,38 @@ export LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
 export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
 export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 
+# Set the Less input preprocessor.
+# Try both `lesspipe` and `lesspipe.sh` as either might exist on a system.
+if (( $#commands[(i)lesspipe(|.sh)] )); then
+  export LESSOPEN="| /usr/bin/env $commands[(i)lesspipe(|.sh)] %s 2>&-"
+fi
+
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# pure theme settings
+export PURE_GIT_PULL=1
+
+source ~/.nvm/nvm.sh
+# place this after nvm initialization!
+#autoload -U add-zsh-hook
+#load-nvmrc() {
+  #local node_version="$(nvm version)"
+  #local nvmrc_path="$(nvm_find_nvmrc)"
+
+  #if [ -n "$nvmrc_path" ]; then
+    #local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+
+    #if [ "$nvmrc_node_version" = "N/A" ]; then
+      #nvm install
+    #elif [ "$nvmrc_node_version" != "$node_version" ]; then
+      #nvm use
+    #fi
+  #elif [ "$node_version" != "$(nvm version default)" ]; then
+    #echo "Reverting to nvm default version"
+    #nvm use default
+  #fi
+#}
+#add-zsh-hook chpwd load-nvmrc
+#load-nvmrc
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
