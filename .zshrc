@@ -45,7 +45,6 @@ path=(
   $path
 )
 
-
 # why would you type 'cd dir' if you could just type 'dir'?
 setopt AUTO_CD
 
@@ -90,7 +89,7 @@ bindkey -M viins ' ' magic-space
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.aliasesrc
 source ~/.functionsrc
-
+source ~/.ssh.sh
 
 # set options for less
 export LESS='--quit-if-one-screen --ignore-case --status-column --LONG-PROMPT --RAW-CONTROL-CHARS --HILITE-UNREAD --tabs=4 --no-init --window=-4'
@@ -116,7 +115,6 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 # pure theme settings
 export PURE_GIT_PULL=1
 
-source ~/.nvm/nvm.sh
 # place this after nvm initialization!
 #autoload -U add-zsh-hook
 #load-nvmrc() {
@@ -138,5 +136,12 @@ source ~/.nvm/nvm.sh
 #}
 #add-zsh-hook chpwd load-nvmrc
 #load-nvmrc
+#
+export ZPLUG_HOME=/usr/local/opt/zplug
+source $ZPLUG_HOME/init.zsh
+
+zplug "lukechilds/zsh-nvm"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+eval "$(rbenv init -)"

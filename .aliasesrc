@@ -1,6 +1,5 @@
 # notes
 #
-#
 # Using the && operator is better then using a semicolon ; operator in between the two commands, as with { cd "$@" ; ls; }. This second command will run ls regardless if the cd worked or not. If the cd failed, ls will print the contents of your current directory, which will be confusing for the user. As a best practice, use && and not ;
 #
 
@@ -22,7 +21,6 @@ alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ and print $1'"
 alias whois="whois -h whois-servers.net"
 alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
 alias myip="curl -s checkip.dyndns.org | grep -Eo '[0-9\.]+'"
-
 
 alias pbp="pbpaste"
 alias pb="pbcopy"
@@ -46,7 +44,7 @@ alias hide="defaults write com.apple.Finder AppleShowAllFiles -bool false and ki
 alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false and killall Finder"
 alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true and killall Finder"
 alias spf="splash -f"
-alias kewl="ps -e -orss=,args= | sort -b -k1,1n| head -10"
+alias kewl="ps -e | sort -b -k1 | head -10"
 
 # npm
 alias npmg="npm i -g "
@@ -92,20 +90,20 @@ alias ga="git add"
 alias ggg="git add . && git commit -m 'standard' && git push"
 alias kewl="ps -e -orss=, args= | sort -b -k1,1n| head -10"
 alias gitdiscard="git checkout -- . "
-alias gpl="git pull"
 alias gcm="git commit -m"
 alias gs="git status"
 alias co="git checkout"
+" alias gpl='git pull'
 alias gpsh="git push"
-alias dev="git checkout dev"
-alias master="git checkout master"
-alias gc="git clone"
 alias gphm="git push heroku master"
 alias gpuom="git push -u origin master"
-alias gcp="git cherry-pick"
+alias dev="git checkout dev"
+alias master="git checkout master"
+" alias gc='git clone'
+" alias gcp='git cherry-pick'
 alias undopush="git push -f origin HEAD^:master"
 alias grs="git reset --soft"
-alias gcp="git cherry-pick"
+" alias gcp='git cherry-pick'
 alias gb="git branch -a" # g(i)t all branches local and remote
 alias gcob="git checkout -b"
 
@@ -138,7 +136,7 @@ alias bubo='brew update && brew outdated'
 alias bubc='brew upgrade && brew cleanup'
 alias bubu='bubo && bubc'
 alias jj="gatsby develop --verbose --open"
-alias fs="screencapture -S ~/Desktop/fs.jpg"
+alias scc="screencapture -S ~/Desktop/fs.jpg"
 alias fps="screencapture -iC ~/Desktop/fs.jpg"
 alias google='web_search google' # arguments to websearch fn
 alias github='web_search github'
@@ -165,7 +163,6 @@ alias d="cd ~/Documents/Dropbox"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 alias p="cd ~/projects"
-alias g="git"
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
