@@ -136,7 +136,8 @@ export PURE_GIT_PULL=1
 #}
 #add-zsh-hook chpwd load-nvmrc
 #load-nvmrc
-#
+
+source ~/main/private-dot-files/staging-beta.db.sh
 export ZPLUG_HOME=/usr/local/opt/zplug
 source $ZPLUG_HOME/init.zsh
 
