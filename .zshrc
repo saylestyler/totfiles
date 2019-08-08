@@ -136,13 +136,17 @@ export PURE_GIT_PULL=1
 #}
 #add-zsh-hook chpwd load-nvmrc
 #load-nvmrc
-
-source ~/main/private-dot-files/staging-beta.db.sh
+#
 export ZPLUG_HOME=/usr/local/opt/zplug
 source $ZPLUG_HOME/init.zsh
 
 zplug "lukechilds/zsh-nvm"
 
+# z (don't forget v)
+. /usr/local/etc/profile.d/z.sh
+
+# fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# use rbenv vs rvm
 eval "$(rbenv init -)"
