@@ -93,17 +93,13 @@ alias gitdiscard="git checkout -- . "
 alias gcm="git commit -m"
 alias gs="git status"
 alias co="git checkout"
-" alias gpl='git pull'
 alias gpsh="git push"
 alias gphm="git push heroku master"
 alias gpuom="git push -u origin master"
 alias dev="git checkout dev"
 alias master="git checkout master"
-" alias gc='git clone'
-" alias gcp='git cherry-pick'
 alias undopush="git push -f origin HEAD^:master"
 alias grs="git reset --soft"
-" alias gcp='git cherry-pick'
 alias gb="git branch -a" # g(i)t all branches local and remote
 alias gcob="git checkout -b"
 

@@ -1,3 +1,11 @@
+#[credential]
+#	helper = osxkeychain
+#[core]
+#	excludesfile = /Users/tyler/.gitignore
+#[merge]
+#	tool = vim
+
+
 [user]
   name = Tyler Sayles
   email = saylestyler@gmail.com
