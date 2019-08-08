@@ -1,6 +1,12 @@
-# totfiles 
+# totfiles
 
 tyler's dotfiles
+
+## install
+
+symlink what you want by cloning the repo, `cd $HOME` + `ln -s /Users/tyler/totfiles/.aliasesrc .` (for aliases obvs)
+
+## misc observations
 
 ### .inputrc
 
