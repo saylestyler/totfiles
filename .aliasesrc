@@ -141,6 +141,7 @@ alias ppaas='pbcopy < https://ppaas.herokuapp.com/partyparrot/mega?overlay=http:
 alias yrd='yarn run dev'
 alias gab='gatsby build'
 alias gad='gatsby develop'
+alias mailme='echo "mail -a myscript.sh -s \"subj: myscript EOM\" tyler@g.com < /dev/null"'
 
 # postgrestuff
 alias pg_start="launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
