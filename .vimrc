@@ -10,7 +10,6 @@ Plug 'leafgarland/typescript-vim'
 Plug 'Quramy/tsuquyomi'
 Plug 'mattn/webapi-vim'
 Plug 'mattn/emmet-vim'
-Plug 'romainl/Apprentice'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-sensible'
 Plug 'honza/vim-snippets'
@@ -24,6 +23,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'h1mesuke/unite-outline'
 Plug 'rking/ag.vim'
 Plug 'kien/ctrlp.vim'
+
 call plug#end()
 
 filetype plugin indent on

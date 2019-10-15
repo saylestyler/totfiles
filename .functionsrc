@@ -113,27 +113,27 @@ sync_and_deploy_dot_files() {
 # performance timing
 # function performance() {
 #   for i in $(seq 1 10); do /usr/bin/time zsh -i -c exit; done
-# 
+#
 # # Create a new directory and enter it
 # function mkd() {
 # 	mkdir -p "$@" && cd "$_";
 # }
-# 
+#
 # # Change working directory to the top-most Finder window location
 # function cdf() { # short for `cdfinder`
 # 	cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')";
 # }
-# 
+#
 # # Create a .tar.gz archive, using `zopfli`, `pigz` or `gzip` for compression
 # function targz() {
 # 	local tmpFile="${@%/}.tar";
 # 	tar -cvf "${tmpFile}" --exclude=".DS_Store" "${@}" || return 1;
-# 
+#
 # 	size=$(
 # 		stat -f"%z" "${tmpFile}" 2> /dev/null; # macOS `stat`
 # 		stat -c"%s" "${tmpFile}" 2> /dev/null;  # GNU `stat`
 # 	);
-# 
+#
 # 	local cmd="";
 # 	if (( size < 52428800 )) && hash zopfli 2> /dev/null; then
 # 		# the .tar file is smaller than 50 MB and Zopfli is available; use it
@@ -145,19 +145,19 @@ sync_and_deploy_dot_files() {
 # 			cmd="gzip";
 # 		fi;
 # 	fi;
-# 
+#
 # 	echo "Compressing .tar ($((size / 1000)) kB) using \`${cmd}\`…";
 # 	"${cmd}" -v "${tmpFile}" || return 1;
 # 	[ -f "${tmpFile}" ] && rm "${tmpFile}";
-# 
+#
 # 	zippedSize=$(
 # 		stat -f"%z" "${tmpFile}.gz" 2> /dev/null; # macOS `stat`
 # 		stat -c"%s" "${tmpFile}.gz" 2> /dev/null; # GNU `stat`
 # 	);
-# 
+#
 # 	echo "${tmpFile}.gz ($((zippedSize / 1000)) kB) created successfully.";
 # }
-# 
+#
 # # Determine size of a file or total size of a directory
 # function fs() {
 # 	if du -b /dev/null > /dev/null 2>&1; then
@@ -171,7 +171,7 @@ sync_and_deploy_dot_files() {
 # 		du $arg .[^.]* ./*;
 # 	fi;
 # }
-# 
+#
 # # Use Git’s colored diff when available
 # hash git &>/dev/null;
 # if [ $? -eq 0 ]; then
@@ -179,7 +179,7 @@ sync_and_deploy_dot_files() {
 # 		git diff --no-index --color-words "$@";
 # 	}
 # fi;
-# 
+#
 # # Create a data URL from a file
 # function dataurl() {
 # 	local mimeType=$(file -b --mime-type "$1");
@@ -188,7 +188,7 @@ sync_and_deploy_dot_files() {
 # 	fi
 # 	echo "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')";
 # }
-# 
+#
 # # Start an HTTP server from a directory, optionally specifying the port
 # function server() {
 # 	local port="${1:-8000}";
@@ -197,7 +197,7 @@ sync_and_deploy_dot_files() {
 # 	# And serve everything as UTF-8 (although not technically correct, this doesn’t break anything for binary files)
 # 	python -c $'import SimpleHTTPServer;\nmap = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nSimpleHTTPServer.test();' "$port";
 # }
-# 
+#
 # # Start a PHP server from a directory, optionally specifying the port
 # # (Requires PHP 5.4.0+.)
 # function phpserver() {
@@ -206,7 +206,7 @@ sync_and_deploy_dot_files() {
 # 	sleep 1 && open "http://${ip}:${port}/" &
 # 	php -S "${ip}:${port}";
 # }
-# 
+#
 # # Compare original and gzipped file size
 # function gz() {
 # 	local origsize=$(wc -c < "$1");
@@ -215,12 +215,12 @@ sync_and_deploy_dot_files() {
 # 	printf "orig: %d bytes\n" "$origsize";
 # 	printf "gzip: %d bytes (%2.2f%%)\n" "$gzipsize" "$ratio";
 # }
-# 
+#
 # # Run `dig` and display the most useful info
 # function digga() {
 # 	dig +nocmd "$1" any +multiline +noall +answer;
 # }
-# 
+#
 # # Show all the names (CNs and SANs) listed in the SSL certificate
 # # for a given domain
 # function getcertnames() {
@@ -228,14 +228,14 @@ sync_and_deploy_dot_files() {
 # 		echo "ERROR: No domain specified.";
 # 		return 1;
 # 	fi;
-# 
+#
 # 	local domain="${1}";
 # 	echo "Testing ${domain}…";
 # 	echo ""; # newline
-# 
+#
 # 	local tmp=$(echo -e "GET / HTTP/1.0\nEOT" \
 # 		| openssl s_client -connect "${domain}:443" -servername "${domain}" 2>&1);
-# 
+#
 # 	if [[ "${tmp}" = *"-----BEGIN CERTIFICATE-----"* ]]; then
 # 		local certText=$(echo "${tmp}" \
 # 			| openssl x509 -text -certopt "no_aux, no_header, no_issuer, no_pubkey, \
@@ -254,7 +254,7 @@ sync_and_deploy_dot_files() {
 # 		return 1;
 # 	fi;
 # }
-# 
+#
 # # Normalize `open` across Linux, macOS, and Windows.
 # # This is needed to make the `o` function (see below) cross-platform.
 # if [ ! $(uname -s) = 'Darwin' ]; then
@@ -265,7 +265,7 @@ sync_and_deploy_dot_files() {
 # 		alias open='xdg-open';
 # 	fi
 # fi
-# 
+#
 # # `o` with no arguments opens the current directory, otherwise opens the given
 # # location
 # function o() {
