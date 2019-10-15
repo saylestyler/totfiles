@@ -34,6 +34,7 @@
 --regex-markdown=/^####[ \t]+(.*)/\1/k,H4/
 --regex-markdown=/^#####[ \t]+(.*)/\1/l,H5/
 --regex-markdown=/^######[ \t]+(.*)/\1/m,H6/
+--regex-markdown=/^(#+[ \t]+.*)/\1/h,heading,headings/
 
 --langdef=javascript
 --langmap=javascript:+.jsx
