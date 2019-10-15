@@ -22,8 +22,9 @@ zstyle ':prezto:load' pmodule \
   'command-not-found' \
   'contrib-prompt' \
   'prompt' \
-  # compares aliased commands, reminds you of alias
   'alias-tips'
+
+zstyle ':prezto:module:prompt' theme 'pure'
 
 zstyle ':prezto:module:editor' key-bindings 'emacs'
 zstyle ':prezto:module:editor' dot-expansion 'yes'

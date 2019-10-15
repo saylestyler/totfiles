@@ -125,7 +125,8 @@ alias rf="rm -rf"
 
 # misc / utils
 alias hqq="youtube-dl -x --audio-format m4a --audio-quality 0"
-alias music="open 'https://www.youtube.com/watch?v=faHomJimjLc' -a Safari"
+alias musicyt="open 'https://www.youtube.com/watch?v=faHomJimjLc' -a Safari"
+alias music="open francesco\ tristano\ \&\ carl\ craig\ -\ the\ melody-ZFHD9QpQDFA.m4a"
 alias transf="trans -shell fr:fr+en"
 alias transes="trans -shell es:es+en"
 alias bubo='brew update && brew outdated'
