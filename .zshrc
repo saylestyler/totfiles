@@ -128,4 +128,3 @@ zplug "lukechilds/zsh-nvm"
 
 # use rbenv vs rvm
 eval "$(rbenv init -)"
-
