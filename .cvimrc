@@ -6,7 +6,7 @@ set noregex
 set noinsertmappings
 set typelinkhints
 set defaultnewtabpage
-set sortlinkhints	
+set sortlinkhints
 
 let scrollduration = 10
 let searchlimit = 20
@@ -16,24 +16,25 @@ let barposition = "bottom"
 let typelinkhintsdelay = "0"
 let hintcharacters = "asdfg"
 
-map : openCommandBar
 map <C-3> lastUsedTab
+map \] openCommandBar
+map l nextTab
+map h previousTab
 map <C-l> nextTab
 map <C-h> previousTab
-map <C-f> scrollFullPageDown
-map <C-b> scrollFullPageUp
+map <C-d> scrollFullPageDown
+map <C-f> scrollFullPageUp
+
 map F createActiveTabbedHint
 map f createHint
 map p openPasteTab
 map P openPaste
-
 map S :open google<Space>
 map s :tabnew google<Space>
 map i goToInput
 map u lastClosedTab
 
 map <C-z> toggleCvim
-
 map <Leader>ex :tabopen chrome://extensions<CR>
 map <Leader>gh :tabopen https://github.com/saylestyler<CR>
 map <Leader>gi :tabopen https://gist.github.com/saylestyler<CR>
@@ -45,6 +46,7 @@ site "https://mail.google.com/*" {
     unmapAll
 }
 
+let blacklists = ["https://repl.it/*"]
 " Mappings.defaults = [
 "   ['j',         'scrollDown'],
 "   ['gg',        'scrollToTop'],
@@ -165,4 +167,3 @@ site "https://mail.google.com/*" {
 "   ['#',         'resetScrollFocus'],
 "   ['cm',        'muteTab']
 " ];
-

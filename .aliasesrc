@@ -111,7 +111,7 @@ alias tl="task all"
 alias ta="task add"
 
 # use the vim binary packaged with macvim instead of v 8.0 std
-alias vim='/usr/local/Cellar/macvim/HEAD-af41f91/bin/vim'
+# alias vim='/usr/local/Cellar/macvim/HEAD-af41f91/bin/vim'
 
 # nvm
 alias nv10="nvm use --delete-prefix v10"
