@@ -120,6 +120,8 @@ source $ZPLUG_HOME/init.zsh
 
 zplug "lukechilds/zsh-nvm"
 
+nvm use --delete-prefix v10
+
 # z (don't forget v)
 . /usr/local/etc/profile.d/z.sh
 
