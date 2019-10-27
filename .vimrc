@@ -1,10 +1,9 @@
 call plug#begin('~/.vim/plugged')
 
-Plug 'vimwiki/vimwiki'
-
+"Plug 'vimwiki/vimwiki'
 Plug 'airblade/vim-gitgutter'
-Plug 'szw/vim-g'
 Plug 'pangloss/vim-javascript' " for react
+Plug 'mxw/vim-jsx' " jsx
 Plug 'HerringtonDarkholme/yats.vim' " typescript
 Plug 'leafgarland/typescript-vim'
 Plug 'Quramy/tsuquyomi'
@@ -50,10 +49,6 @@ nnoremap <leader>w :w<cr>
 set cursorline
 set nostartofline
 set ruler
-" Set mode-specific cursor shapes
-let &t_SI = "\<Esc>[6 q"
-let &t_SR = "\<Esc>[4 q"
-let &t_EI = "\<Esc>[2 q"
 
 set wrap
 
@@ -474,12 +469,12 @@ cmap <C-A> <C-B>
 "
 " " Set tabline
 " let g:airline#extensions#tabline#enabled=1
-"
+
 " " Only have cursorline in current window and in normal window
-" autocmd WinLeave * set nocursorline
-" autocmd WinEnter * set cursorline
-" autocmd InsertEnter * set nocursorline
-" autocmd InsertLeave * set cursorline
+autocmd WinLeave * set nocursorline
+autocmd WinEnter * set cursorline
+autocmd InsertEnter * set nocursorline
+autocmd InsertLeave * set cursorline
 " set wildmenu " Show list instead of just completing
 " set wildmode=list:longest,full " Use powerful wildmenu
 " set shortmess=at " Avoids hit enter
@@ -792,18 +787,9 @@ augroup nerd_loader
                 \| endif
 augroup END
 "
-" " -> Ale
-" let g:airline#extensions#ale#enabled=1
-" let g:ale_sign_error='✗'
-" let g:ale_sign_warning='∆'
-" nmap <silent> [w <Plug>(ale_previous)
-" nmap <silent> ]w <Plug>(ale_next)
-" highlight ALEErrorSign guibg=NONE guifg=red
-" highlight ALEWarningSign guibg=NONE guifg=yellow
-"
 " " -> Emmet
 let g:user_emmet_leader_key='<C-Y>'
 let g:user_emmet_settings={'indentation':'  '}
 let g:use_emmet_complete_tag=1
 
-let g:vim_markdown_conceal=0
+let g:vim_markdown_concel=0
