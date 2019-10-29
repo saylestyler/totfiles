@@ -311,3 +311,5 @@ alias bu='brew uninstall'
 alias bf='brew info'
 
 alias lpp='open . -a LastPass'
+
+alias ipp='ipython'
