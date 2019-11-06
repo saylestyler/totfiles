@@ -47,6 +47,7 @@ site "https://mail.google.com/*" {
 }
 
 let blacklists = ["https://repl.it/*"]
+
 " Mappings.defaults = [
 "   ['j',         'scrollDown'],
 "   ['gg',        'scrollToTop'],
