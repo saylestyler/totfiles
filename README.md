@@ -4,13 +4,14 @@ tyler's dotfiles
 
 ## install
 
-symlink what you want by cloning the repo, `cd $HOME` + `ln -s /Users/tyler/totfiles/.aliasesrc .` (for aliases obvs)
+symlink what you want by cloning the repo, `cd $HOME` + `ln -s /Users/tyler/totfiles/.aliasesrc .`
 
 ## misc observations
 
 ### .inputrc
 
 [see here](https://www.topbug.net/blog/2017/07/31/inputrc-for-humans/)
+
 ```
 # $include /etc/inputrc: This line carries over site-wide readline configuration to the user configuration. Usually /etc/inputrc includes some goodies.
 $include /etc/inputrc
@@ -41,63 +42,6 @@ set show-all-if-unmodified On
 set visible-stats On
 ```
 
-### python installation (output)
-
-Python has been installed as
-  /usr/local/bin/python3
-
-Unversioned symlinks `python`, `python-config`, `pip` etc. pointing to
-`python3`, `python3-config`, `pip3` etc., respectively, have been installed into
-  /usr/local/opt/python/libexec/bin
-
-If you need Homebrew's Python 2.7 run
-  brew install python@2
-
-You can install Python packages with
-  pip3 install <package>
-They will install into the site-package directory
-  /usr/local/lib/python3.7/site-packages
-
-See: https://docs.brew.sh/Homebrew-and-Python
-
 ### brew (casks) installation
 
 `xargs brew (cask) install < Brew(casks)file`
-
-### postgres nonsense
-
-> _"is the database running on port 5432 & accepting connections blah blah"_
-```
-rm -rf /usr/local/var/postgres && initdb /usr/local/var/postgres -E utf8
-
-*output*:
-```
-The files belonging to this database system will be owned by user "tyler".
-This user must also own the server process.
-
-The database cluster will be initialized with locale "en_US.UTF-8".
-The default text search configuration will be set to "english".
-
-Data page checksums are disabled.
-
-creating directory /usr/local/var/postgres ... ok
-creating subdirectories ... ok
-selecting default max_connections ... 100
-selecting default shared_buffers ... 128MB
-selecting dynamic shared memory implementation ... posix
-creating configuration files ... ok
-running bootstrap script ... ok
-performing post-bootstrap initialization ... ok
-syncing data to disk ... ok
-
-WARNING: enabling "trust" authentication for local connections
-You can change this by editing pg_hba.conf or using the option -A, or
---auth-local and --auth-host, the next time you run initdb.
-```
-*then, vitally:*
-```
-Success. You can now start the database server using:
-
-pg_ctl -D /usr/local/var/postgres -l logfile start
-```
-
