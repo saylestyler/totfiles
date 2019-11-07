@@ -1,3 +1,5 @@
+source ~/totfiles/.aliases.sh
+
 source ~/.zplug/init.zsh
 
 # Async for zsh, used by pure

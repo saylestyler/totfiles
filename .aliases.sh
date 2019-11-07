@@ -1,7 +1,7 @@
 # notes
 #
-# Using the && operator is better then using a semicolon ; operator in between the two commands, as with { cd "$@" ; ls; }. 
-# This second command will run ls regardless if the cd worked or not. 
+# Using the && operator is better then using a semicolon ; operator in between the two commands, as with { cd "$@" ; ls; }.
+# This second command will run ls regardless if the cd worked or not.
 # If the cd failed, ls will print the contents of your current directory, which will be confusing for the user. As a best practice, use && and not ;
 
 alias ld='ls -ld'   # Show info about the directory
@@ -427,6 +427,11 @@ function dud() {
 sync_and_deploy_dot_files() {
   cd /Users/tyler/totfiles && git pull git add .  && git commit -m "stdout" && git push
 }
+
+function gall() {
+  git add . ; git commit -m "${@}"
+}
+
 
 # performance timing
 # function performance() {
