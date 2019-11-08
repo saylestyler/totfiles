@@ -5,6 +5,11 @@ if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
 endif
 
 call plug#begin()
+
+
+" :GenTocGFM && :UpdateToc
+Plug 'mzlogin/vim-markdown-toc'
+
 Plug 'honza/vim-snippets'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'tpope/vim-commentary'
