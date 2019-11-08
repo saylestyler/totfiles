@@ -1,4 +1,5 @@
 source ~/totfiles/.aliases.sh
+source ~/main/private-dot-files/ssh.sh
 
 source ~/.zplug/init.zsh
 
@@ -20,3 +21,8 @@ if ! zplug check --verbose; then
 fi
 
 zplug load
+
+export GOPATH=$HOME/go # don't forget to change your path correctly!
+export GOROOT=/usr/local/opt/go/libexec
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$GOROOT/bin
