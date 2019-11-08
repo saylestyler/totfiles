@@ -29,3 +29,5 @@ export PATH=$PATH:$GOROOT/bin
 
 export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 
+# z
+. /usr/local/etc/profile.d/z.sh
