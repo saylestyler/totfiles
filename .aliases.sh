@@ -4,6 +4,8 @@
 # This second command will run ls regardless if the cd worked or not.
 # If the cd failed, ls will print the contents of your current directory, which will be confusing for the user. As a best practice, use && and not ;
 
+alias vim='nvim'
+
 alias ld='ls -ld'   # Show info about the directory
 alias lla='ls -lAF' # Show hidden all files
 alias ll='ls -lF'   # Show long file information
