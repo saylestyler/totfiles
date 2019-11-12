@@ -1,16 +1,22 @@
 source ~/totfiles/.aliases.sh
-source ~/main/private-dot-files/ssh.sh
+source ~/private-dot-files/ssh.sh
 
 source ~/.zplug/init.zsh
 
 # Async for zsh, used by pure
 zplug "mafredri/zsh-async", from:github, defer:0
+
 # Load completion library for those sweet [tab] squares
 zplug "lib/completion", from:oh-my-zsh
+
 # Syntax highlighting for commands, load last
 zplug "zsh-users/zsh-syntax-highlighting", from:github, defer:3
-# Theme!
+
+# theme
 zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
+
+# show alias mapped to command if not used
+zplug "djui/alias-tips"
 
 # Actually install plugins, prompt user input
 if ! zplug check --verbose; then
