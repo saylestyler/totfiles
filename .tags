@@ -1,0 +1,475 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_MODE	e-ctags	/u-ctags or e-ctags/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	/2b0aa59/
+--	.aliases.sh	/^alias -- -="cd -"$/;"	a
+.inputrc	README.md	/^### .inputrc$/;"	S
+<C-3>	.cvim.vim	/^map <C-3> lastUsedTab$/;"	m
+<C-A>	.vimrc	/^cmap <C-A> <C-B>$/;"	m
+<C-a>	nvim/init.vim	/^cnoremap <C-a> <Home>$/;"	m
+<C-a>	nvim/init.vim	/^inoremap <C-a> <Home>$/;"	m
+<C-b>	nvim/init.vim	/^cnoremap <C-b> <S-Left>$/;"	m
+<C-b>	nvim/init.vim	/^inoremap <C-b> <Left>$/;"	m
+<C-c>	nvim/init.vim	/^inoremap <C-c> <ESC>$/;"	m
+<C-c>	nvim/init.vim	/^nmap <silent> <C-c> <Plug>(coc-cursors-position)$/;"	m
+<C-d>	.cvim.vim	/^map <C-d> scrollFullPageDown$/;"	m
+<C-d>	nvim/init.vim	/^cnoremap <C-d> <Del>$/;"	m
+<C-d>	nvim/init.vim	/^inoremap <C-d> <Del>$/;"	m
+<C-d>	nvim/init.vim	/^xmap <silent> <C-d> <Plug>(coc-cursors-range)$/;"	m
+<C-e>	.vimrc	/^nnoremap <C-e>  3<C-e>$/;"	m
+<C-e>	nvim/init.vim	/^cnoremap <C-e> <End>$/;"	m
+<C-e>	nvim/init.vim	/^inoremap <expr><C-e> pumvisible() ? "\\<C-e>" : "\\<End>"$/;"	m
+<C-f>	.cvim.vim	/^map <C-f> scrollFullPageUp$/;"	m
+<C-f>	nvim/init.vim	/^cnoremap <C-f> <S-Right>$/;"	m
+<C-f>	nvim/init.vim	/^inoremap <C-f> <Right>$/;"	m
+<C-h>	.cvim.vim	/^map <C-h> previousTab$/;"	m
+<C-h>	nvim/init.vim	/^cnoremap <C-h> <BS>$/;"	m
+<C-h>	nvim/init.vim	/^inoremap <C-h> <BS>$/;"	m
+<C-k>	nvim/init.vim	/^imap <C-k> <Plug>(coc-snippets-expand)$/;"	m
+<C-l>	.cvim.vim	/^map <C-l> nextTab$/;"	m
+<C-l>	nvim/init.vim	/^nnoremap <silent> <C-l> :CtrlPLine<CR>$/;"	m
+<C-n>	nvim/init.vim	/^inoremap <C-n> <Down>$/;"	m
+<C-p>	nvim/init.vim	/^inoremap <C-p> <Up>$/;"	m
+<C-t>	nvim/init.vim	/^cnoremap <C-t> <C-R>=expand("%:p:h") . "\/" <CR>$/;"	m
+<C-u>	nvim/init.vim	/^inoremap <C-u> <C-G>u<C-U>$/;"	m
+<C-w>	nvim/init.vim	/^inoremap <C-w> <C-[>diwa$/;"	m
+<C-y>	.vimrc	/^nnoremap <C-y>  3<C-y>$/;"	m
+<C-z>	.cvim.vim	/^map <C-z> toggleCvim$/;"	m
+<CR>	nvim/init.vim	/^inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm()$/;"	m
+<D-<>	.vimrc	/^map <D-<>       :tabedit ~\/.vimrc<CR>$/;"	m
+<D-CR>	.vimrc	/^imap <D-CR>     <Esc>o$/;"	m
+<D-e>	.vimrc	/^map <D-e>       :FufBuffer<CR>$/;"	m
+<F7>	.vimrc	/^map <silent> <F7> gg=G`` :delmarks z<CR>:echo "Reformatted."<CR>$/;"	m
+<Leader><Leader>	.vimrc	/^map <Leader><Leader> :!$/;"	m
+<Leader>cs	.cvim.vim	/^map <Leader>cs :tabopen https:\/\/github.com\/CodesmithLLC<CR>$/;"	m
+<Leader>ex	.cvim.vim	/^map <Leader>ex :tabopen chrome:\/\/extensions<CR>$/;"	m
+<Leader>gh	.cvim.vim	/^map <Leader>gh :tabopen https:\/\/github.com\/saylestyler<CR>$/;"	m
+<Leader>gi	.cvim.vim	/^map <Leader>gi :tabopen https:\/\/gist.github.com\/saylestyler<CR>$/;"	m
+<Leader>gm	.cvim.vim	/^map <Leader>gm :tabopen https:\/\/mail.google.com\/mail\/#index<CR>$/;"	m
+<Leader>so	.cvim.vim	/^map <Leader>so :tabopen http:\/\/stackoverflow.com<CR>$/;"	m
+<M-D-Down>	.vimrc	/^map <M-D-Down>  :cn<CR>$/;"	m
+<M-D-Left>	.vimrc	/^map <M-D-Left>  :bp<CR>$/;"	m
+<M-D-Right>	.vimrc	/^map <M-D-Right> :bn<CR>$/;"	m
+<M-D-Up>	.vimrc	/^map <M-D-Up>    :cp<CR>$/;"	m
+<M-s>	.vimrc	/^imap <M-s> <Esc>:w<kEnter>i "Works in insert mode, saves and puts back in insert mode"$/;"	m
+<M-s>	.vimrc	/^imap <M-s> <Esc>:w<kEnter>i$/;"	m
+<M-s>	.vimrc	/^map <M-s> :w<kEnter>  "Works in normal mode, must press Esc first"$/;"	m
+<M-s>	.vimrc	/^map <M-s> :w<kEnter>$/;"	m
+<S-TAB>	nvim/init.vim	/^inoremap <silent><expr> <S-TAB> pumvisible() ? "\\<C-p>" : "\\<C-h>"$/;"	m
+<Space>	.vimrc	/^nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>""$/;"	m
+<TAB>	nvim/init.vim	/^inoremap <silent><expr> <TAB>$/;"	m
+<TAB>	nvim/init.vim	/^nmap <silent> <TAB> <Plug>(coc-range-select)$/;"	m
+<TAB>	nvim/init.vim	/^xmap <silent> <TAB> <Plug>(coc-range-select)$/;"	m
+<c-space>	nvim/init.vim	/^inoremap <silent><expr> <c-space> coc#refresh()$/;"	m
+<leader>=	.vimrc	/^map <leader>=   ^W=$/;"	m
+<leader>=	.vimrc	/^nmap <leader>=  gg=G``$/;"	m
+<leader>cc	.vimrc	/^map <leader>cc   <plug>NERDCommenterToggle$/;"	m
+<leader>cp	nvim/init.vim	/^nnoremap <leader>cp :set clipboard=unnamed<CR>$/;"	m
+<leader>dd	nvim/init.vim	/^map <silent> <leader>dd :e $HOME\/.config\/nvim\/dev.dict<CR>$/;"	m
+<leader>ee	nvim/init.vim	/^map <silent> <leader>ee :e $HOME\/.config\/nvim\/init.vim<CR>$/;"	m
+<leader>f	nvim/init.vim	/^nmap <leader>f  <Plug>(coc-format-selected)$/;"	m
+<leader>f	nvim/init.vim	/^xmap <leader>f  <Plug>(coc-format-selected)$/;"	m
+<leader>j	.vimrc	/^map <leader>j   ^Wj$/;"	m
+<leader>k	.vimrc	/^map <leader>k   ^Wk$/;"	m
+<leader>n	nvim/init.vim	/^map <leader>n :NERDTreeToggle<CR>$/;"	m
+<leader>n	nvim/init.vim	/^map <silent> <leader>n :nohlsearch<CR>$/;"	m
+<leader>nn	.vimrc	/^map <leader>nn :MRU<CR>$/;"	m
+<leader>p	.vimrc	/^map <leader>p pastetoggle=<F2>$/;"	m
+<leader>rb	.vimrc	/^map <leader>rb  :FufBuffer<CR>$/;"	m
+<leader>rf	nvim/init.vim	/^nmap <leader>rf <Plug>(coc-refactor)$/;"	m
+<leader>rv	.vimrc	/^map <leader>rv  :source ~\/.vimrc<CR>$/;"	m
+<leader>s	.vimrc	/^nmap <leader>s  :%s\/$/;"	m
+<leader>s	.vimrc	/^nnoremap <leader>s :so $MYVIMRC<cr>$/;"	m
+<leader>s	.vimrc	/^vmap <leader>s  :s\/$/;"	m
+<leader>v	.vimrc	/^map <leader>v   :vsp<CR>$/;"	m
+<leader>vimrc	.vimrc	/^map <leader>vimrc :tabe ~\/.vim\/.vimrc<cr>$/;"	m
+<leader>w	.vimrc	/^map <leader>w   ^Ww$/;"	m
+<leader>w	.vimrc	/^nnoremap <leader>w :w<cr>$/;"	m
+<leader>x	.vimrc	/^map <leader>x   :x<CR>$/;"	m
+<leader>x	nvim/init.vim	/^nmap <leader>x  <Plug>(coc-cursors-operator)$/;"	m
+<space>S	nvim/init.vim	/^nnoremap <silent> <space>S  :exe 'CocList -A --normal grep '.expand('<cword>').''<CR>$/;"	m
+<space>a	nvim/init.vim	/^nnoremap <silent> <space>a  :<C-u>CocList diagnostics<CR>$/;"	m
+<space>b	nvim/init.vim	/^nnoremap <silent> <space>b  :<C-u>CocList -A -N --normal buffers<CR>$/;"	m
+<space>f	nvim/init.vim	/^nnoremap <silent> <space>f  :<C-u>CocList files<CR>$/;"	m
+<space>j	nvim/init.vim	/^nnoremap <silent> <space>j  :<C-u>CocNext<CR>$/;"	m
+<space>k	nvim/init.vim	/^nnoremap <silent> <space>k  :<C-u>CocPrev<CR>$/;"	m
+<space>l	nvim/init.vim	/^nnoremap <silent> <space>l  :<C-u>CocList locationlist<CR>$/;"	m
+<space>m	nvim/init.vim	/^nnoremap <silent> <space>m  :<C-u>CocList -A -N mru<CR>$/;"	m
+<space>o	nvim/init.vim	/^nnoremap <silent> <space>o  :<C-u>CocList -A outline<CR>$/;"	m
+<space>q	nvim/init.vim	/^nnoremap <silent> <space>q  :<C-u>CocList quickfix<CR>$/;"	m
+<space>s	nvim/init.vim	/^nnoremap <silent> <space>s  :exe 'CocList -A -I --normal --input='.expand('<cword>').' words'<CR/;"	m
+<space>w	nvim/init.vim	/^nnoremap <silent> <space>w  :<C-u>CocList -I -N symbols<CR>$/;"	m
+<space>y	nvim/init.vim	/^nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<CR>$/;"	m
+?	nvim/init.vim	/^map ? \/\\<\\><Left><Left>$/;"	m
+AckGrep	.vimrc	/^function! AckGrep()$/;"	f
+AckVisual	.vimrc	/^function! AckVisual()$/;"	f
+C	nvim/init.vim	/^command! -nargs=0 C             :CocConfig$/;"	c
+CoffeeScript	.ctags	/^--langdef=CoffeeScript$/;"	l
+CopyFloatText	nvim/init.vim	/^function! CopyFloatText() abort$/;"	f
+Css	.ctags	/^--langdef=Css$/;"	l
+D	nvim/init.vim	/^command! -nargs=0 -range D      :CocCommand$/;"	c
+E	nvim/init.vim	/^command! -nargs=0 E     :e$/;"	c
+F	.cvim.vim	/^map F createActiveTabbedHint$/;"	m
+F	nvim/init.vim	/^command! -nargs=0 F     :echomsg @%$/;"	c
+Find	nvim/init.vim	/^command! -nargs=+ Find          :exe 'CocList -A --normal grep --smart-case '.<q-args>$/;"	c
+Format	nvim/init.vim	/^command! -nargs=0 Format        :call CocAction('format')$/;"	c
+GitChunkUndo	nvim/init.vim	/^command! -nargs=0 GitChunkUndo  :call CocAction('runCommand', 'git.chunkUndo')$/;"	c
+H1	.ctags	/^--regex-markdown=\/^#[ \\t]+(.*)\/\\1\/h,H1\/$/;"	k	langdef:markdown
+H2	.ctags	/^--regex-markdown=\/^##[ \\t]+(.*)\/\\1\/i,H2\/$/;"	k	langdef:markdown
+H3	.ctags	/^--regex-markdown=\/^###[ \\t]+(.*)\/\\1\/j,H3\/$/;"	k	langdef:markdown
+H4	.ctags	/^--regex-markdown=\/^####[ \\t]+(.*)\/\\1\/k,H4\/$/;"	k	langdef:markdown
+H5	.ctags	/^--regex-markdown=\/^#####[ \\t]+(.*)\/\\1\/l,H5\/$/;"	k	langdef:markdown
+H6	.ctags	/^--regex-markdown=\/^######[ \\t]+(.*)\/\\1\/m,H6\/$/;"	k	langdef:markdown
+Html	.ctags	/^--langdef=Html$/;"	l
+JSONPretty	nvim/init.vim	/^command! -nargs=0 JSONPretty    :%!python -m json.tool$/;"	c
+Json	.ctags	/^--langdef=Json$/;"	l
+K	nvim/init.vim	/^nnoremap <silent> K :call <SID>show_documentation()<CR>$/;"	m
+L	nvim/init.vim	/^command! -nargs=0 L             :CocListResume$/;"	c
+MRU_Auto_Close	.vimrc	/^let MRU_Auto_Close = 1$/;"	v
+MRU_Window_Height	.vimrc	/^let MRU_Window_Height = 10$/;"	v
+OR	nvim/init.vim	/^command! -nargs=0 OR            :call CocAction('runCommand', 'editor.action.organizeImport')$/;"	c
+P	.cvim.vim	/^map P openPaste$/;"	m
+Q	nvim/init.vim	/^command! -nargs=0 Q     :q$/;"	c
+Qa	nvim/init.vim	/^command! -nargs=0 Qa    :qa$/;"	c
+R	nvim/init.vim	/^command! -nargs=0 R             :CocRestart$/;"	c
+RemoveFancyCharacters	.vimrc	/^command! RemoveFancyCharacters :call RemoveFancyCharacters()$/;"	c
+RemoveFancyCharacters	.vimrc	/^function! RemoveFancyCharacters()$/;"	f
+S	.cvim.vim	/^map S :open google<Space>$/;"	m
+Status	nvim/init.vim	/^command! -nargs=0 Status        :CocList -A --normal gstatus$/;"	c
+T	nvim/init.vim	/^command! -nargs=0 T     :tabnew$/;"	c
+Todos	nvim/init.vim	/^command! -nargs=0 Todos         :CocList -A --normal grep -e TODO|FIXME$/;"	c
+W	nvim/init.vim	/^command! -nargs=0 W     :w$/;"	c
+WQa	nvim/init.vim	/^command! -nargs=0 WQa   :wqa$/;"	c
+Wa	nvim/init.vim	/^command! -nargs=0 Wa    :wa$/;"	c
+Wqa	nvim/init.vim	/^command! -nargs=0 Wqa   :wqa$/;"	c
+Y	.vimrc	/^map Y           y\$$/;"	m
+Yaml	.ctags	/^--langdef=Yaml$/;"	l
+[c	nvim/init.vim	/^nmap <silent> <expr> [c &diff ? '[c' : '<Plug>(coc-git-prevchunk)'$/;"	m
+\	.vimrc	/^map \\           :NERDTreeToggle<CR>$/;"	m
+\]	.cvim.vim	/^map \\] openCommandBar$/;"	m
+\|	.vimrc	/^map \\|          :NERDTreeFind<CR>$/;"	m
+]c	nvim/init.vim	/^nmap <silent> <expr> ]c &diff ? ']c' : '<Plug>(coc-git-nextchunk)'$/;"	m
+afk	.aliases.sh	/^alias afk="\/System\/Library\/CoreServices\/Menu\\ Extras\/User.menu\/Contents\/Resources\/CGSes/;"	a
+agn	.aliases.sh	/^alias agn="fc -e : -1"$/;"	a
+airport	.aliases.sh	/^alias airport='\/System\/Library\/PrivateFrameworks\/Apple80211.framework\/Versions\/Current\/Re/;"	a
+barposition	.cvim.vim	/^let barposition = "bottom"$/;"	v
+bf	.aliases.sh	/^alias bf='brew info'$/;"	a
+bi	.aliases.sh	/^alias bi='brew install'$/;"	a
+biggest_loosers	.aliases.sh	/^function biggest_loosers() {$/;"	f
+bindings	.ctags	/^--regex-Html=\/\\{\\{(.*)\\}\\}\/{{\\1}}\/b,bindings\/$/;"	k	langdef:Html
+blacklists	.cvim.vim	/^let blacklists = ["https:\/\/repl.it\/*"]$/;"	v
+brew (casks) installation	README.md	/^### brew (casks) installation$/;"	S
+bu	.aliases.sh	/^alias bu='brew uninstall'$/;"	a
+bubc	.aliases.sh	/^alias bubc='brew upgrade && brew cleanup'$/;"	a
+bubo	.aliases.sh	/^alias bubo='brew update && brew outdated'$/;"	a
+bubu	.aliases.sh	/^alias bubu='bubo && bubc'$/;"	a
+c	.aliases.sh	/^alias c="clear"$/;"	a
+c	.aliases.sh	/^alias c="tr -d '\\n' | pbcopy"$/;"	a
+c	.aliases.sh	/^function c() {$/;"	f
+canary	.aliases.sh	/^alias canary='\/Applications\/Google\\ Chrome\\ Canary.app\/Contents\/MacOS\/Google\\ Chrome\\ C/;"	a
+ccc	.aliases.sh	/^alias ccc="pbcopy <"$/;"	a
+check	scripts/checkdeps.sh	/^function check() {$/;"	f
+chrome	.aliases.sh	/^alias chrome='\/Applications\/Google\\ Chrome.app\/Contents\/MacOS\/Google\\ Chrome'$/;"	a
+chromekill	.aliases.sh	/^alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v extension-process | t/;"	a
+class	.ctags	/^--regex-CoffeeScript=\/(^|=[ \\t])*class ([A-Za-z.]+)( extends [A-Za-z.]+)?$\/\\2\/c,class\/$/;"	k	langdef:CoffeeScript
+classes	.ctags	/^--regex-javascript=\/^[ \\t]*(export([ \\t]+abstract)?)?[ \\t]*class[ \\t]+([a-zA-Z0-9_$]+)\/\\3/;"	k	langdef:javascript
+classes	.ctags	/^--regex-typescript=\/^[ \\t]*(export([ \\t]+abstract)?)?[ \\t]*class[ \\t]+([a-zA-Z0-9_$]+)\/\\3/;"	k	langdef:typescript
+cleanup	.aliases.sh	/^alias cleanup="find . -name '*.DS_Store' -type f -ls -delete"$/;"	a
+cleanup	.aliases.sh	/^alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"$/;"	a
+co	.aliases.sh	/^alias co="git checkout"$/;"	a
+code	.aliases.sh	/^alias code="open . -a Visual\\ Studio\\ Code"$/;"	a
+common	nvim/init.vim	/^augroup common$/;"	a
+cs	.aliases.sh	/^alias cs="cd ~\/cs"$/;"	a
+css	.aliases.sh	/^alias css="stylelint \\"src\/layouts\/*.css\\" --config \/usr\/local\/lib\/node_modules\/styleli/;"	a
+ctrd	.aliases.sh	/^alias ctrd="tr -d '\\n' | pbcopy"$/;"	a
+d	.aliases.sh	/^alias d="cd ~\/Documents\/Dropbox"$/;"	a
+decorators	.ctags	/^--regex-typescript=\/^[ \\t]*@([a-zA-Z0-9_$]+)\/\\1\/d,decorators\/$/;"	k	langdef:typescript
+dev	.aliases.sh	/^alias dev="git checkout dev"$/;"	a
+directives	.ctags	/^--regex-Html=\/ng-([a-zA-Z0-9.$]+)=('|")(.*)('|")\/ng-\\1        \\3\/d,directives\/$/;"	k	langdef:Html
+dl	.aliases.sh	/^alias dl="cd ~\/Downloads"$/;"	a
+dt	.aliases.sh	/^alias dt="cd ~\/Desktop"$/;"	a
+dud	.aliases.sh	/^function dud() {$/;"	f
+egrep	.aliases.sh	/^alias egrep='egrep --color=auto'$/;"	a
+emit_desktop_notification	scripts/aws-ec2-dev-scaffold.sh	/^emit_desktop_notification() {$/;"	f
+emptytrash	.aliases.sh	/^alias emptytrash="rm -rfv ~\/.Trash"$/;"	a
+emptytrash	.aliases.sh	/^alias emptytrash="sudo rm -rfv \/Volumes\/*\/.Trashes; sudo rm -rfv ~\/.Trash; sudo rm -rfv \/pr/;"	a
+enums	.ctags	/^--regex-javascript=\/^[ \\t]*(export)?[ \\t]*enum[ \\t]+([a-zA-Z0-9_$]+)\/\\2\/e,enums\/$/;"	k	langdef:javascript
+enums	.ctags	/^--regex-typescript=\/^[ \\t]*(export)?[ \\t]*enum[ \\t]+([a-zA-Z0-9_$]+)\/\\2\/e,enums\/$/;"	k	langdef:typescript
+errexit	scripts/aws-ec2-dev-scaffold.sh	/^errexit() {$/;"	f
+evmrc	.aliases.sh	/^alias evmrc="nvim ~\/.config\/nvim\/init.vim"$/;"	a
+ezrc	.aliases.sh	/^alias ezrc="nvim ~\/totfiles\/zsh\/.zshrc"$/;"	a
+f	.cvim.vim	/^map f createHint$/;"	m
+fgrep	.aliases.sh	/^alias fgrep='fgrep --color=auto'$/;"	a
+find_tagged_ec2_group	scripts/aws-ec2-dev-scaffold.sh	/^find_tagged_ec2_group() {$/;"	f
+flush	.aliases.sh	/^alias flush="dscacheutil -flushcache && killall -HUP mDNSResponder"$/;"	a
+flush	.aliases.sh	/^alias flush="dscacheutil -flushcache"$/;"	a
+fps	.aliases.sh	/^alias fps="screencapture -iC ~\/Desktop\/fs.jpg"$/;"	a
+fs	.aliases.sh	/^alias fs="stat -f \\"%z bytes\\""$/;"	a
+fu_command_line	.aliases.sh	/^function fu_command_line() {$/;"	f
+function	.ctags	/^--regex-CoffeeScript=\/^[ \\t]*([A-Za-z.]+)[ \\t]+=.*[-=]>.*$\/\\1\/f,function\/$/;"	k	langdef:CoffeeScript
+function	.ctags	/^--regex-CoffeeScript=\/^[ \\t]*@?([A-Za-z.]+):.*[-=]>.*$\/\\1\/f,function\/$/;"	k	langdef:CoffeeScript
+function	.ctags	/^--regex-Json=\/^[ \\t]*"([^"]+)"[ \\t]*\\:\/\\1\/f,function\/$/;"	k	langdef:Json
+functions	.ctags	/^--regex-Css=\/^[ \\t]*(.+)[ \\t]*,[ \\t]*$\/\\1\/f,functions\/$/;"	k	langdef:Css
+functions	.ctags	/^--regex-Css=\/^[ \\t]*(.+)[ \\t]*\\{\/\\1\/f,functions\/$/;"	k	langdef:Css
+functions	.ctags	/^--regex-Css=\/^[ \\t]*([#.]*[a-zA-Z_0-9]+)[ \\t]*$\/\\1\/f,functions\/$/;"	k	langdef:Css
+functions	.ctags	/^--regex-Html=\/([a-zA-Z0-9.$]+)\\(.*\\)\/\\1(...)\/f,functions\/$/;"	k	langdef:Html
+functions	.ctags	/^--regex-Yaml=\/^[ \\t]*([a-zA-Z_0-9 ]+)[ \\t]*\\:[ \\t]*\/\\1\/f,functions\/$/;"	k	langdef:Yaml
+functions	.ctags	/^--regex-javascript=\/^[ \\t]*(export)?[ \\t]*function[ \\t]+([a-zA-Z0-9_$]+)\/\\2\/f,functions\/$/;"	k	langdef:javascript
+functions	.ctags	/^--regex-javascript=\/^[ \\t]*(var|let|const)[ \\t]+([a-zA-Z0-9_$]+)[ \\t]*=[ \\t]*function[ \\t]/;"	k	langdef:javascript
+functions	.ctags	/^--regex-typescript=\/^[ \\t]*(export)?[ \\t]*function[ \\t]+([a-zA-Z0-9_$]+)\/\\2\/f,functions\/$/;"	k	langdef:typescript
+functions	.ctags	/^--regex-typescript=\/^[ \\t]*(var|let|const)[ \\t]+([a-zA-Z0-9_$]+)[ \\t]*=[ \\t]*function[ \\t]/;"	k	langdef:typescript
+g	.aliases.sh	/^alias g="git"$/;"	a
+g:ale_linters	.vimrc	/^let g:ale_linters = {$/;"	v
+g:bookmark_auto_save	.vimrc	/^let g:bookmark_auto_save = 1$/;"	v
+g:bookmark_save_per_working_dir	.vimrc	/^let g:bookmark_save_per_working_dir = 1$/;"	v
+g:coc_global_extensions	nvim/init.vim	/^let g:coc_global_extensions = [$/;"	v
+g:ctrlp_custom_ignore	.vimrc	/^let g:ctrlp_custom_ignore = '\\v[\\\/]\\.(exe|so|dll|git|hg|svn)$'$/;"	v
+g:ctrlp_use_caching	nvim/init.vim	/^  let g:ctrlp_use_caching = 0$/;"	v
+g:ctrlp_user_command	nvim/init.vim	/^  let g:ctrlp_user_command = 'fd --type file'$/;"	v
+g:ctrlp_working_path_mode	.vimrc	/^let g:ctrlp_working_path_mode = 'ra' "When invoked, unless a starting directory is specified, Ct/;"	v
+g:go_fmt_command	nvim/init.vim	/^let g:go_fmt_command = "gofumports"$/;"	v
+g:gutentags_ctags_exclude	nvim/init.vim	/^let g:gutentags_ctags_exclude = ['*.json', '*.js', '*.ts', '*.jsx', '*.css', '*.less', '*.sass',/;"	v
+g:gutentags_ctags_extra_args	nvim/init.vim	/^let g:gutentags_ctags_extra_args = ['--output-format=e-ctags']$/;"	v
+g:gutentags_ctags_tagfile	nvim/init.vim	/^let g:gutentags_ctags_tagfile = '.tags'$/;"	v
+g:gutentags_project_root	nvim/init.vim	/^let g:gutentags_project_root = ['.root', '.git', '.svn', '.hg', '.project']$/;"	v
+g:loaded_node_provider	nvim/init.vim	/^let g:loaded_node_provider = 0$/;"	v
+g:loaded_python_provider	nvim/init.vim	/^let g:loaded_python_provider = 0$/;"	v
+g:loaded_ruby_provider	nvim/init.vim	/^let g:loaded_ruby_provider = 0$/;"	v
+g:netrw_chgwin	nvim/init.vim	/^let g:netrw_chgwin = 2$/;"	v
+g:netrw_list_hide	nvim/init.vim	/^let g:netrw_list_hide = ',\\(^\\|\\s\\s\\)\\zs\\.\\S\\+'$/;"	v
+g:netrw_liststyle	nvim/init.vim	/^let g:netrw_liststyle=3$/;"	v
+g:netrw_winsize	nvim/init.vim	/^let g:netrw_winsize=20$/;"	v
+g:python2_host_prog	.vimrc	/^let g:python2_host_prog = '\/usr\/local\/bin\/python2'$/;"	v
+g:python3_host_prog	.vimrc	/^let g:python3_host_prog = '\/usr\/local\/bin\/python3'$/;"	v
+g:python3_host_prog	nvim/init.vim	/^let g:python3_host_prog = '\/usr\/local\/bin\/python3'$/;"	v
+g:python_host_prog	nvim/init.vim	/^let g:python_host_prog = '\/usr\/bin\/python'$/;"	v
+g:rooter_patterns	nvim/init.vim	/^let g:rooter_patterns = ['.root', 'package.json', '.git\/']$/;"	v
+g:use_emmet_complete_tag	.vimrc	/^let g:use_emmet_complete_tag=1$/;"	v
+g:user_emmet_leader_key	.vimrc	/^let g:user_emmet_leader_key='<C-Y>'$/;"	v
+g:user_emmet_settings	.vimrc	/^let g:user_emmet_settings={'indentation':'  '}$/;"	v
+g:vim_g_command	.vimrc	/^let g:vim_g_command = "Go"$/;"	v
+g:vim_g_query_url	.vimrc	/^let g:vim_g_query_url = "http:\/\/www.google.com\/search?btnI=1&q="$/;"	v
+g:vim_markdown_concel	.vimrc	/^let g:vim_markdown_concel=0/;"	v
+gB	nvim/init.vim	/^nnoremap <silent> gB :bp<CR>$/;"	m
+gD	nvim/init.vim	/^nmap <silent> gD <Plug>(coc-declaration)$/;"	m
+ga	.aliases.sh	/^alias ga="git add"$/;"	a
+ga	nvim/init.vim	/^nmap <silent> ga <Plug>(coc-codeaction)$/;"	m
+gab	.aliases.sh	/^alias gab='gatsby build'$/;"	a
+gad	.aliases.sh	/^alias gad='gatsby develop'$/;"	a
+gall	.aliases.sh	/^function gall() {$/;"	f
+gb	.aliases.sh	/^alias gb="git branch -a" # g(i)t all branches local and remote$/;"	a
+gb	nvim/init.vim	/^nnoremap <silent> gb :bn<CR>$/;"	m
+gcm	.aliases.sh	/^alias gcm="git commit -m"$/;"	a
+gco	.aliases.sh	/^alias gco="git checkout"$/;"	a
+gcob	.aliases.sh	/^alias gcob="git checkout -b"$/;"	a
+gd	.aliases.sh	/^alias gd="git diff -- ':!package-lock.json' ':!yarn.lock'" # ignore package-lock on git diff$/;"	a
+gd	.aliases.sh	/^alias gd="git diff"$/;"	a
+gd	nvim/init.vim	/^nmap <silent> gd :call <SID>GoToDefinition()<CR>$/;"	m
+gdc	.aliases.sh	/^alias gdc="git diff --cached"$/;"	a
+ge	nvim/init.vim	/^nmap <silent> ge <Plug>(coc-diagnostic-next)$/;"	m
+ggg	.aliases.sh	/^alias ggg="git add . && git commit -m 'standard' && git push"$/;"	a
+gi	nvim/init.vim	/^nmap <silent> gi <Plug>(coc-implementation)$/;"	m
+git_create_new_repo	.aliases.sh	/^function git_create_new_repo() {$/;"	f
+gitdiscard	.aliases.sh	/^alias gitdiscard="git checkout -- . "$/;"	a
+github	.aliases.sh	/^alias github='web_search github'$/;"	a
+gl	nvim/init.vim	/^nmap <silent> gl <Plug>(coc-codelens-action)$/;"	m
+glp	.aliases.sh	/^alias glp="git log --pretty=oneline"$/;"	a
+gm	nvim/init.vim	/^nmap <silent> gm <Plug>(coc-git-commit)$/;"	m
+gn	nvim/init.vim	/^nmap <silent> gn <Plug>(coc-rename)$/;"	m
+google	.aliases.sh	/^alias google='web_search google' # arguments to websearch fn$/;"	a
+gphm	.aliases.sh	/^alias gphm="git push heroku master"$/;"	a
+gpsh	.aliases.sh	/^alias gpsh="git push"$/;"	a
+gpuom	.aliases.sh	/^alias gpuom="git push -u origin master"$/;"	a
+gr	nvim/init.vim	/^nmap <silent> gr <Plug>(coc-references)$/;"	m
+grep	.aliases.sh	/^alias grep='grep --color=auto'$/;"	a
+grs	.aliases.sh	/^alias grs="git reset --soft"$/;"	a
+grunt	.aliases.sh	/^command -v grunt > \/dev\/null && alias grunt="grunt --stack"$/;"	a
+gs	.aliases.sh	/^alias gs="git status"$/;"	a
+gs	nvim/init.vim	/^nmap <silent> gs <Plug>(coc-git-chunkinfo)$/;"	m
+gy	nvim/init.vim	/^nmap <silent> gy <Plug>(coc-type-definition)$/;"	m
+h	.aliases.sh	/^alias h='function hdi(){ howdoi $* -c -n 5; }; hdi'$/;"	a
+h	.cvim.vim	/^map h previousTab$/;"	m
+hd	.aliases.sh	/^command -v hd > \/dev\/null || alias hd="hexdump -C"$/;"	a
+hdi	.aliases.sh	/^function hdi() {$/;"	f
+heading,headings	.ctags	/^--regex-markdown=\/^(#+[ \\t]+.*)\/\\1\/h,heading,headings\/$/;"	k	langdef:markdown
+hide	.aliases.sh	/^alias hide="defaults write com.apple.Finder AppleShowAllFiles -bool false and killall Finder"$/;"	a
+hide	.aliases.sh	/^alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"$/;"	a
+hidedesktop	.aliases.sh	/^alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"$/;"	a
+hidedesktop	.aliases.sh	/^alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false and killall Finder"$/;"	a
+hintcharacters	.cvim.vim	/^let hintcharacters = "asdfg"$/;"	v
+hist	.aliases.sh	/^function hist() {$/;"	f
+hman	.aliases.sh	/^function hman() {$/;"	f
+hqq	.aliases.sh	/^alias hqq="youtube-dl -x --audio-format m4a --audio-quality 0"$/;"	a
+httpdump	.aliases.sh	/^alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \\"Host\\: .*|GET \\\/.*\\""$/;"	a
+https	scripts/.ls++.conf	/^Report bugs and\/or feature requests on L<https:\/\/github.com\/trapd00r\/ls--\/issues>$/;"	k
+i	.cvim.vim	/^map i goToInput$/;"	m
+ifactive	.aliases.sh	/^alias ifactive="ifconfig | pcregrep -M -o '^[^\\t:]+:([^\\n]|\\n\\t)*status: active'"$/;"	a
+ig	nvim/init.vim	/^omap <silent> ig <Plug>(coc-git-chunk-inner)$/;"	m
+ig	nvim/init.vim	/^xmap <silent> ig <Plug>(coc-git-chunk-inner)$/;"	m
+imports	.ctags	/^--regex-javascript=\/^[ \\t]*import[ \\t]+([a-zA-Z0-9_$*]+)[ \\t]+as[ \\t]+([a-zA-Z0-9_$]+)\/\\2/;"	k	langdef:javascript
+imports	.ctags	/^--regex-javascript=\/^[ \\t]*import[ \\t]+\\{?([a-zA-Z0-9_$]+)\\}?\/\\1\/I,imports\/$/;"	k	langdef:javascript
+imports	.ctags	/^--regex-typescript=\/^[ \\t]*import[ \\t]+([a-zA-Z0-9_$*]+)[ \\t]+as[ \\t]+([a-zA-Z0-9_$]+)\/\\2/;"	k	langdef:typescript
+imports	.ctags	/^--regex-typescript=\/^[ \\t]*import[ \\t]+\\{?([a-zA-Z0-9_$]+)\\}?\/\\1\/I,imports\/$/;"	k	langdef:typescript
+install	README.md	/^## install$/;"	s
+interfaces	.ctags	/^--regex-javascript=\/^[ \\t]*(export)?[ \\t]*interface[ \\t]+([a-zA-Z0-9_$]+)\/\\2\/i,interfaces/;"	k	langdef:javascript
+interfaces	.ctags	/^--regex-typescript=\/^[ \\t]*(export)?[ \\t]*interface[ \\t]+([a-zA-Z0-9_$]+)\/\\2\/i,interfaces/;"	k	langdef:typescript
+ip	.aliases.sh	/^alias ip="dig +short myip.opendns.com @resolver1.opendns.com"$/;"	a
+ipp	.aliases.sh	/^alias ipp='ipython'$/;"	a
+ips	.aliases.sh	/^alias ips="ifconfig -a | grep -o 'inet6\\? \\(addr:\\)\\?\\s\\?\\(\\(\\([0-9]\\+\\.\\)\\{3\\}[0-/;"	a
+ips	.aliases.sh	/^alias ips="ifconfig -a | perl -nle'\/(\\d+\\.\\d+\\.\\d+\\.\\d+)\/ and print $1'"$/;"	a
+it2prof	.aliases.sh	/^it2prof() {$/;"	f
+javascript	.ctags	/^--langdef=javascript$/;"	l
+jj	.aliases.sh	/^alias jj="gatsby develop --verbose --open"$/;"	a
+jk	.vimrc	/^inoremap jk <esc>$/;"	m
+jsc	.aliases.sh	/^[ -e "${jscbin}" ] && alias jsc="${jscbin}";$/;"	a
+kewl	.aliases.sh	/^alias kewl="ps -e -orss=, args= | sort -b -k1,1n| head -10"$/;"	a
+kewl	.aliases.sh	/^alias kewl="ps -e | sort -b -k1 | head -10"$/;"	a
+kp	.aliases.sh	/^alias kp="\/usr\/local\/lib\/node_modules\/kill-port\/cli.js"$/;"	a
+l	.aliases.sh	/^alias l="ls -lF ${colorflag}"$/;"	a
+l	.cvim.vim	/^map l nextTab$/;"	m
+la	.aliases.sh	/^alias la="ls -lAF ${colorflag}"$/;"	a
+la	.aliases.sh	/^alias la='ls -AF'   # Show hidden files$/;"	a
+launch_instance	scripts/aws-ec2-dev-scaffold.sh	/^launch_instance() {$/;"	f
+lc	.aliases.sh	/^alias lc='ls -ltcr' # Sort by and show change time, most recent last$/;"	a
+ld	.aliases.sh	/^alias ld='ls -ld'   # Show info about the directory$/;"	a
+lk	.aliases.sh	/^alias lk='ls -lSr'  # Sort by size, biggest last$/;"	a
+ll	.aliases.sh	/^alias ll='ls -lF'   # Show long file information$/;"	a
+lla	.aliases.sh	/^alias lla='ls -lAF' # Show hidden all files$/;"	a
+localip	.aliases.sh	/^alias localip="ipconfig getifaddr en0"$/;"	a
+localip	.aliases.sh	/^alias localip="ipconfig getifaddr en1"$/;"	a
+lpp	.aliases.sh	/^alias lpp='open . -a LastPass'$/;"	a
+lr	.aliases.sh	/^alias lr='ls -lR'   # Recursive ls$/;"	a
+ls	.aliases.sh	/^alias ls="command ls ${colorflag}"$/;"	a
+lscleanup	.aliases.sh	/^alias lscleanup="\/System\/Library\/Frameworks\/CoreServices.framework\/Frameworks\/LaunchServic/;"	a
+lsd	.aliases.sh	/^alias lsd="ls -lF ${colorflag} | grep --color=never '^d'"$/;"	a
+lsd	.aliases.sh	/^alias lsd='ls -l | grep "^d"'$/;"	a
+lt	.aliases.sh	/^alias lt='ls -ltr'  # Sort by date, most recent last$/;"	a
+lu	.aliases.sh	/^alias lu='ls -ltur' # Sort by and show access time, most recent last$/;"	a
+lx	.aliases.sh	/^alias lx='ls -lXB'  # Sort by extension$/;"	a
+mailme	.aliases.sh	/^alias mailme='echo "mail -a myscript.sh -s \\"subj: myscript EOM\\" tyler@g.com < \/dev\/null"'$/;"	a
+map	.aliases.sh	/^alias map="xargs -n1"$/;"	a
+mapleader	.cvim.vim	/^let mapleader = "\\\\"$/;"	v
+mapleader	.vimrc	/^let mapleader = ","$/;"	v
+maplocalleader	.vimrc	/^let maplocalleader = ";"$/;"	v
+markdown	.ctags	/^--langdef=markdown$/;"	l
+master	.aliases.sh	/^alias master="git checkout master"$/;"	a
+md5sum	.aliases.sh	/^command -v md5sum > \/dev\/null || alias md5sum="md5"$/;"	a
+members	.ctags	/^--regex-javascript=\/^[ \\t]*(export)?[ \\t]*(public|protected|private)[ \\t]+(static)?[ \\t]*([/;"	k	langdef:javascript
+members	.ctags	/^--regex-typescript=\/^[ \\t]*(export)?[ \\t]*(public|protected|private)?[ \\t]+(static)?[ \\t]*(/;"	k	langdef:typescript
+mergepdf	.aliases.sh	/^alias mergepdf='\/System\/Library\/Automator\/Combine\\ PDF\\ Pages.action\/Contents\/Resources\//;"	a
+methods	.ctags	/^--regex-javascript=\/^[ \\t]*([a-zA-Z0-9_$]{3,})[ \\t]*\\(([a-zA-Z0-9_$,='" ]*)\\)[ \\t]*\\{\/\\/;"	k	langdef:javascript
+misc observations	README.md	/^## misc observations$/;"	s
+modules	.ctags	/^--regex-javascript=\/^[ \\t]*(declare)?[ \\t]*namespace[ \\t]+([a-zA-Z0-9_$]+)\/\\2\/c,modules\/$/;"	k	langdef:javascript
+modules	.ctags	/^--regex-javascript=\/^[ \\t]*(export)?[ \\t]*module[ \\t]+([a-zA-Z0-9_$]+)\/\\2\/n,modules\/$/;"	k	langdef:javascript
+modules	.ctags	/^--regex-typescript=\/^[ \\t]*(declare)?[ \\t]*namespace[ \\t]+([a-zA-Z0-9_$]+)\/\\2\/c,modules\/$/;"	k	langdef:typescript
+modules	.ctags	/^--regex-typescript=\/^[ \\t]*(export)?[ \\t]*module[ \\t]+([a-zA-Z0-9_$]+)\/\\2\/n,modules\/$/;"	k	langdef:typescript
+music	.aliases.sh	/^alias music="open francesco\\ tristano\\ \\&\\ carl\\ craig\\ -\\ the\\ melody-ZFHD9QpQDFA.m4a"$/;"	a
+musicyt	.aliases.sh	/^alias musicyt="open 'https:\/\/www.youtube.com\/watch?v=faHomJimjLc' -a Safari"$/;"	a
+myip	.aliases.sh	/^alias myip="curl -s checkip.dyndns.org | grep -Eo '[0-9\\.]+'"$/;"	a
+n	.aliases.sh	/^function n() {$/;"	f
+npmD	.aliases.sh	/^alias npmD="npm i -D "$/;"	a
+npmE	.aliases.sh	/^alias npmE='PATH="$(npm bin)":"$PATH"'$/;"	a
+npmI	.aliases.sh	/^alias npmI="npm init"$/;"	a
+npmL	.aliases.sh	/^alias npmL="npm list"$/;"	a
+npmL0	.aliases.sh	/^alias npmL0="npm ls --depth=0"$/;"	a
+npmO	.aliases.sh	/^alias npmO="npm outdated"$/;"	a
+npmP	.aliases.sh	/^alias npmP="npm publish"$/;"	a
+npmR	.aliases.sh	/^alias npmR="npm run"$/;"	a
+npmS	.aliases.sh	/^alias npmS="npm i -S "$/;"	a
+npmV	.aliases.sh	/^alias npmV="npm -v"$/;"	a
+npmg	.aliases.sh	/^alias npmg="npm i -g "$/;"	a
+npmst	.aliases.sh	/^alias npmst="npm start"$/;"	a
+npmt	.aliases.sh	/^alias npmt="npm test"$/;"	a
+nv10	.aliases.sh	/^alias nv10="nvm use --delete-prefix v10"$/;"	a
+nvm10	.aliases.sh	/^alias nvm10='. ~\/.nvm\/nvm.sh; nvm use 10'$/;"	a
+octalf	.aliases.sh	/^function octalf() {$/;"	f
+p	.aliases.sh	/^alias p="cd ~\/projects"$/;"	a
+p	.cvim.vim	/^map p openPasteTab$/;"	m
+path	.aliases.sh	/^alias path='echo -e ${PATH\/\/:\/\\\\n}'$/;"	a
+pb	.aliases.sh	/^alias pb="pbcopy"$/;"	a
+pb	.aliases.sh	/^function pb() {$/;"	f
+pbp	.aliases.sh	/^alias pbp="pbpaste"$/;"	a
+pg_start	.aliases.sh	/^alias pg_start="launchctl load ~\/Library\/LaunchAgents\/homebrew.mxcl.postgresql.plist"$/;"	a
+pg_stop	.aliases.sh	/^alias pg_stop="launchctl unload ~\/Library\/LaunchAgents\/homebrew.mxcl.postgresql.plist"$/;"	a
+phelp	.aliases.sh	/^alias phelp='http-server \/usr\/local\/Cellar\/python@2\/2.7.15_1\/share\/doc\/python@2\/library/;"	a
+phps	.aliases.sh	/^alias phps="php -S localhost:8000 && open localhost:8000 -a Google\\ Chrome"$/;"	a
+plistbuddy	.aliases.sh	/^alias plistbuddy="\/usr\/libexec\/PlistBuddy"$/;"	a
+pman	.aliases.sh	/^function pman() {$/;"	f
+pnpm	.aliases.sh	/^alias pnpm="node \/usr\/local\/lib\/node_modules\/pnpm\/lib\/bin\/pnpm.js"$/;"	a
+ppaas	.aliases.sh	/^alias ppaas='pbcopy < https:\/\/ppaas.herokuapp.com\/partyparrot\/mega?overlay=http:\/\/vignette/;"	a
+ppp	.aliases.sh	/^alias ppp="pbpaste"$/;"	a
+pumpitup	.aliases.sh	/^alias pumpitup="osascript -e 'set volume output volume 100'"$/;"	a
+purity	.aliases.sh	/^alias purity="purifycss .\/**\/*.css .\/**\/*.html --rejected --info --min >> lol.css"$/;"	a
+q	.vimrc	/^map q <Nop>$/;"	m
+q1	.vimrc	/^nnoremap q1 :q!<cr>$/;"	m
+qq	.vimrc	/^cnoremap qq <Esc>$/;"	m
+qq	.vimrc	/^inoremap qq <Esc>$/;"	m
+qq	.vimrc	/^nnoremap qq :q<cr>$/;"	m
+qs	.vimrc	/^inoremap qs <Esc>:w<cr>a$/;"	m
+rcl	.aliases.sh	/^alias rcl="redis-cli"$/;"	a
+reload	.aliases.sh	/^alias reload="exec ${SHELL} -l"$/;"	a
+rf	.aliases.sh	/^alias rf="rm -rf"$/;"	a
+rmd	.aliases.sh	/^function rmd() {$/;"	f
+rot13	.aliases.sh	/^alias rot13='tr a-zA-Z n-za-mN-ZA-M'$/;"	a
+s	.cvim.vim	/^map s :tabnew google<Space>$/;"	m
+s:GoToDefinition	nvim/init.vim	/^function! s:GoToDefinition()$/;"	f
+s:check_back_space	nvim/init.vim	/^function! s:check_back_space() abort$/;"	f
+s:select_current_word	nvim/init.vim	/^function! s:select_current_word()$/;"	f
+s:show_documentation	nvim/init.vim	/^function! s:show_documentation()$/;"	f
+scc	.aliases.sh	/^alias scc="screencapture -S ~\/Desktop\/fs.jpg"$/;"	a
+scrollduration	.cvim.vim	/^let scrollduration = 10$/;"	v
+searchalias	.cvim.vim	/^let searchalias g = "google"$/;"	v
+searchlimit	.cvim.vim	/^let searchlimit = 20$/;"	v
+sha1sum	.aliases.sh	/^command -v sha1sum > \/dev\/null || alias sha1sum="shasum"$/;"	a
+shce	.aliases.sh	/^function shce() {$/;"	f
+show	.aliases.sh	/^alias show="defaults write com.apple.Finder AppleShowAllFiles -bool true and killall Finder"$/;"	a
+show	.aliases.sh	/^alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"$/;"	a
+showdesktop	.aliases.sh	/^alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"$/;"	a
+showdesktop	.aliases.sh	/^alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true and killall Finder"$/;"	a
+sodb	.aliases.sh	/^alias sodb="source ~\/db.sh"$/;"	a
+sos	.aliases.sh	/^alias sos='web_search stackoverflow'$/;"	a
+spaceleft	.aliases.sh	/^alias spaceleft='df -hT \/dev\/xvda1' # for linux ami machines$/;"	a
+spf	.aliases.sh	/^alias spf="splash -f"$/;"	a
+spotoff	.aliases.sh	/^alias spotoff="sudo mdutil -a -i off"$/;"	a
+spoton	.aliases.sh	/^alias spoton="sudo mdutil -a -i on"$/;"	a
+ssh_to_instance	scripts/aws-ec2-dev-scaffold.sh	/^ssh_to_instance() {$/;"	f
+stfu	.aliases.sh	/^alias stfu="osascript -e 'set volume output muted true'"$/;"	a
+sudo	.aliases.sh	/^alias sudo='sudo '$/;"	a
+sync_and_deploy_dot_files	.aliases.sh	/^sync_and_deploy_dot_files() {$/;"	f
+t	.tmux.conf	/^bind ^A select-pane -t :.+$/;"	k
+t	.tmux.conf	/^bind-key -r C-h select-window -t :-$/;"	k
+t	.tmux.conf	/^bind-key -r C-l select-window -t :+$/;"	k
+t<Enter>	nvim/init.vim	/^nmap t<Enter> :bo sp term:\/\/zsh\\|resize 10<CR>i$/;"	m
+ta	.aliases.sh	/^alias ta="task add"$/;"	a
+tags	.aliases.sh	/^alias tags="ctags -R --exclude=node_modules --exclude=bower_components --exclude=public --exclud/;"	a
+tags	.ctags	/^--regex-Html=\/^[ \\t]*<([a-zA-Z0-9.$]+)[ \\t]*.*>\/<\\1>\/t,tags\/$/;"	k	langdef:Html
+target	.ctags	/^--regex-make=\/^([^# \\t]*):\/\\1\/t,target\/$/;"	k	langdef:Json
+tasks	.ctags	/^--regex-Yaml=\/^[ \\t]*- name:(.*)\/\\1\/t,tasks\/$/;"	k	langdef:Yaml
+td	.aliases.sh	/^function td() {$/;"	f
+tl	.aliases.sh	/^alias tl="task all"$/;"	a
+totfiles	README.md	/^# totfiles$/;"	c
+transes	.aliases.sh	/^alias transes="trans -shell es:es+en"$/;"	a
+transf	.aliases.sh	/^alias transf="trans -shell fr:fr+en"$/;"	a
+tree	.aliases.sh	/^alias tree="tree -C"$/;"	a
+tt	.aliases.sh	/^alias tt="cd ~\/tylsyl && git pull"$/;"	a
+twmail	.aliases.sh	/^alias twmail="mail -s '$' e07c124d-9982-4921-b7b9-7a640e3c14bb@inthe.am"$/;"	a
+typelinkhintsdelay	.cvim.vim	/^let typelinkhintsdelay = "0"$/;"	v
+types	.ctags	/^--regex-javascript=\/^[ \\t]*(export)?[ \\t]*type[ \\t]+([a-zA-Z0-9_$]+)\/\\2\/t,types\/$/;"	k	langdef:javascript
+types	.ctags	/^--regex-typescript=\/^[ \\t]*(export)?[ \\t]*type[ \\t]+([a-zA-Z0-9_$]+)\/\\2\/t,types\/$/;"	k	langdef:typescript
+typescript	.ctags	/^--langdef=typescript$/;"	l
+u	.cvim.vim	/^map u lastClosedTab$/;"	m
+undopush	.aliases.sh	/^alias undopush="git push -f origin HEAD^:master"$/;"	a
+update	.aliases.sh	/^alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm install np/;"	a
+urlencode	.aliases.sh	/^alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"'$/;"	a
+usage	scripts/aws-ec2-dev-scaffold.sh	/^usage() {$/;"	f
+variable	.ctags	/^--regex-CoffeeScript=\/^[ \\t]*([A-Za-z.]+)[ \\t]+=[^-=>\\n]*$\/\\1\/v,variable\/$/;"	k	langdef:CoffeeScript
+vim	.aliases.sh	/^alias vim='nvim'$/;"	a
+wait_for_port	scripts/aws-ec2-dev-scaffold.sh	/^wait_for_port() {$/;"	f
+web_search	scripts/websearch.sh	/^function web_search() {$/;"	f
+week	.aliases.sh	/^alias week='date +%V'$/;"	a
+who_boot	.aliases.sh	/^function who_boot() {$/;"	f
+whois	.aliases.sh	/^alias whois="whois -h whois-servers.net"$/;"	a
+yrd	.aliases.sh	/^alias yrd='yarn run dev'$/;"	a

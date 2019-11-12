@@ -4,6 +4,8 @@
 # This second command will run ls regardless if the cd worked or not.
 # If the cd failed, ls will print the contents of your current directory, which will be confusing for the user. As a best practice, use && and not ;
 
+alias nvm10='. ~/.nvm/nvm.sh; nvm use 10'
+
 alias spaceleft='df -hT /dev/xvda1' # for linux ami machines
 
 alias vim='nvim'
