@@ -3,6 +3,11 @@ source ~/private-dot-files/ssh.sh
 
 source ~/.zplug/init.zsh
 
+# deer 
+zplug "vifon/deer"
+zle -N deer
+bindkey '\ek' deer
+
 # Async for zsh, used by pure
 zplug "mafredri/zsh-async", from:github, defer:0
 
@@ -33,7 +38,7 @@ export GOROOT=/usr/local/opt/go/libexec
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin
 
-export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+export JAVA_HOME=`echo $(which java)`
 
 # z
 . /usr/local/etc/profile.d/z.sh
