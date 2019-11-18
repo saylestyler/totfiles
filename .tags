@@ -295,6 +295,7 @@ h	.cvim.vim	/^map h previousTab$/;"	m
 hd	.aliases.sh	/^command -v hd > \/dev\/null || alias hd="hexdump -C"$/;"	a
 hdi	.aliases.sh	/^function hdi() {$/;"	f
 heading,headings	.ctags	/^--regex-markdown=\/^(#+[ \\t]+.*)\/\\1\/h,heading,headings\/$/;"	k	langdef:markdown
+hg	.aliases.sh	/^alias hg='history | grep'$/;"	a
 hide	.aliases.sh	/^alias hide="defaults write com.apple.Finder AppleShowAllFiles -bool false and killall Finder"$/;"	a
 hide	.aliases.sh	/^alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"$/;"	a
 hidedesktop	.aliases.sh	/^alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"$/;"	a

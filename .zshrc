@@ -37,7 +37,8 @@ export JAVA_HOME=`echo $(which java)`
 # OR
 # export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 
-export PATH=$PATH:$HOME/.cargo/bin
+export PATH="$HOME/.cargo/bin:$PATH"
+
 
 # z
 . /usr/local/etc/profile.d/z.sh
