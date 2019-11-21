@@ -6,12 +6,10 @@ endif
 
 call plug#begin()
 
-
 " :GenTocGFM && :UpdateToc
 Plug 'mzlogin/vim-markdown-toc'
 
 Plug 'honza/vim-snippets'
-Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'tpope/vim-commentary'
 Plug 'liuchengxu/eleline.vim'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -43,9 +41,6 @@ call plug#end()
 " basic {{ "
 set fileencoding=utf-8
 set fileencodings=utf-8,gbk,chinese,cp936,gb18030,utf-16le,utf-16,big5,euc-jp,euc-kr,latin-1
-
-set notermguicolors
-colorscheme dracula
 
 set hidden
 set number
@@ -270,18 +265,6 @@ let g:netrw_liststyle=3
 " }} Netrw
 
 " coc.nvim {{ "
-" Better display for messages
-set cmdheight=2
-
-" You will have bad experience for diagnostic messages when it's default 4000.
-set updatetime=300
-
-" don't give |ins-completion-menu| messages.
-set shortmess+=c
-
-" always show signcolumns
-set signcolumn=yes
-
 let g:coc_global_extensions = [
       \'coc-pairs',
       \'coc-json',
@@ -298,9 +281,9 @@ let g:coc_global_extensions = [
       \'coc-yaml',
       \'coc-syntax',
       \'coc-git',
-      \'coc-emoji',
-      \'coc-calc',
-      \'coc-xml',
+      " \'coc-emoji',
+      " \'coc-calc',
+      " \'coc-xml',
       \'coc-marketplace',
       \'coc-webpack',
       \'coc-word',
