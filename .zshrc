@@ -12,10 +12,9 @@ zplugin ice pick"async.zsh" src"pure.zsh"      # pure
 zplugin light sindresorhus/pure                # &^ dep
 zplugin ice from"gh-r" as"program"             # bin release
 zplugin load junegunn/fzf-bin                  # fzf
-zplugin ice as"program" \                      # manage vim
-    atclone"rm -f src/auto/config.cache; ./configure" \
-    atpull"%atclone" \
-    make pick"src/vim"
+
+# manage vim
+zplugin ice as"program" atclone"rm -f src/auto/config.cache; ./configure" atpull"%atclone" make pick"src/vim"
 zplugin light vim/vim
 zplugin ice as"program" pick"$ZPFX/bin/git-*" make"PREFIX=$ZPFX" # https://vimeo.com/45506445
 zplugin light tj/git-extras
@@ -52,3 +51,13 @@ HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
 setopt SHARE_HISTORY
+
+# httpstat
+export HTTPSTAT_SHOW_IP=false
+export HTTPSTAT_SHOW_SPEED=true
+export HTTPSTAT_SAVE_BODY=false
+
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" && \
+# --no-use # don't load until you use it

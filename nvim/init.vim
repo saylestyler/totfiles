@@ -13,7 +13,8 @@ Plug 'honza/vim-snippets'
 Plug 'tpope/vim-commentary'
 Plug 'liuchengxu/eleline.vim'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'ludovicchabant/vim-gutentags'
+" Plug 'ludovicchabant/vim-gutentags'
+" Plug 'liuchengxu/vista.vim', { 'on': 'Vista' }
 Plug 'farmergreg/vim-lastplace'
 Plug 'zef/vim-cycle'
 Plug 'nelstrom/vim-visual-star-search'
@@ -25,12 +26,12 @@ Plug 'scrooloose/nerdtree'
 Plug 'nacitar/a.vim', { 'on': 'A' }
 Plug 'bronson/vim-trailing-whitespace', { 'on': 'FixWhitespace' }
 Plug 'sk1418/Join', { 'on': 'Join'}
-Plug 'liuchengxu/vista.vim', { 'on': 'Vista' }
 
-Plug 'fannheyward/go.vim', { 'for': 'go' }
-" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'HerringtonDarkholme/yats.vim', { 'for': 'typescript' }
-" Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+
+Plug 'vim-scripts/Colour-Sampler-Pack'
+Plug 'godlygeek/csapprox' " makes gui-only themes run in term
 
 Plug 'sheerun/vim-polyglot'
 Plug 'neoclide/vim-jsx-improve'
@@ -39,6 +40,10 @@ call plug#end()
 " }} plug.vim "
 
 " basic {{ "
+set notermguicolors
+colorscheme vimhut
+
+
 set fileencoding=utf-8
 set fileencodings=utf-8,gbk,chinese,cp936,gb18030,utf-16le,utf-16,big5,euc-jp,euc-kr,latin-1
 
@@ -240,11 +245,11 @@ endif
 " }} CtrlP "
 
 " vim-gutentags {{ "
-set tags=./.tags;,.tags
-let g:gutentags_project_root = ['.root', '.git', '.svn', '.hg', '.project']
-let g:gutentags_ctags_tagfile = '.tags'
-let g:gutentags_ctags_extra_args = ['--output-format=e-ctags']
-let g:gutentags_ctags_exclude = ['*.json', '*.js', '*.ts', '*.jsx', '*.css', '*.less', '*.sass', '*.go', '*.dart', 'node_modules', 'dist', 'vendor']
+" set tags=./.tags;,.tags
+" let g:gutentags_project_root = ['.root', '.git', '.svn', '.hg', '.project']
+" let g:gutentags_ctags_tagfile = '.tags'
+" let g:gutentags_ctags_extra_args = ['--output-format=e-ctags']
+" let g:gutentags_ctags_exclude = ['*.json', '*.js', '*.ts', '*.jsx', '*.css', '*.less', '*.sass', '*.go', '*.dart', 'node_modules', 'dist', 'vendor']
 " }} vim-gutentags "
 
 " vim-rooter {{ "
@@ -274,16 +279,12 @@ let g:coc_global_extensions = [
       \'coc-prettier',
       \'coc-highlight',
       \'coc-dictionary',
-      \'coc-tag',
       \'coc-snippets',
       \'coc-lists',
       \'coc-yank',
       \'coc-yaml',
       \'coc-syntax',
       \'coc-git',
-      " \'coc-emoji',
-      " \'coc-calc',
-      " \'coc-xml',
       \'coc-marketplace',
       \'coc-webpack',
       \'coc-word',

@@ -10,17 +10,7 @@ alias spaceleft='df -hT /dev/xvda1' # for linux ami machines
 
 alias vim='nvim'
 
-alias ld='ls -ld'   # Show info about the directory
-alias lla='ls -lAF' # Show hidden all files
-alias ll='ls -lF'   # Show long file information
-alias la='ls -AF'   # Show hidden files
-alias lx='ls -lXB'  # Sort by extension
-alias lk='ls -lSr'  # Sort by size, biggest last
-alias lc='ls -ltcr' # Sort by and show change time, most recent last
-alias lu='ls -ltur' # Sort by and show access time, most recent last
-alias lt='ls -ltr'  # Sort by date, most recent last
-alias lr='ls -lR'   # Recursive ls
-alias lsd='ls -l | grep "^d"'
+alias l='exa -abghHliS'
 
 # OS
 alias localip="ipconfig getifaddr en1"
@@ -343,6 +333,8 @@ function octalf() {
   stat -f '%A %a %n' $1
 }
 
+alias hg='history | grep'
+
 # get the 20 most used commands
 # https://github.com/trimstray/the-book-of-secret-knowledge#tool-terminal
 function hist() {
@@ -613,4 +605,14 @@ function gall() {
 # 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 # }
 
-alias hg='history | grep'
+# alias ld='ls -ld'              # Show info about the directory
+# alias lla='ls -lAF'            # Show hidden all files
+# alias ll='ls -lF'              # Show long file information
+# alias la='ls -AF'              # Show hidden files
+# alias lx='ls -lXB'             # Sort by extension
+# alias lk='ls -lSr'             # Sort by size, biggest last
+# alias lc='ls -ltcr'            # Sort by and show change time, most recent last
+# alias lu='ls -ltur'            # Sort by and show access time, most recent last
+# alias lt='ls -ltr'             # Sort by date, most recent last
+# alias lr='ls -lR'              # Recursive ls
+# alias lsd='ls -l | grep "^d"'
