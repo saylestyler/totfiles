@@ -1,4 +1,7 @@
-# use zplugin (sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zplugin/master/doc/install.sh)")
+# use zplugin
+if [ ! -d "${HOME}/.zplugin" ]; then
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zplugin/master/doc/install.sh)"
+fi
 
 ###############################################
 #                  zplugin                    &
@@ -11,8 +14,11 @@ autoload -Uz _zplugin
 #             zplugin... plugins              &
 ###############################################
 
-# self-explanatory:
+# wait until 1 sec after prompt to load autosugg
+zplugin ice silent wait:1 atload:_zsh_autosuggest_start
 zplugin light zsh-users/zsh-autosuggestions
+
+# guess
 zplugin light zdharma/fast-syntax-highlighting
 
 # amazing ctrl-r
@@ -36,6 +42,15 @@ zplugin light vim/vim
 # git-extras https://vimeo.com/45506445
 zplugin ice as"program" pick"$ZPFX/bin/git-*" make"PREFIX=$ZPFX"
 zplugin light tj/git-extras
+
+# adds plugin directory to $PATH,
+# copy file httpstat.sh into httpstat
+# adds execution rights (+x) to the file selected with pick
+zplugin ice as"program" cp"httpstat.sh -> httpstat" pick"httpstat"
+zplugin light b4b4r07/httpstat
+
+# better dir listings / `k`
+zplugin ice silent wait:1; zplugin light supercrabtree/k
 
 ##############################################
 #              tyty's opts                   &

@@ -453,6 +453,15 @@ function cdf() { # short for `cdfinder`
 	cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')";
 }
 
+# https://github.com/necolas/dotfiles/blob/master/shell/functions/datauri
+function datauri() {
+    local mimeType=$(file -b --mime-type "$1")
+    if [[ $mimeType == text/* ]]; then
+        mimeType="${mimeType};charset=utf-8"
+    fi
+    printf "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')" | pbcopy | printf "=> data URI copied to pasteboard.\n"
+}
+
 # # Create a .tar.gz archive, using `zopfli`, `pigz` or `gzip` for compression
 # function targz() {
 # 	local tmpFile="${@%/}.tar";
