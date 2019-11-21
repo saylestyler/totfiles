@@ -1,5 +1,7 @@
 # notes
 #
+# http://zsh.sourceforge.net/Doc/Release/Shell-Grammar.html#Aliasing
+#
 # Using the && operator is better then using a semicolon ; operator in between the two commands, as with { cd "$@" ; ls; }.
 # This second command will run ls regardless if the cd worked or not.
 # If the cd failed, ls will print the contents of your current directory, which will be confusing for the user. As a best practice, use && and not ;
@@ -396,10 +398,7 @@ function hdi() {
   howdoi "$*" -a -c -n 3
 }
 
-function rmd() {
-  pandoc "$1" | lynx -stdin
-}
-
+# man in preview
 function pman() {
   man -t "${@}" | open -f -a /Applications/Preview.app/
 }
@@ -422,29 +421,38 @@ function dud() {
     head -n 20
 }
 
-sync_and_deploy_dot_files() {
-  cd /Users/tyler/totfiles && git pull git add .  && git commit -m "stdout" && git push
-}
-
+# adds all staged changes followed by commit prompt
 function gall() {
   git add . ; git commit -m "${@}"
 }
 
+# `o` with no args opens the current dir, otherwise the loc
+function o() {
+	if [ $# -eq 0 ]; then
+		open .;
+	else
+		open "$@";
+	fi;
+}
 
-# performance timing
-# function performance() {
-#   for i in $(seq 1 10); do /usr/bin/time zsh -i -c exit; done
-#
+# `tre` is a shorthand for `tree` with hidden files and color enabled, ignoring
+# the `.git` directory, listing directories first. The output gets piped into
+# `less` with options to preserve color and line numbers, unless the output is
+# small enough for one screen.
+function tre() {
+	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
+}
+
 # # Create a new directory and enter it
-# function mkd() {
-# 	mkdir -p "$@" && cd "$_";
-# }
-#
-# # Change working directory to the top-most Finder window location
-# function cdf() { # short for `cdfinder`
-# 	cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')";
-# }
-#
+function mkd() {
+    mkdir -p "$@" && cd "$_";
+}
+
+# Change working directory to the top-most Finder window location
+function cdf() { # short for `cdfinder`
+	cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')";
+}
+
 # # Create a .tar.gz archive, using `zopfli`, `pigz` or `gzip` for compression
 # function targz() {
 # 	local tmpFile="${@%/}.tar";
@@ -587,23 +595,6 @@ function gall() {
 # 	fi
 # fi
 #
-# # `o` with no arguments opens the current directory, otherwise opens the given
-# # location
-# function o() {
-# 	if [ $# -eq 0 ]; then
-# 		open .;
-# 	else
-# 		open "$@";
-# 	fi;
-# }
-
-# `tre` is a shorthand for `tree` with hidden files and color enabled, ignoring
-# the `.git` directory, listing directories first. The output gets piped into
-# `less` with options to preserve color and line numbers, unless the output is
-# small enough for one screen.
-# function tre() {
-# 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
-# }
 
 # alias ld='ls -ld'              # Show info about the directory
 # alias lla='ls -lAF'            # Show hidden all files
