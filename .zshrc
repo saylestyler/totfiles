@@ -18,6 +18,9 @@ autoload -Uz _zplugin
 zplugin ice silent wait:1 atload:_zsh_autosuggest_start
 zplugin light zsh-users/zsh-autosuggestions
 
+# completion library
+zplugin load zsh-users/zsh-completions
+
 # guess
 zplugin light zdharma/fast-syntax-highlighting
 
@@ -135,6 +138,9 @@ setopt noshwordsplit
 
 # allow use of comments in interactive code
 setopt interactivecomments
+
+# dunno how this wasn't set!
+setopt auto_cd
 
 # if [[ "$ZSH_SANEOPT_INSANITY" -gt 0 ]]; then
 #     # in order to use #, ~ and ^ for filename generation grep word
