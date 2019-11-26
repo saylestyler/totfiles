@@ -14,16 +14,22 @@ autoload -Uz _zplugin
 #             zplugin... plugins              &
 ###############################################
 
+# http://zdharma.org/zplugin/wiki/Example-Minimal-Setup/
 # wait until 1 sec after prompt to load autosugg
-zplugin ice silent wait:1 atload:_zsh_autosuggest_start
+# zplugin ice silent wait:1 atload:_zsh_autosuggest_start
+# zplugin light zsh-users/zsh-autosuggestions
+zplugin ice wait atload"_zsh_autosuggest_start"
 zplugin light zsh-users/zsh-autosuggestions
 
 # completions: let zplugin handle (w/ smylinks vs. fpath variables)
 # http://zdharma.org/zplugin/wiki/INTRODUCTION/#completion_management
-zplugin ice blockf
+# zplugin ice blockf
+# zplugin light zsh-users/zsh-completions
+zplugin ice wait blockf atpull'zplugin creinstall -q .'
 zplugin light zsh-users/zsh-completions
 
 # guess
+zplugin ice wait atinit"zpcompinit; zpcdreplay"
 zplugin light zdharma/fast-syntax-highlighting
 
 # amazing ctrl-r
