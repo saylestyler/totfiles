@@ -15,11 +15,6 @@ autoload -Uz _zplugin
 ###############################################
 
 # http://zdharma.org/zplugin/wiki/Example-Minimal-Setup/
-# wait until 1 sec after prompt to load autosugg
-# zplugin ice silent wait:1 atload:_zsh_autosuggest_start
-# zplugin light zsh-users/zsh-autosuggestions
-zplugin ice wait atload"_zsh_autosuggest_start"
-zplugin light zsh-users/zsh-autosuggestions
 
 # completions: let zplugin handle (w/ smylinks vs. fpath variables)
 # http://zdharma.org/zplugin/wiki/INTRODUCTION/#completion_management
@@ -31,6 +26,12 @@ zplugin light zsh-users/zsh-completions
 # guess
 zplugin ice wait atinit"zpcompinit; zpcdreplay"
 zplugin light zdharma/fast-syntax-highlighting
+
+# zsh-autosuggestions runs a function a in a precmd hook, so it's last
+# zplugin ice silent wait:1 atload:_zsh_autosuggest_start
+# zplugin light zsh-users/zsh-autosuggestions
+zplugin ice wait atload"_zsh_autosuggest_start"
+zplugin light zsh-users/zsh-autosuggestions
 
 # amazing ctrl-r
 zplugin load zdharma/history-search-multi-word
