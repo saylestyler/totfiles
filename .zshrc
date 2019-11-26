@@ -18,8 +18,10 @@ autoload -Uz _zplugin
 zplugin ice silent wait:1 atload:_zsh_autosuggest_start
 zplugin light zsh-users/zsh-autosuggestions
 
-# completion library
-zplugin load zsh-users/zsh-completions
+# completions: let zplugin handle (w/ smylinks vs. fpath variables)
+# http://zdharma.org/zplugin/wiki/INTRODUCTION/#completion_management
+zplugin ice blockf
+zplugin light zsh-users/zsh-completions
 
 # guess
 zplugin light zdharma/fast-syntax-highlighting
