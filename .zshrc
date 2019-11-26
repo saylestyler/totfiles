@@ -33,6 +33,12 @@ zplugin load zdharma/history-search-multi-word
 zplugin ice pick"async.zsh" src"pure.zsh"
 zplugin light sindresorhus/pure
 
+# turbo mode theme (ice wait !0)
+# PS1="READY > "
+# zplugin ice wait'!0'
+# zplugin load halfo/lambda-mod-zsh-theme
+
+
 # fzf
 zplugin ice from"gh-r" as"program"
 zplugin load junegunn/fzf-bin
