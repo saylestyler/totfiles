@@ -79,6 +79,11 @@ zplugin light b4b4r07/httpstat
 # better dir listings / `k`
 zplugin ice silent wait:1; zplugin light supercrabtree/k
 
+# visual mode vi bindkey
+zplugin ice silent wait:1; zplugin light b4b4r07/zsh-vimode-visual
+
+zplugin light paulirish/git-open
+
 ##############################################
 #              tyty's opts                   &
 ##############################################
