@@ -43,8 +43,11 @@ zplugin light direnv/direnv
 zplugin load zdharma/history-search-multi-word
 
 # theme
-zplugin ice pick"async.zsh" src"pure.zsh"
-zplugin light sindresorhus/pure
+GEOMETRY_COLOR_DIR=152
+zplugin ice wait"0" lucid atload"geometry::prompt"
+zplugin light geometry-zsh/geometry
+# zplugin ice pick"async.zsh" src"pure.zsh"
+# zplugin light sindresorhus/pure
 
 # turbo mode theme (ice wait !0)
 # PS1="READY > "
