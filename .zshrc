@@ -33,6 +33,12 @@ zplugin light zdharma/fast-syntax-highlighting
 zplugin ice wait atload"_zsh_autosuggest_start"
 zplugin light zsh-users/zsh-autosuggestions
 
+# direnv
+# this setup manages updates / sourcing (fast)
+zplugin ice as"program" make'!' atclone'./direnv hook zsh > zhook.zsh' \
+    atpull'%atclone' pick"direnv" src"zhook.zsh"
+zplugin light direnv/direnv
+
 # amazing ctrl-r
 zplugin load zdharma/history-search-multi-word
 
