@@ -12,7 +12,8 @@ alias spaceleft='df -hT /dev/xvda1' # for linux ami machines
 
 alias vim='nvim'
 
-alias l='exa -abghHliS'
+# use exa to sort by newest files in long listing
+alias lt='exa --sort newest -l'
 
 # empties all volumes' trashes & clears sys logs for better sh startup
 alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl"
