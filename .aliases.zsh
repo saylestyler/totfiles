@@ -14,6 +14,9 @@ alias vim='nvim'
 
 alias l='exa -abghHliS'
 
+# empties all volumes' trashes & clears sys logs for better sh startup
+alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl"
+
 # OS
 alias localip="ipconfig getifaddr en1"
 alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ and print $1'"
