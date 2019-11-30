@@ -105,6 +105,7 @@ alias undopush="git push -f origin HEAD^:master"
 alias grs="git reset --soft"
 alias gb="git branch -a" # g(i)t all branches local and remote
 alias gcob="git checkout -b"
+alias gpll="git pull"
 
 alias tt="cd ~/tylsyl && git pull"
 
