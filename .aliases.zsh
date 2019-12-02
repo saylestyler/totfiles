@@ -6,6 +6,8 @@
 # This second command will run ls regardless if the cd worked or not.
 # If the cd failed, ls will print the contents of your current directory, which will be confusing for the user. As a best practice, use && and not ;
 
+alias serve="browser-sync start -s -f . --no-notify --host $LOCAL_IP --port 9000"
+
 alias nvm10='. ~/.nvm/nvm.sh; nvm use 10'
 
 alias spaceleft='df -hT /dev/xvda1' # for linux ami machines
@@ -18,8 +20,6 @@ alias lt='exa --sort newest -l'
 # empties all volumes' trashes & clears sys logs for better sh startup
 alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl"
 
-# OS
-alias localip="ipconfig getifaddr en1"
 alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ and print $1'"
 alias whois="whois -h whois-servers.net"
 alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
@@ -211,7 +211,7 @@ alias canary='/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Ch
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
-alias localip="ipconfig getifaddr en0"
+alias LOCAL_IP="ipconfig getifaddr en0"
 alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
 
 # Show active network interfaces
