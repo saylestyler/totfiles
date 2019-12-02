@@ -621,3 +621,12 @@ function datauri() {
 # alias lt='ls -ltr'             # Sort by date, most recent last
 # alias lr='ls -lR'              # Recursive ls
 # alias lsd='ls -l | grep "^d"'
+alias cradle_development='export $(cat .env-development | xargs)'
+alias cradle_staging='export $(cat .env-staging | xargs) && export CRADLE_DB_USER=cradle'
+alias cradle_production='export $(cat .env-production | xargs) && export CRADLE_DB_USER=cradle'
+alias mesa_development='export $(cat .env-development | xargs)'
+alias mesa_staging='export $(cat .env-staging | xargs) && export MESA_DB_USER=mesa'
+alias mesa_production='export $(cat .env-production | xargs) && export MESA_DB_USER=mesa'
+alias valley_development='export $(cat .env-development | xargs)'
+alias valley_staging='export $(cat .env-staging | xargs) && export VALLEY_DB_USER=valley'
+alias valley_production='export $(cat .env-production | xargs) && export VALLEY_DB_USER=valley'
