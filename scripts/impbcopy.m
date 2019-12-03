@@ -1,6 +1,12 @@
 #import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
 #import <unistd.h>
+
+// instructions:
+// copy to $PATH
+// compile w/ gcc -Wall -g -O3 -ObjC -framework Foundation -framework AppKit -o impbcopy impbcopy.m
+// use w/ ./impbcopy /path/to/file.png
+
 BOOL copy_to_clipboard(NSString *path)
 {
   // http://stackoverflow.com/questions/2681630/how-to-read-png-image-to-nsimage
