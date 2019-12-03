@@ -41,14 +41,8 @@ call plug#end()
 
 " basic {{ "
 let mapleader = ","
-
-"
 set notermguicolors
 colorscheme github
-
-
-set fileencoding=utf-8
-set fileencodings=utf-8,gbk,chinese,cp936,gb18030,utf-16le,utf-16,big5,euc-jp,euc-kr,latin-1
 
 set hidden
 set number
@@ -75,6 +69,12 @@ set pumheight=20
 setlocal noswapfile
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
+
+
+" Copy to 'clipboard registry'
+vmap <C-c> "*y
+" Select all text
+nmap <C-a> ggVG
 
 let g:loaded_node_provider = 0
 let g:loaded_ruby_provider = 0
