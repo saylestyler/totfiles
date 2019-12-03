@@ -70,11 +70,8 @@ setlocal noswapfile
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 
-
-" Copy to 'clipboard registry'
-vmap <C-c> "*y
-" Select all text
-nmap <C-a> ggVG
+" `yy`ank to system clipboard
+set clipboard+=unnamedplus
 
 let g:loaded_node_provider = 0
 let g:loaded_ruby_provider = 0
