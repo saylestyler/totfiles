@@ -206,3 +206,12 @@ setopt auto_cd
 #setopt pushd_ignore_dups
 # * shouldn't match dotfiles. ever.
 #setopt noglobdots
+
+export NVM_DIR="/Users/tyler/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# piknik aliases
+. /usr/local/etc/profile.d/piknik.sh
+
