@@ -621,6 +621,41 @@ function datauri() {
 # alias lt='ls -ltr'             # Sort by date, most recent last
 # alias lr='ls -lR'              # Recursive ls
 # alias lsd='ls -l | grep "^d"'
+
+##########################
+######### pinknik ########
+##########################
+
+# pko <content> : copy <content> to the clipboard
+pko() {
+    echo "$*" | piknik -copy
+}
+
+# pkf <file> : copy the content of <file> to the clipboard
+pkf() {
+    piknik -copy < $1
+}
+
+# pkc : read the content to copy to the clipboard from STDIN
+alias pkc='piknik -copy'
+
+# pkp : paste the clipboard content
+alias pkp='piknik -paste'
+
+# pkm : move the clipboard content
+alias pkm='piknik -move'
+
+# pkz : delete the clipboard content
+alias pkz='piknik -copy < /dev/null'
+
+# pkfr [<dir>] : send a whole directory to the clipboard, as a tar archive
+pkfr() {
+    tar czpvf - ${1:-.} | piknik -copy
+}
+
+# pkpr : extract clipboard content sent using the pkfr command
+alias pkpr='piknik -paste | tar xzpvf -'
+
 alias cradle_development='export $(cat .env-development | xargs)'
 alias cradle_staging='export $(cat .env-staging | xargs) && export CRADLE_DB_USER=cradle'
 alias cradle_production='export $(cat .env-production | xargs) && export CRADLE_DB_USER=cradle'
