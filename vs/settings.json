@@ -1,0 +1,52 @@
+{
+    "vim.debug.silent": true, // ignore vims silly err messages
+    "vim.easymotion": true,
+    "vim.sneak": true,
+    "vim.incsearch": true,
+    "vim.useSystemClipboard": true,
+    "vim.useCtrlKeys": true,
+    "vim.hlsearch": true,
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [ "Z", "Z" ], // ZZ write quit
+            "commands": [ ":wq" ]
+        },
+        {
+            "before": [":"], // : shows the command palette
+            "commands": [ "workbench.action.showCommands", ]
+        },
+        {
+            "before": ["<leader>", "m"],
+            "commands": [ "bookmarks.toggle" ]
+        },
+        {
+            "before": ["<leader>", "b"],
+            "commands": [ "bookmarks.list" ]
+        }
+    ],
+    "vim.insertModeKeyBindings": [
+        {
+            "before": [ "j", "j" ], // jj esc 
+            "after": [ "<Esc>" ]
+        }
+    ],
+    "vim.visualstar": true,
+    "workbench.activityBar.visible": false,
+    "terminal.integrated.shell.osx": "/usr/local/bin/zsh",
+    "explorer.openEditors.visible": 0, // removes the open editors section at the top of the sidebar, you can see the opened files with ⌘ + ⌥ + Tab
+    "editor.fontFamily": "'IBM Plex Mono Regular', 'SF Mono', Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontWeight": "500",
+    "editor.fontSize": 16,
+    "editor.lineHeight": 20,
+    "editor.minimap.enabled": false,
+    "editor.renderIndentGuides": false, // removes indent guides
+    "editor.overviewRulerBorder": false, // removes border from overview ruler (located on the right, same position as the scrollbar)
+    "editor.hideCursorInOverviewRuler": true, // hides cursor mark in the overview ruler
+    "editor.glyphMargin": false, // removes the space used mainly for debugging indicators
+    "workbench.editor.showIcons": false, // removes icon from opened files in tabs
+    "workbench.editor.tabCloseButton": "off",
+    "workbench.statusBar.visible": false,
+    "zenMode.centerLayout": false,
+    "zenMode.fullScreen": false,
+    "zenMode.restore": true,
+}

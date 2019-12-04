@@ -216,3 +216,5 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 # piknik aliases
 . /usr/local/etc/profile.d/piknik.sh
 
+# load rbenv
+eval "$(rbenv init -)"
