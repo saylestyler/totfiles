@@ -110,6 +110,7 @@ export HTTPSTAT_SAVE_BODY=false
 ##############################################
 
 export GOPATH=$HOME/go
+export PATH="/usr/local/bin:$PATH"
 export GOROOT=/usr/local/opt/go/libexec
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin

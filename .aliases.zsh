@@ -50,12 +50,10 @@ alias spf="splash -f"
 alias kewl="ps -e | sort -b -k1 | head -10"
 
 # npm
-alias npmg="npm i -g "
-alias npmS="npm i -S "
-alias npmD="npm i -D "
-# Execute command from node_modules folder based on current directory
-# i.e npmE gulp
-alias npmE='PATH="$(npm bin)":"$PATH"'
+alias npmrs="npm run serve"
+alias npmig="npm i -g"
+alias npmis="npm i -S"
+alias npmid="npm i -D"
 alias npmO="npm outdated"
 alias npmV="npm -v"
 alias npmL="npm list"
@@ -66,8 +64,8 @@ alias npmR="npm run"
 alias npmP="npm publish"
 alias npmI="npm init"
 alias pnpm="node /usr/local/lib/node_modules/pnpm/lib/bin/pnpm.js"
-
 alias kp="/usr/local/lib/node_modules/kill-port/cli.js"
+alias npme='PATH="$(npm bin)":"$PATH"' # exe cmd from local node_modules folder based on current directory `npmE grunt serve`
 
 alias sodb="source ~/db.sh"
 # alias debb='echo 'docker exec --user www-data =i =t vfiles_shop_cli_<TAB FOR ID> /bin/bash"'
@@ -204,6 +202,9 @@ alias week='date +%V'
 
 # Get macOS Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
 alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup'
+
+# vs
+alias code='open . -a /Applications/Visual Studio Code - Insiders.app'
 
 # Google Chrome
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
