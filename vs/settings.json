@@ -8,26 +8,50 @@
     "vim.hlsearch": true,
     "vim.normalModeKeyBindingsNonRecursive": [
         {
-            "before": [ "Z", "Z" ], // ZZ write quit
-            "commands": [ ":wq" ]
+            "before": [
+                "Z",
+                "Z"
+            ], // ZZ write quit
+            "commands": [
+                ":wq"
+            ]
         },
         {
-            "before": [":"], // : shows the command palette
-            "commands": [ "workbench.action.showCommands", ]
+            "before": [
+                ":"
+            ], // : shows the command palette
+            "commands": [
+                "workbench.action.showCommands",
+            ]
         },
         {
-            "before": ["<leader>", "m"],
-            "commands": [ "bookmarks.toggle" ]
+            "before": [
+                "<leader>",
+                "m"
+            ],
+            "commands": [
+                "bookmarks.toggle"
+            ]
         },
         {
-            "before": ["<leader>", "b"],
-            "commands": [ "bookmarks.list" ]
+            "before": [
+                "<leader>",
+                "b"
+            ],
+            "commands": [
+                "bookmarks.list"
+            ]
         }
     ],
     "vim.insertModeKeyBindings": [
         {
-            "before": [ "j", "j" ], // jj esc 
-            "after": [ "<Esc>" ]
+            "before": [
+                "j",
+                "j"
+            ], // jj esc
+            "after": [
+                "<Esc>"
+            ]
         }
     ],
     "vim.visualstar": true,
@@ -38,7 +62,6 @@
     "editor.fontWeight": "500",
     "editor.fontSize": 16,
     "editor.lineHeight": 20,
-    "editor.minimap.enabled": false,
     "editor.renderIndentGuides": false, // removes indent guides
     "editor.overviewRulerBorder": false, // removes border from overview ruler (located on the right, same position as the scrollbar)
     "editor.hideCursorInOverviewRuler": true, // hides cursor mark in the overview ruler
@@ -49,4 +72,58 @@
     "zenMode.centerLayout": false,
     "zenMode.fullScreen": false,
     "zenMode.restore": true,
+    "prettier.vueIndentScriptAndStyle": true,
+    "jest.showCoverageOnLoad": true,
+    "typescript.tsdk": "./node_modules/typescript/lib",
+    "editor.tabSize": 2,
+    "editor.copyWithSyntaxHighlighting": false,
+    "workbench.sideBar.location": "left",
+    "editor.mouseWheelZoom": true,
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "files.associations": {
+        "*.js": "javascript"
+    },
+    // disable formatOnSave so we can use prettier to fixOnSave
+    "[javascript]": {
+        "editor.formatOnSave": false,
+        // "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[typescript]": {
+        "editor.formatOnSave": false
+    },
+    "[vue]": {
+        "editor.formatOnSave": false
+    },
+    "eslint.alwaysShowStatus": true,
+    "eslint.autoFixOnSave": true,
+    "eslint.enable": true,
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        {
+            "language": "typescript",
+            "autoFix": true
+        },
+        {
+            "language": "vue",
+            "autoFix": true
+        },
+        {
+            "language": "vue-html",
+            "autoFix": true
+        }
+    ],
+    "debug.node.autoAttach": "on",
+    "debug.allowBreakpointsEverywhere": true,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "workbench.colorTheme": "Default Light+",
+    "editor.minimap.enabled": false,
+    // vetur does not support linting of lang=TS script blocks
+    "vetur.validation.script": false,
+    "window.zoomLevel": 0,
+    "editor.quickSuggestions": {
+        "strings": true, // https://marketplace.visualstudio.com/items?itemName=vuetifyjs.vuetify-vscode
+    }
 }
