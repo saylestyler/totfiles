@@ -218,4 +218,3 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 # load rbenv & completions
 eval "$(rbenv init -)"
-source ~/.rbenv/completions/rbenv.zsh
