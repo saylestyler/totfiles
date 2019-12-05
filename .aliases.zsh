@@ -1,21 +1,29 @@
-# notes
-#
 # http://zsh.sourceforge.net/Doc/Release/Shell-Grammar.html#Aliasing
-#
-# Using the && operator is better then using a semicolon ; operator in between the two commands, as with { cd "$@" ; ls; }.
-# This second command will run ls regardless if the cd worked or not.
-# If the cd failed, ls will print the contents of your current directory, which will be confusing for the user. As a best practice, use && and not ;
 
+##################
+#     laasie     #
+##################
+alias virtualenv_3='virtualenv -p python3 venv && source venv/bin/activate'
+alias valley_development='export $(cat .env-development | xargs)'
+
+alias cradle_development='export $(cat .env-development | xargs)'
+alias cradle_staging='export $(cat .env-staging | xargs) && export CRADLE_DB_USER=cradle'
+alias cradle_production='export $(cat .env-production | xargs) && export CRADLE_DB_USER=cradle'
+
+alias mesa_development='export $(cat .env-development | xargs)'
+alias mesa_staging='export $(cat .env-staging | xargs) && export MESA_DB_USER=mesa'
+alias mesa_production='export $(cat .env-production | xargs) && export MESA_DB_USER=mesa'
+
+alias valley_development='export $(cat .env-development | xargs)'
+alias valley_staging='export $(cat .env-staging | xargs) && export VALLEY_DB_USER=valley'
+alias valley_production='export $(cat .env-production | xargs) && export VALLEY_DB_USER=valley'
+
+# hot reloading browser-sync based http server
 alias serve="browser-sync start -s -f . --no-notify --host $LOCAL_IP --port 9000"
 
 alias nvm10='. ~/.nvm/nvm.sh; nvm use 10'
 
 alias spaceleft='df -hT /dev/xvda1' # for linux ami machines
-
-alias vim='nvim'
-
-# use exa to sort by newest files in long listing
-alias lt='exa --sort newest -l'
 
 # empties all volumes' trashes & clears sys logs for better sh startup
 alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl"
@@ -34,6 +42,21 @@ function pb() {
     pbcopy < /dev/stdin
   fi
 }
+
+# use exa to sort by newest files in long listing
+alias lt='exa --sort newest -l'
+
+alias kl='ls -ltr'             # Sort by date, most recent last
+# alias ld='ls -ld'              # Show info about the directory
+# alias lla='ls -lAF'            # Show hidden all files
+# alias ll='ls -lF'              # Show long file information
+# alias la='ls -AF'              # Show hidden files
+# alias lx='ls -lXB'             # Sort by extension
+# alias lk='ls -lSr'             # Sort by size, biggest last
+# alias lc='ls -ltcr'            # Sort by and show change time, most recent last
+# alias lu='ls -ltur'            # Sort by and show access time, most recent last
+# alias lr='ls -lR'              # Recursive ls
+# alias lsd='ls -l | grep "^d"'
 
 alias ctrd="tr -d '\n' | pbcopy"
 
@@ -105,20 +128,14 @@ alias gb="git branch -a" # g(i)t all branches local and remote
 alias gcob="git checkout -b"
 alias gpll="git pull"
 
-alias tt="cd ~/tylsyl && git pull"
-
 # task warrior
 alias twmail="mail -s '$' e07c124d-9982-4921-b7b9-7a640e3c14bb@inthe.am"
 alias tl="task all"
 alias ta="task add"
 
-# use the vim binary packaged with macvim instead of v 8.0 std
-# alias vim='/usr/local/Cellar/macvim/HEAD-af41f91/bin/vim'
-
 # nvm
+alias vim='nvim'
 alias nv10="nvm use --delete-prefix v10"
-
-# alias nn="/usr/local/bin/nvim"
 alias ezrc="nvim ~/totfiles/zsh/.zshrc"
 alias evmrc="nvim ~/.config/nvim/init.vim"
 
@@ -559,11 +576,11 @@ function datauri() {
 # 	printf "orig: %d bytes\n" "$origsize";
 # 	printf "gzip: %d bytes (%2.2f%%)\n" "$gzipsize" "$ratio";
 # }
-#
-# # Run `dig` and display the most useful info
-# function digga() {
-# 	dig +nocmd "$1" any +multiline +noall +answer;
-# }
+
+# Run `dig` and display the most useful info
+function digg() {
+  dig +nocmd "$1" any +multiline +noall +answer;
+}
 #
 # # Show all the names (CNs and SANs) listed in the SSL certificate
 # # for a given domain
@@ -598,30 +615,6 @@ function datauri() {
 # 		return 1;
 # 	fi;
 # }
-#
-# # Normalize `open` across Linux, macOS, and Windows.
-# # This is needed to make the `o` function (see below) cross-platform.
-# if [ ! $(uname -s) = 'Darwin' ]; then
-# 	if grep -q Microsoft /proc/version; then
-# 		# Ubuntu on Windows using the Linux subsystem
-# 		alias open='explorer.exe';
-# 	else
-# 		alias open='xdg-open';
-# 	fi
-# fi
-#
-
-# alias ld='ls -ld'              # Show info about the directory
-# alias lla='ls -lAF'            # Show hidden all files
-# alias ll='ls -lF'              # Show long file information
-# alias la='ls -AF'              # Show hidden files
-# alias lx='ls -lXB'             # Sort by extension
-# alias lk='ls -lSr'             # Sort by size, biggest last
-# alias lc='ls -ltcr'            # Sort by and show change time, most recent last
-# alias lu='ls -ltur'            # Sort by and show access time, most recent last
-# alias lt='ls -ltr'             # Sort by date, most recent last
-# alias lr='ls -lR'              # Recursive ls
-# alias lsd='ls -l | grep "^d"'
 
 ##########################
 ######### pinknik ########
@@ -657,12 +650,3 @@ pkfr() {
 # pkpr : extract clipboard content sent using the pkfr command
 alias pkpr='piknik -paste | tar xzpvf -'
 
-alias cradle_development='export $(cat .env-development | xargs)'
-alias cradle_staging='export $(cat .env-staging | xargs) && export CRADLE_DB_USER=cradle'
-alias cradle_production='export $(cat .env-production | xargs) && export CRADLE_DB_USER=cradle'
-alias mesa_development='export $(cat .env-development | xargs)'
-alias mesa_staging='export $(cat .env-staging | xargs) && export MESA_DB_USER=mesa'
-alias mesa_production='export $(cat .env-production | xargs) && export MESA_DB_USER=mesa'
-alias valley_development='export $(cat .env-development | xargs)'
-alias valley_staging='export $(cat .env-staging | xargs) && export VALLEY_DB_USER=valley'
-alias valley_production='export $(cat .env-production | xargs) && export VALLEY_DB_USER=valley'

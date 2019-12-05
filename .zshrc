@@ -109,14 +109,14 @@ export HTTPSTAT_SAVE_BODY=false
 #                path drama                  &
 ##############################################
 
-export GOPATH=$HOME/go
-export PATH="/usr/local/bin:$PATH"
-export GOROOT=/usr/local/opt/go/libexec
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:$GOROOT/bin
-export PATH="$HOME/.cargo/bin:$PATH"
-# this is for coc-vim
-export JAVA_HOME=`echo $(which java)`
+export PATH="/usr/local/bin:$PATH"                    # homebrew
+export PATH="/usr/local/opt/python/libexec/bin:$PATH" # python (homebrew)
+export GOPATH=$HOME/go                                # go
+export GOROOT=/usr/local/opt/go/libexec               # go
+export PATH=$PATH:$GOPATH/bin                         # go
+export PATH=$PATH:$GOROOT/bin                         # go
+export PATH="$HOME/.cargo/bin:$PATH"                  # rust
+export JAVA_HOME=`echo $(which java)`                 # java
 # OR (lol)
 # export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 # OR (lol?)
@@ -216,5 +216,6 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 # piknik aliases
 . /usr/local/etc/profile.d/piknik.sh
 
-# load rbenv
+# load rbenv & completions
 eval "$(rbenv init -)"
+source ~/.rbenv/completions/rbenv.zsh
