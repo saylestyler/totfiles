@@ -20,7 +20,7 @@ Plug 'zef/vim-cycle'
 Plug 'nelstrom/vim-visual-star-search'
 Plug 'sgur/vim-editorconfig'
 Plug 'romainl/vim-cool'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', { 'do': 'yarn install --frozen-lockfile' }
 Plug 'scrooloose/nerdtree'
 
 Plug 'nacitar/a.vim', { 'on': 'A' }
@@ -40,9 +40,12 @@ call plug#end()
 " }} plug.vim "
 
 " basic {{ "
-let mapleader = ","
 set notermguicolors
-colorscheme github
+colorscheme vimhut
+
+
+set fileencoding=utf-8
+set fileencodings=utf-8,gbk,chinese,cp936,gb18030,utf-16le,utf-16,big5,euc-jp,euc-kr,latin-1
 
 set hidden
 set number
@@ -69,9 +72,6 @@ set pumheight=20
 setlocal noswapfile
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
-
-" `yy`ank to system clipboard
-set clipboard+=unnamedplus
 
 let g:loaded_node_provider = 0
 let g:loaded_ruby_provider = 0
@@ -146,9 +146,10 @@ setl dictionary+=$HOME/.config/nvim/dev.dict
 map <leader>n :NERDTreeToggle<CR>
 
 map ? /\<\><Left><Left>
-" map <silent> <leader>n :nohlsearch<CR>
+map <silent> <leader>n :nohlsearch<CR>
 
-nnoremap <leader>cp :set clipboard=unnamed<CR>
+" use the system clipboard vs an unnamed register
+set clipboard=unnamedplus
 
 nnoremap <silent> gb :bn<CR>
 nnoremap <silent> gB :bp<CR>
@@ -176,12 +177,7 @@ cnoremap <C-h> <BS>
 cnoremap <C-t> <C-R>=expand("%:p:h") . "/" <CR>
 
 nmap t<Enter> :bo sp term://zsh\|resize 10<CR>i
-" tnoremap <Esc> <C-\><C-n>
-
-" esc in insert & cmd mode
-inoremap jk <esc>
-cnoremap jk <C-C>
-
+tnoremap <Esc> <C-\><C-n>
 " }} mappings "
 
 " functions {{ "
