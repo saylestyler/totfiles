@@ -72,6 +72,10 @@ alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true and 
 alias spf="splash -f"
 alias kewl="ps -e | sort -b -k1 | head -10"
 
+# f png = finds all pngs in current / subdir & myPNG.txt
+function f() { find . -iname "*$1*" ${@:2} }
+function r() { rg "$1" ${@:2} . }
+
 # npm
 alias npmrs="npm run serve"
 alias npmig="npm i -g"
@@ -157,9 +161,6 @@ alias bubu='bubo && bubc'
 alias jj="gatsby develop --verbose --open"
 alias scc="screencapture -S ~/Desktop/fs.jpg"
 alias fps="screencapture -iC ~/Desktop/fs.jpg"
-alias google='web_search google' # arguments to websearch fn
-alias github='web_search github'
-alias sos='web_search stackoverflow'
 alias ppaas='pbcopy < https://ppaas.herokuapp.com/partyparrot/mega?overlay=http://vignette3.wikia.nocookie.net/runescape2/images/0/0a/Wizard_hat_(t)_detail.png&overlayWidth=100&overlayHeight=100&overlayOffsetY=-150'
 alias yrd='yarn run dev'
 alias gab='gatsby build'
@@ -257,9 +258,6 @@ unset jscbin;
 
 # Trim new lines and copy to clipboard
 alias c="tr -d '\n' | pbcopy"
-
-# Recursively delete `.DS_Store` files
-alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
 
 # Empty the Trash on all mounted volumes and the main HDD.
 # Also, clear Apple’s System Logs to improve shell startup speed.
