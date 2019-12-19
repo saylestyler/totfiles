@@ -1,11 +1,68 @@
 {
-    "vim.debug.silent": true, // ignore vims silly err messages
-    "vim.easymotion": true,
-    "vim.sneak": true,
-    "vim.incsearch": true,
-    "vim.useSystemClipboard": true,
-    "vim.useCtrlKeys": true,
-    "vim.hlsearch": true,
+    "jest.showCoverageOnLoad": true,
+    "typescript.tsdk": "./node_modules/typescript/lib",
+    "window.zoomLevel": 2,
+    "editor.tabSize": 2,
+    "editor.copyWithSyntaxHighlighting": false,
+    "workbench.sideBar.location": "left",
+    "editor.mouseWheelZoom": true,
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "files.associations": {
+        "*.js": "javascript"
+    },
+    // disable formatOnSave so we can use prettier to fixOnSave
+    "[javascript]": {
+        "editor.formatOnSave": false,
+        // "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[typescript]": {
+        "editor.formatOnSave": false
+    },
+    "[vue]": {
+        "editor.formatOnSave": false,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "eslint.alwaysShowStatus": true,
+    "eslint.autoFixOnSave": true,
+    "eslint.enable": true,
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        {
+            "language": "typescript",
+            "autoFix": true
+        },
+        {
+            "language": "vue",
+            "autoFix": true
+        },
+        {
+            "language": "vue-html",
+            "autoFix": true
+        }
+    ],
+    "debug.node.autoAttach": "off",
+    "debug.allowBreakpointsEverywhere": true,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "workbench.colorTheme": "Base16 Dark Unikitty",
+    "editor.minimap.enabled": false,
+    // vetur does not support linting of lang=TS script blocks
+    "vetur.validation.script": false,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "oneDarkPro.vivid": true,
+    "workbench.activityBar.visible": false,
+    "editor.fontFamily": "'Input Mono Narrow', 'Dank Mono', 'Cascadia Code', 'Luculent'",
+    "editor.lineHeight": 21,
+    "editor.fontSize": 16,
+    "workbench.editor.showTabs": false,
+    "terminal.integrated.fontWeight": "600",
+    "terminal.integrated.fontWeightBold": "600",
+    "font-switcher.fontFamily": "'Operator Mono', 'M+ 1mm', 'Luculent', 'Input Mono Narrow', 'Cascadia Code', 'Dank Mono', Menlo, 'FiraFlott', 'Oxygen Mono'",
+    "javascript.implicitProjectConfig.checkJs": true,
     "vim.normalModeKeyBindingsNonRecursive": [
         {
             "before": [
@@ -54,76 +111,6 @@
             ]
         }
     ],
-    "vim.visualstar": true,
-    "workbench.activityBar.visible": false,
-    "terminal.integrated.shell.osx": "/usr/local/bin/zsh",
-    "explorer.openEditors.visible": 0, // removes the open editors section at the top of the sidebar, you can see the opened files with ⌘ + ⌥ + Tab
-    "editor.fontFamily": "'IBM Plex Mono Regular', 'SF Mono', Menlo, Monaco, 'Courier New', monospace",
-    "editor.fontWeight": "500",
-    "editor.fontSize": 16,
-    "editor.lineHeight": 20,
-    "editor.renderIndentGuides": false, // removes indent guides
-    "editor.overviewRulerBorder": false, // removes border from overview ruler (located on the right, same position as the scrollbar)
-    "editor.hideCursorInOverviewRuler": true, // hides cursor mark in the overview ruler
-    "editor.glyphMargin": false, // removes the space used mainly for debugging indicators
-    "workbench.editor.showIcons": false, // removes icon from opened files in tabs
-    "workbench.editor.tabCloseButton": "off",
-    "workbench.statusBar.visible": false,
-    "zenMode.centerLayout": false,
-    "zenMode.fullScreen": false,
-    "zenMode.restore": true,
-    "prettier.vueIndentScriptAndStyle": true,
-    "jest.showCoverageOnLoad": true,
-    "typescript.tsdk": "./node_modules/typescript/lib",
-    "editor.tabSize": 2,
-    "editor.copyWithSyntaxHighlighting": false,
-    "workbench.sideBar.location": "left",
-    "editor.mouseWheelZoom": true,
-    "files.trimTrailingWhitespace": true,
-    "files.insertFinalNewline": true,
-    "files.trimFinalNewlines": true,
-    "files.associations": {
-        "*.js": "javascript"
-    },
-    // disable formatOnSave so we can use prettier to fixOnSave
-    "[javascript]": {
-        "editor.formatOnSave": false,
-        // "editor.defaultFormatter": "vscode.typescript-language-features"
-    },
-    "[typescript]": {
-        "editor.formatOnSave": false
-    },
-    "[vue]": {
-        "editor.formatOnSave": false
-    },
-    "eslint.alwaysShowStatus": true,
-    "eslint.autoFixOnSave": true,
-    "eslint.enable": true,
-    "eslint.validate": [
-        "javascript",
-        "javascriptreact",
-        {
-            "language": "typescript",
-            "autoFix": true
-        },
-        {
-            "language": "vue",
-            "autoFix": true
-        },
-        {
-            "language": "vue-html",
-            "autoFix": true
-        }
-    ],
-    "debug.node.autoAttach": "on",
-    "debug.allowBreakpointsEverywhere": true,
-    "diffEditor.ignoreTrimWhitespace": false,
-    "workbench.colorTheme": "Default Light+",
-    "editor.minimap.enabled": false,
-    // vetur does not support linting of lang=TS script blocks
-    "vetur.validation.script": false,
-    "window.zoomLevel": 0,
-    "editor.quickSuggestions": {
-        "strings": true, // https://marketplace.visualstudio.com/items?itemName=vuetifyjs.vuetify-vscode
-    }
+    "vim.useSystemClipboard": true,
+    "workbench.panel.defaultLocation": "right",
 }
