@@ -1,0 +1,60 @@
+// @green: #8BF9A6;
+// @green: #181880;
+@green: #058b00;
+@blue: #00F9FF;
+@darkpurple: indigo;
+@yellow: #FF5A2C;
+@orange: #EA8000;
+@red: #D70022;
+// @pink: #F02898;
+@pink: #e800ff;
+
+atom-text-editor {
+  // tag names the fun of <fun>
+  .syntax--entity.syntax--name.syntax--tag {
+    color: black;
+  }
+  // the brackets of tags themeselves
+  .syntax--tag {
+    color: black;
+  }
+  // the aFunc of const aFunc()
+  .syntax--function {
+    color: @yellow;
+  }
+  // keywords (import, export, return)
+  .syntax--keyword {
+    color: @green;
+    font-weight: normal;
+  }
+  // variables.vars.fun
+  .syntax--variable {
+    color: @darkpurple;
+  }
+  // this.CONTSTANTS_YE
+  .syntax--constant.syntax--other {
+    color: @orange;
+  }
+  // obj literal keys
+  .syntax--object-literal {
+    color: @red;
+  }
+  // params
+  .syntax--parameter {
+    color: @pink;
+  }
+  // type annotations
+  .syntax--indexer, .syntax--declaration, .syntax--primitive, .syntax--brace, .syntax--primitive {
+    // color: #5B5FFF;
+    color: PaleVioletRed;
+  }
+  // don't make attrs bold
+  .syntax--entity.syntax--other.syntax--attribute-name {
+    font-weight: normal;
+  }
+}
+
+// style UI elements inside atom-text-editor
+atom-text-editor .cursor {
+  border-color: @orange;
+}
