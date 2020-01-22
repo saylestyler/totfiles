@@ -115,6 +115,7 @@ alias gd="git diff -- ':!package-lock.json' ':!yarn.lock'" # ignore package-lock
 alias gco="git checkout"
 alias glp="git log --pretty=oneline"
 alias ga="git add"
+alias gap="git add -p"
 alias ggg="git add . && git commit -m 'standard' && git push"
 alias kewl="ps -e -orss=, args= | sort -b -k1,1n| head -10"
 alias gitdiscard="git checkout -- . "
@@ -131,6 +132,7 @@ alias grs="git reset --soft"
 alias gb="git branch -a" # g(i)t all branches local and remote
 alias gcob="git checkout -b"
 alias gpll="git pull"
+alias staging="git checkout staging"
 
 # task warrior
 alias twmail="mail -s '$' e07c124d-9982-4921-b7b9-7a640e3c14bb@inthe.am"
