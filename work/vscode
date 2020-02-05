@@ -1,0 +1,66 @@
+{
+    "editor.quickSuggestions": {
+        "strings": true,
+    },
+    "jest.showCoverageOnLoad": false,
+    "typescript.tsdk": "./node_modules/typescript/lib",
+    "window.zoomLevel": 0,
+    "editor.tabSize": 2,
+    "editor.copyWithSyntaxHighlighting": false,
+    "workbench.sideBar.location": "left",
+    "editor.mouseWheelZoom": true,
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "files.associations": {
+        "*.js": "javascript"
+    },
+    //new
+    "editor.formatOnSave": false,
+    // disable formatOnSave so we can use prettier to fixOnSave
+    "[javascript]": {
+        "editor.formatOnSave": false,
+        // "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[typescript]": {
+        "editor.formatOnSave": false
+    },
+    "[vue]": {
+        "editor.formatOnSave": false
+    },
+    "eslint.alwaysShowStatus": true,
+    "eslint.autoFixOnSave": true,
+    "eslint.enable": true,
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        {
+            "language": "typescript",
+            "autoFix": true
+        },
+        {
+            "language": "vue",
+            "autoFix": true
+        },
+        {
+            "language": "vue-html",
+            "autoFix": true
+        }
+    ],
+    "debug.node.autoAttach": "on",
+    "debug.allowBreakpointsEverywhere": true,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "workbench.colorTheme": "Default Light+",
+    "editor.minimap.enabled": false,
+    // vetur does not support linting of lang=TS script blocks
+    "vetur.validation.script": false,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "terminal.integrated.shell.osx": "/bin/bash",
+    "workbench.activityBar.visible": false,
+    "workbench.statusBar.visible": false,
+    "editor.lineNumbers": "interval",
+    "editor.fontSize": 14,
+    "editor.lineHeight": 19
+}
