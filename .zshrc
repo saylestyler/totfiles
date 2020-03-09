@@ -109,14 +109,27 @@ export HTTPSTAT_SAVE_BODY=false
 #                path drama                  &
 ##############################################
 
-export PATH="/usr/local/bin:$PATH"                    # homebrew
-export PATH="/usr/local/opt/python/libexec/bin:$PATH" # python (homebrew)
-export GOPATH=$HOME/go                                # go
-export GOROOT=/usr/local/opt/go/libexec               # go
-export PATH=$PATH:$GOPATH/bin                         # go
-export PATH=$PATH:$GOROOT/bin                         # go
-export PATH="$HOME/.cargo/bin:$PATH"                  # rust
-export JAVA_HOME=`echo $(which java)`                 # java
+# export PATH="/usr/local/bin:$PATH"                    # homebrew
+# 
+#
+# export PATH="/usr/local/opt/python/libexec/bin:$PATH" # python (homebrew)
+# export PATH=/usr/local/bin:/usr/local/sbin:${PATH}
+# export PATH=${PATH}:/Users/<your username>/Library/Python/3.7/bin
+
+#
+# go
+export GOPATH=$HOME/go-workspace # don't forget to change your path correctly!
+export GOROOT=/usr/local/opt/go/libexec
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$GOROOT/bin
+# $ mkdir -p $GOPATH $GOPATH/src $GOPATH/pkg $GOPATH/bin
+# $GOPATH/src : Where your Go projects / programs are located
+# $GOPATH/pkg : contains every package objects
+# $GOPATH/bin : The compiled binaries home
+# rust
+export PATH="$HOME/.cargo/bin:$PATH"
+# java
+export JAVA_HOME=`echo $(which java)`
 # OR (lol)
 # export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 # OR (lol?)
@@ -218,3 +231,13 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 # load rbenv & completions
 eval "$(rbenv init -)"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export PATH="/usr/local/sbin:$PATH"
+export PATH="/Users/tyler/Library/Python/3.7/bin:$PATH"
+
+# RANGER_LOAD_DEFAULT_RC
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
