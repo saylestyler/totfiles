@@ -1,300 +1,362 @@
-call plug#begin('~/.vim/plugged')
+" plug.vim {{ "
+if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+ silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+endif
 
-"Plug 'vimwiki/vimwiki'
-Plug 'airblade/vim-gitgutter'
-Plug 'pangloss/vim-javascript' " for react
-Plug 'mxw/vim-jsx' " jsx
-Plug 'HerringtonDarkholme/yats.vim' " typescript
-Plug 'leafgarland/typescript-vim'
-Plug 'Quramy/tsuquyomi'
-Plug 'mattn/webapi-vim'
-Plug 'mattn/emmet-vim'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-sensible'
+call plug#begin()
+
+" :GenTocGFM && :UpdateToc
+Plug 'mzlogin/vim-markdown-toc'
+
+" build fzf
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
+
 Plug 'honza/vim-snippets'
-Plug 'scrooloose/nerdcommenter' " NERD
+Plug 'tpope/vim-commentary'
+Plug 'liuchengxu/eleline.vim'
+Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'ludovicchabant/vim-gutentags'
+" Plug 'liuchengxu/vista.vim', { 'on': 'Vista' }
+Plug 'farmergreg/vim-lastplace'
+Plug 'zef/vim-cycle'
+Plug 'nelstrom/vim-visual-star-search'
+Plug 'sgur/vim-editorconfig'
+Plug 'romainl/vim-cool'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'scrooloose/nerdtree'
-Plug 'ervandew/supertab'
-Plug 'w0rp/ale'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
-Plug 'Raimondi/delimitMate'
-Plug 'Yggdroot/indentLine'
-Plug 'h1mesuke/unite-outline'
-Plug 'rking/ag.vim'
-Plug 'kien/ctrlp.vim'
 
+Plug 'nacitar/a.vim', { 'on': 'A' }
+Plug 'bronson/vim-trailing-whitespace', { 'on': 'FixWhitespace' }
+Plug 'sk1418/Join', { 'on': 'Join'}
+
+Plug 'HerringtonDarkholme/yats.vim', { 'for': 'typescript' }
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+
+Plug 'vim-scripts/Colour-Sampler-Pack'
+Plug 'godlygeek/csapprox' " makes gui-only themes run in term
+
+Plug 'sheerun/vim-polyglot'
+Plug 'neoclide/vim-jsx-improve'
+Plug 'neoclide/jsonc.vim'
 call plug#end()
+" }} plug.vim "
 
-filetype plugin indent on
-syntax on
-
-set belloff=all
-
-" Use qq in insert and command mode to Esc and to exit when in normal mode
-inoremap qq <Esc>
-cnoremap qq <Esc>
-nnoremap qq :q<cr>
-nnoremap q1 :q!<cr>
-
-" Use qs to save while in insert mode
-inoremap qs <Esc>:w<cr>a
-
-" Use ,s to refresh
-nnoremap <leader>s :so $MYVIMRC<cr>
-
-" Use ,w to save
-nnoremap <leader>w :w<cr>
-
-" Handle Cursor
-set cursorline
-set nostartofline
-set ruler
-
-set wrap
-
-colorscheme default
-
-"" Easy access to the shell ,,
-map <Leader><Leader> :!
-
-" Allow stylesheets to autocomplete hyphenated words
-autocmd FIleType css,scss,sass,less setlocal iskeyword+=-
-
-let g:python3_host_prog = '/usr/local/bin/python3'
-let g:python2_host_prog = '/usr/local/bin/python2'
-
-let g:bookmark_save_per_working_dir = 1
-let g:bookmark_auto_save = 1
-
-" NERDTree
-" B
-" = toggle bookmarks
-
-"sort file by line length, good for when regex annoying
-" '<,'> ! awk '{ print length(), $0 | \"sort -n | cut -d\\  -f2-\" }'
-
-map <leader>vimrc :tabe ~/.vim/.vimrc<cr>
-" autocmd bufwritepost .vimrc source $MYVIMRC
-
-" for same as set in chrome://settings, (l <space> term)
-let g:vim_g_command = "Go"
-let g:vim_g_query_url = "http://www.google.com/search?btnI=1&q="
-
-"let g:ctrlp_map = '<C-p>'
-"let g:ctrlp_cmd = 'P' "Change the default mapping and the default command to invoke CtrlP:
-let g:ctrlp_working_path_mode = 'ra' "When invoked, unless a starting directory is specified, CtrlP will set its local working directory according to this variable:
-let g:ctrlp_custom_ignore = '\v[\/]\.(exe|so|dll|git|hg|svn)$'
-
-map <M-s> :w<kEnter>  "Works in normal mode, must press Esc first"
-imap <M-s> <Esc>:w<kEnter>i "Works in insert mode, saves and puts back in insert mode"
-"
-" SNIPPET THANGS
-" 1. to scroll through snippets use Ctrl + N
-" 2. once on a snippet expand it w/ <TAB>
-"
-" map cmd+s to save in nongui vim
-map <M-s> :w<kEnter>
-imap <M-s> <Esc>:w<kEnter>i
-
-set completeopt-=menu
-set completeopt+=menuone   " show the popup menu even when there is only 1 match
-set completeopt+=longest   " don't insert the longest common text
-set completeopt+=preview   " don't show preview window
-set completeopt+=noinsert  " don't insert any text until user chooses a match
-set completeopt-=noselect  " select first match
-
-" running :ALEFix on a file will standard-ize it
-let g:ale_linters = {
-\   'javascript': [''],
-\   'css': ['prettier'],
-\   'html': ['htmlhint']
-\}
-" let g:ale_fixers = {'javascript': ['standard']}
-" let g:ale_lint_on_save = 1
-" let g:ale_fix_on_save = 1
-
-" DELETE ALL TRAILING WHITESPACE ON SAVE
-autocmd BufWritePre * %s/\s\+$//e
-
-" search with highlights by default; Press Space to turn off highlighting and clear any message already displayed.
-set hls
-
-" Write all writeable buffers when changing buffers or losing focus.
-nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>""
-set autowriteall " Save when doing various buffer-switching things.
-autocmd BufLeave,FocusLost * silent! wall  " Save anytime we leave a buffer or MacVim loses focus.
-
-" TAB SHIT
-set expandtab                   " Use soft tabs
-set tabstop=2                   " Tab settings
-set autoindent
-set smarttab                    " Use shiftwidth to tab at line beginning
-set shiftwidth=2                " Width of autoindent
-
-" Keep swapfiles
-set swapfile
-set undofile
-set udir=~/.vim-tmp
-set directory=~/.vim-tmp,~/tmp,/var/tmp,/tmp
-set backupdir=~/.vim-tmp,~/tmp,/var/tmp,/tmp
-
-set nowrap
-
-" No prompt for file changes outside Vim
-set autoread
-
-set scrolloff=3  " Scroll when the cursor is 3 lines from edge
-set laststatus=2 " Always show statusline
-set incsearch    " Incremental search
-set history=9000 " History size
-set ignorecase
-set smartcase    " Smart case-sensitivity when searching
-
-set showmatch                   " Show matching brackets
-set hidden                      " Allow hidden, unsaved buffers
-set splitright                  " Add new windows towards the right
-set splitbelow                  " ... and bottom
-
-set list                        " Show whitespace
-set listchars=trail:·
-set number
-
-" MRU
-let MRU_Window_Height = 10
-let MRU_Auto_Close = 1
-
-" TAB COMPLETION
-set wildmode=longest,list      " Bash-like tab completion
-set backspace=indent,eol,start " Let backspace work over anything.
-set wildignore-=tags               " Ignore tags when globbing.
-set wildignore+=tmp/**             " ...Also tmp files.
-set wildignore+=.tmp
-set wildignore+=public/uploads/**  " ...Also uploads.
-set wildignore+=public/**  " ...Also uploads.
-set wildignore+=private/uploads/** " ...Also uploads.
-set wildignore+=public/images/**   " ...Also images.
-set wildignore+=nodqqqq/images/**   " ...Also images.
-set wildignore+=vendor/**          " ...Also vendor.
-set wildignore+=node_modules
-set wildignore+=bower_components
-
-" RemoveFancyCharacters COMMAND
-function! RemoveFancyCharacters()
-  let typo = {}
-  let typo["“"] = '"'
-  let typo["”"] = '"'
-  let typo["‘"] = "'"
-  let typo["’"] = "'"
-  let typo["–"] = '--'
-  let typo["—"] = '---'
-  let typo["…"] = '...'
-  :exe ":%s/".join(keys(typo), '\|').'/\=typo[submatch(0)]/ge'
-endfunction
-command! RemoveFancyCharacters :call RemoveFancyCharacters()
-
-" Find current word in command mode
-function! AckGrep()
-  let command = "ack ".expand("<cword>")
-  cexpr system(command)
-  cw
-endfunction
-
-function! AckVisual()
-  normal gv"xy
-  let command = "ack ".@x
-  cexpr system(command)
-  cw
-endfunction
-
-" Unset 'list' in :Gstatus window (which usually contains tab characters).
-autocmd BufReadPost .git/index set nolist
-
-" insert a space in normal mode
+" basic {{ "
 let mapleader = ","
-let maplocalleader = ";"
+set notermguicolors
+colorscheme github
 
+set hidden
+set number
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set nofoldenable
+set foldmethod=indent
+set showmatch
+set matchtime=2
+set matchpairs+=<:>
+set ignorecase
+set smartcase
+set switchbuf=useopen,usetab,newtab
+set updatetime=100
+set noshowmode
+set completeopt=menu
+set cmdheight=2
+set formatexpr=CocAction('formatSelected')
+set shortmess+=c
+set pumheight=20
+setlocal noswapfile
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+
+" `yy`ank to system clipboard
+set clipboard+=unnamedplus
+
+let g:loaded_node_provider = 0
+let g:loaded_ruby_provider = 0
+let g:loaded_python_provider = 0
+" let g:loaded_python3_provider = 0
+let g:python_host_prog = '/usr/bin/python'
+let g:python3_host_prog = '/usr/local/bin/python3'
+" }} basic "
+
+" autocmd {{ "
+augroup common
+  autocmd!
+  autocmd FileType go setlocal expandtab
+  autocmd FileType go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+  autocmd FileType lua setlocal includeexpr=substitute(v:fname,'\\.','/','g')
+  autocmd FileType lua setlocal include=require
+  autocmd FileType lua setlocal define=function
+  autocmd FileType make set noexpandtab shiftwidth=4 softtabstop=0
+  autocmd FileType crontab setlocal nobackup nowritebackup
+  autocmd FileType ruby,html,javascript,typescript,css,json,vue setlocal shiftwidth=2 tabstop=2
+
+  autocmd CompleteDone * if pumvisible() == 0 | pclose | endif
+  autocmd BufReadPost *.log normal! G
+  autocmd BufNewFile,BufReadPost *.md setfiletype markdown
+  autocmd BufNewFile,BufReadPost *.tsx setfiletype typescript.tsx
+  autocmd BufNewFile,BufReadPost *.jsx setfiletype javascript.jsx
+
+  autocmd CursorHold * silent call CocActionAsync('highlight')
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+  autocmd User CocQuickfixChange :CocList --normal quickfix
+
+  autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+
+  " set up default omnifunc
+  autocmd FileType *
+        \ if &omnifunc == "" |
+        \    setlocal omnifunc=syntaxcomplete#Complete |
+        \ endif
+augroup end
+" }} autocmd "
+
+" command {{ "
+command! -nargs=0 E     :e
+command! -nargs=0 Q     :q
+command! -nargs=0 Qa    :qa
+command! -nargs=0 T     :tabnew
+command! -nargs=0 W     :w
+command! -nargs=0 Wa    :wa
+command! -nargs=0 Wqa   :wqa
+command! -nargs=0 WQa   :wqa
+command! -nargs=0 F     :echomsg @%
+
+command! -nargs=0 C             :CocConfig
+command! -nargs=0 R             :CocRestart
+command! -nargs=0 L             :CocListResume
+command! -nargs=0 -range D      :CocCommand
+
+command! -nargs=0 JSONPretty    :%!python -m json.tool
+command! -nargs=0 Todos         :CocList -A --normal grep -e TODO|FIXME
+command! -nargs=0 Status        :CocList -A --normal gstatus
+command! -nargs=+ Find          :exe 'CocList -A --normal grep --smart-case '.<q-args>
+command! -nargs=0 Format        :call CocAction('format')
+command! -nargs=0 GitChunkUndo  :call CocAction('runCommand', 'git.chunkUndo')
+command! -nargs=0 OR            :call CocAction('runCommand', 'editor.action.organizeImport')
+" }} command "
+
+" mappings {{ "
+map <silent> <leader>ee :e $HOME/.config/nvim/init.vim<CR>
+map <silent> <leader>dd :e $HOME/.config/nvim/dev.dict<CR>
+setl dictionary+=$HOME/.config/nvim/dev.dict
+
+map <leader>n :NERDTreeToggle<CR>
+
+map ? /\<\><Left><Left>
+" map <silent> <leader>n :nohlsearch<CR>
+
+nnoremap <leader>cp :set clipboard=unnamed<CR>
+
+nnoremap <silent> gb :bn<CR>
+nnoremap <silent> gB :bp<CR>
+
+" insert mode
+inoremap <C-c> <ESC>
+inoremap <C-w> <C-[>diwa
+inoremap <C-h> <BS>
+inoremap <C-d> <Del>
+inoremap <C-u> <C-G>u<C-U>
+inoremap <C-b> <Left>
+inoremap <C-f> <Right>
+inoremap <C-a> <Home>
+inoremap <C-n> <Down>
+inoremap <C-p> <Up>
+inoremap <expr><C-e> pumvisible() ? "\<C-e>" : "\<End>"
+
+" command line mappings
+cnoremap <C-a> <Home>
+cnoremap <C-b> <S-Left>
+cnoremap <C-f> <S-Right>
+cnoremap <C-e> <End>
+cnoremap <C-d> <Del>
+cnoremap <C-h> <BS>
+cnoremap <C-t> <C-R>=expand("%:p:h") . "/" <CR>
+
+nmap t<Enter> :bo sp term://zsh\|resize 10<CR>i
+" tnoremap <Esc> <C-\><C-n>
+
+" esc in insert & cmd mode
 inoremap jk <esc>
+cnoremap jk <C-C>
 
-" makes @recording not a thing
-map q <Nop>
+" }} mappings "
 
-map <leader>p pastetoggle=<F2>
+" functions {{ "
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
-" Make Y consistent with D and C
-map Y           y$
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocActionAsync('doHover')
+  endif
+endfunction
 
-" Search
-nmap <leader>s  :%s/
-vmap <leader>s  :s/
+function! s:GoToDefinition()
+  if CocAction('jumpDefinition')
+    return v:true
+  endif
 
-map <leader>nn :MRU<CR>
+  let ret = execute("silent! normal \<C-]>")
+  if ret =~ "Error" || ret =~ "错误"
+    call searchdecl(expand('<cword>'))
+  endif
+endfunction
 
-" Split screen
-map <leader>v   :vsp<CR>
+function! s:select_current_word()
+  if !get(g:, 'coc_cursors_activated', 0)
+    return "\<Plug>(coc-cursors-word)"
+  endif
+  return "*\<Plug>(coc-cursors-word):nohlsearch\<CR>"
+endfunc
 
-" :x
-map <leader>x   :x<CR>
+function! CopyFloatText() abort
+  let id = win_getid()
+  let winid = coc#util#get_float()
+  if winid
+    call win_gotoid(winid)
+    execute 'normal! ggvGy'
+    call win_gotoid(id)
+  endif
+endfunction
+" }} functions "
 
-" Move between screens
-map <leader>w   ^Ww
-map <leader>=   ^W=
-map <leader>j   ^Wj
-map <leader>k   ^Wk
+" wildignore {{ "
+set wildignore=*.o,*.obj,*~,*.exe,*.a,*.pdb,*.lib
+set wildignore+=*.so,*.dll,*.swp,*.egg,*.jar,*.class,*.pyc,*.pyo,*.bin,*.dex
+set wildignore+=*.log,*.pyc,*.sqlite,*.sqlite3,*.min.js,*.min.css,*.tags
+set wildignore+=*.zip,*.7z,*.rar,*.gz,*.tar,*.gzip,*.bz2,*.tgz,*.xz
+set wildignore+=*.png,*.jpg,*.gif,*.bmp,*.tga,*.pcx,*.ppm,*.img,*.iso
+set wildignore+=*.pdf,*.dmg,*.app,*.ipa,*.apk,*.mobi,*.epub
+set wildignore+=*.mp4,*.avi,*.flv,*.mov,*.mkv,*.swf,*.swc
+set wildignore+=*.ppt,*.pptx,*.doc,*.docx,*.xlt,*.xls,*.xlsx,*.odt,*.wps
+set wildignore+=*/.git/*,*/.svn/*,*.DS_Store
+set wildignore+=*/node_modules/*,*/nginx_runtime/*,*/build/*,*/logs/*,*/dist/*,*/tmp/*
+" }} wildignore "
 
-" Gracefully handle holding shift too long after : for common commands
-cabbrev W w
-cabbrev Q q
-cabbrev Wq wq
-cabbrev Tabe tabe
-cabbrev Tabc tabc
+" CtrlP {{ "
+nnoremap <silent> <C-l> :CtrlPLine<CR>
 
-" Open .vimrc file in new tab. Think Command + , [Preferences...] but with Shift.
-map <D-<>       :tabedit ~/.vimrc<CR>
+if executable('fd')
+  let g:ctrlp_user_command = 'fd --type file'
+  let g:ctrlp_use_caching = 0
+endif
+" }} CtrlP "
 
-" Reload .vimrc
-map <leader>rv  :source ~/.vimrc<CR>
+" vim-gutentags {{ "
+" set tags=./.tags;,.tags
+" let g:gutentags_project_root = ['.root', '.git', '.svn', '.hg', '.project']
+" let g:gutentags_ctags_tagfile = '.tags'
+" let g:gutentags_ctags_extra_args = ['--output-format=e-ctags']
+" let g:gutentags_ctags_exclude = ['*.json', '*.js', '*.ts', '*.jsx', '*.css', '*.less', '*.sass', '*.go', '*.dart', 'node_modules', 'dist', 'vendor']
+" }} vim-gutentags "
 
-" Auto-indent whole file
-nmap <leader>=  gg=G``
-map <silent> <F7> gg=G`` :delmarks z<CR>:echo "Reformatted."<CR>
+" vim-rooter {{ "
+let g:rooter_patterns = ['.root', 'package.json', '.git/']
+" }} vim-rooter "
 
-" Jump to a new line in insert mode
-imap <D-CR>     <Esc>o
+" go.vim {{ "
+let g:go_fmt_command = "gofumports"
+" let g:go_def_mode='gopls'
+" let g:go_info_mode='gopls'
+" }} go.vim "
 
-" Fast scrolling
-nnoremap <C-e>  3<C-e>
-nnoremap <C-y>  3<C-y>
+" Netrw {{
+let g:netrw_chgwin = 2
+let g:netrw_list_hide = ',\(^\|\s\s\)\zs\.\S\+'
+let g:netrw_winsize=20
+let g:netrw_liststyle=3
+" }} Netrw
 
-" File tree browser
-map \           :NERDTreeToggle<CR>
+" coc.nvim {{ "
+let g:coc_global_extensions = [
+      \'coc-pairs',
+      \'coc-json',
+      \'coc-html',
+      \'coc-tsserver',
+      \'coc-eslint',
+      \'coc-prettier',
+      \'coc-highlight',
+      \'coc-dictionary',
+      \'coc-snippets',
+      \'coc-lists',
+      \'coc-yank',
+      \'coc-yaml',
+      \'coc-syntax',
+      \'coc-git',
+      \'coc-marketplace',
+      \'coc-webpack',
+      \'coc-word',
+      \'coc-markdownlint',
+      \'coc-ecdict'
+      \]
 
-inoremap jk <esc>
+nmap <silent> gd :call <SID>GoToDefinition()<CR>
+nmap <silent> gD <Plug>(coc-declaration)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gn <Plug>(coc-rename)
+nmap <silent> ge <Plug>(coc-diagnostic-next)
+nmap <silent> ga <Plug>(coc-codeaction)
+nmap <silent> gl <Plug>(coc-codelens-action)
+nmap <silent> gs <Plug>(coc-git-chunkinfo)
+nmap <silent> gm <Plug>(coc-git-commit)
+omap <silent> ig <Plug>(coc-git-chunk-inner)
+xmap <silent> ig <Plug>(coc-git-chunk-inner)
 
-" File tree browser showing current file - pipe (shift-backslash)
-map \|          :NERDTreeFind<CR>
+nmap <silent> <expr> [c &diff ? '[c' : '<Plug>(coc-git-prevchunk)'
+nmap <silent> <expr> ]c &diff ? ']c' : '<Plug>(coc-git-nextchunk)'
 
-" Previous/next quickfix file listings (e.g. search results)
-map <M-D-Down>  :cn<CR>
-map <M-D-Up>    :cp<CR>
+" vscode style, select current word
+" nmap <silent> <expr> <C-d> <SID>select_current_word()
 
-" Previous/next buffers
-map <M-D-Left>  :bp<CR>
-map <M-D-Right> :bn<CR>
+nmap <silent> <C-c> <Plug>(coc-cursors-position)
+xmap <silent> <C-d> <Plug>(coc-cursors-range)
 
+nmap <leader>x  <Plug>(coc-cursors-operator)
+nmap <leader>rf <Plug>(coc-refactor)
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
 
-" FuzzyFinder
-map <D-e>       :FufBuffer<CR>
-map <leader>rb  :FufBuffer<CR>
+inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm()
+      \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <silent><expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
 
-" Comment/uncomment lines
-map <leader>cc   <plug>NERDCommenterToggle
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+nnoremap <silent> <space>o  :<C-u>CocList -A outline<CR>
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<CR>
+nnoremap <silent> <space>f  :<C-u>CocList files<CR>
+nnoremap <silent> <space>l  :<C-u>CocList locationlist<CR>
+nnoremap <silent> <space>q  :<C-u>CocList quickfix<CR>
+nnoremap <silent> <space>w  :<C-u>CocList -I -N symbols<CR>
+nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<CR>
+nnoremap <silent> <space>m  :<C-u>CocList -A -N mru<CR>
+nnoremap <silent> <space>b  :<C-u>CocList -A -N --normal buffers<CR>
+nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+nnoremap <silent> <space>s  :exe 'CocList -A -I --normal --input='.expand('<cword>').' words'<CR>
+nnoremap <silent> <space>S  :exe 'CocList -A --normal grep '.expand('<cword>').''<CR>
 
-" In command-line mode, <C-A> should go to the front of the line, as in bash.
-cmap <C-A> <C-B>
+imap <C-k> <Plug>(coc-snippets-expand)
+nmap <silent> <TAB> <Plug>(coc-range-select)
+xmap <silent> <TAB> <Plug>(coc-range-select)
 
-" " -> Emmet
-let g:user_emmet_leader_key='<C-Y>'
-let g:user_emmet_settings={'indentation':'  '}
-let g:use_emmet_complete_tag=1
+call coc#add_command('tree', 'Vexplore', 'open netrw explorer')
+" }} coc.nvim "
 
-let g:vim_markdown_concel=0
+" vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker foldlevel=0:
