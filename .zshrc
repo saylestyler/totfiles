@@ -110,7 +110,7 @@ export HTTPSTAT_SAVE_BODY=false
 ##############################################
 
 # export PATH="/usr/local/bin:$PATH"                    # homebrew
-# 
+#
 #
 # export PATH="/usr/local/opt/python/libexec/bin:$PATH" # python (homebrew)
 # export PATH=/usr/local/bin:/usr/local/sbin:${PATH}
@@ -241,3 +241,6 @@ export PATH="/usr/local/opt/ruby/bin:$PATH"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
+
+export LOCAL_IP=`ipconfig getifaddr en0`
+
