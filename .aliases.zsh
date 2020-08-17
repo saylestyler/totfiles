@@ -126,6 +126,7 @@ alias gpsh="git push"
 alias gphm="git push heroku master"
 alias gpuom="git push -u origin master"
 alias dev="git checkout dev"
+alias devv="git checkout development"
 alias master="git checkout master"
 alias undopush="git push -f origin HEAD^:master"
 alias grs="git reset --soft"
@@ -649,4 +650,3 @@ pkfr() {
 
 # pkpr : extract clipboard content sent using the pkfr command
 alias pkpr='piknik -paste | tar xzpvf -'
-
