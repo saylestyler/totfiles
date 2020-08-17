@@ -18,6 +18,8 @@ alias valley_development='export $(cat .env-development | xargs)'
 alias valley_staging='export $(cat .env-staging | xargs) && export VALLEY_DB_USER=valley'
 alias valley_production='export $(cat .env-production | xargs) && export VALLEY_DB_USER=valley'
 
+alias serve="browser-sync start -s -f . --no-notify --host $LOCAL_IP --port 9000"
+
 # hot reloading browser-sync based http server
 alias serve="browser-sync start -s -f . --no-notify --host $LOCAL_IP --port 9000"
 
