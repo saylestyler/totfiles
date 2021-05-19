@@ -128,7 +128,6 @@ alias gpsh="git push"
 alias gphm="git push heroku master"
 alias gpuom="git push -u origin master"
 alias dev="git checkout dev"
-alias devv="git checkout development"
 alias master="git checkout master"
 alias undopush="git push -f origin HEAD^:master"
 alias grs="git reset --soft"
@@ -379,6 +378,10 @@ function hist() {
     }
   ''' | grep -v "./" | column -c -s ' ' -t | sort -nr | nl | head -n 20
   # note that line 16 will ruin everything if u break it up over multiple lines
+}
+
+function dashs() {
+  cd $HOME/laasie/analytics-dashboard/; nvm use 14; npm run serve;
 }
 
 function shce() {
@@ -652,3 +655,4 @@ pkfr() {
 
 # pkpr : extract clipboard content sent using the pkfr command
 alias pkpr='piknik -paste | tar xzpvf -'
+
