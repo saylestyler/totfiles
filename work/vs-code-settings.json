@@ -1,0 +1,244 @@
+{
+  "editor.fontSize": 14,
+  "workbench.activityBar.visible": false,
+  "workbench.statusBar.visible": false,
+  "workbench.editor.openPositioning": "right",
+  "workbench.editor.showTabs": false,
+  "workbench.editor.showIcons": false,
+  "terminal.integrated.fontSize": 12,
+  "explorer.confirmDelete": false,
+    "vim.sneak": true,
+    "vim.handleKeys": {
+        "<C-u>": true,
+        "<C-r>": true,
+        "<C-j>": true
+    },
+    "vim.insertModeKeyBindings": [
+        {
+            "before": [
+                "j",
+                "j"
+            ],
+            "after": [
+                "<Esc>"
+            ]
+        }
+    ],
+    "editor.quickSuggestions": {
+        "strings": true,
+    },
+    "typescript.tsdk": "./node_modules/typescript/lib",
+    "editor.tabSize": 2,
+    "editor.copyWithSyntaxHighlighting": false,
+    "editor.mouseWheelZoom": true,
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "files.associations": {
+        "*.js": "javascript"
+    },
+    "editor.formatOnSave": false,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "[javascript]": {
+        "editor.formatOnSave": false,
+    },
+    "[typescript]": {
+        "editor.formatOnSave": false
+    },
+    "[vue]": {
+        "editor.formatOnSave": false
+    },
+    "eslint.alwaysShowStatus": true,
+    "vetur.validation.script": false,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "gitlens.hovers.currentLine.over": "line",
+    "gitlens.codeLens.scopes": [
+        "document"
+    ],
+    "editor.minimap.enabled": false,
+    "terminal.integrated.scrollback": 10000,
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "explorer.confirmDragAndDrop": false,
+    "extensions.ignoreRecommendations": true,
+    "workbench.colorTheme": "Github Light Theme - Gray",
+    "editor.fontFamily": "'Input Mono', Menlo, Monaco, 'Courier New', monospace",
+    "workbench.editorAssociations": [
+        {
+            "viewType": "jupyter.notebook.ipynb",
+            "filenamePattern": "*.ipynb"
+        },
+        {
+            "viewType": "jupyter-notebook",
+            "filenamePattern": "*.ipynb"
+        }
+    ],
+    "window.zoomLevel": -3,
+}
+// // {
+// //     "terminal.integrated.rendererType": "dom",
+// //     "terminal.integrated.fontWeightBold": "normal",
+// //     "editor.fontWeight": "500",
+// //     "terminal.integrated.fontWeight": "500",
+// //     "search.followSymlinks": false,
+// //     "npm.enableScriptExplorer": true,
+// //     "python.jediEnabled": false,
+// //     "editor.fontFamily": "'IBM Plex Mono', menlo",
+// //     "editor.lineHeight": 18,
+// //     "editor.detectIndentation": true,
+// //     "editor.fontLigatures": true,
+// //     "vim.useSystemClipboard": true,
+// //     "workbench.colorTheme": "Github",
+// //     "sync.gist": "bbb7ca18697e59b9a318b365369a0e17",
+// //     "[php]": {
+// //         "editor.defaultFormatter": "kokororin.vscode-phpfmt"
+// //     },
+// //     "breadcrumbs.enabled": false,
+// //     "vetur.validation.template": false,
+// //     // "eslint.validate": [
+// //     //     {
+// //     //         "language": "vue",
+// //     //         "autoFix": true
+// //     //     },
+// //     //     {
+// //     //         "language": "html",
+// //     //         "autoFix": true
+// //     //     },
+// //     //     {
+// //     //         "language": "javascript",
+// //     //         "autoFix": true
+// //     //     }
+// //     // ],
+// //     //   "editor.formatOnSave": true,
+// //     "[vue]": {
+// //         "editor.defaultFormatter": "esbenp.prettier-vscode"
+// //     },
+// //     "[typescript]": {
+// //         "editor.defaultFormatter": "esbenp.prettier-vscode"
+// //     },
+// //     "[javascript]": {
+// //         "editor.defaultFormatter": "esbenp.prettier-vscode"
+// //     },
+// //     "[json]": {
+// //         "editor.defaultFormatter": "esbenp.prettier-vscode"
+// //     },
+// //     "[css]": {
+// //         "editor.defaultFormatter": "esbenp.prettier-vscode"
+// //     },
+// //     "[html]": {
+// //         "editor.defaultFormatter": "mohd-akram.vscode-html-format"
+// //     },
+// //     "python.languageServer": "Microsoft",
+// // }
+
+// {
+//     // "editor.quickSuggestions": {
+//     //     "strings": true,
+//     // },
+//     // "typescript.tsdk": "./node_modules/typescript/lib",
+//     // "editor.tabSize": 2,
+//     // "editor.copyWithSyntaxHighlighting": false,
+//     // "workbench.sideBwar.location": "left",
+//     // "editor.mouseWheelZoom": true,
+//     // "files.trimTrailingWhitespace": true,
+//     // "files.insertFinalNewline": true,
+//     // "files.trimFinalNewlines": true,
+//     // "files.associations": {
+//     //     "*.js": "javascript"
+//     // },
+//     // // ON SAVE -------------------------------
+//     // "editor.formatOnSave": false,
+//     // // disable formatOnSave so we can use prettier to fixOnSave
+//     // "editor.codeActionsOnSave": {
+//     //     "source.fixAll.eslint": true
+//     // },
+//     // "[javascript]": {
+//     //     "editor.formatOnSave": false,
+//     //     // "editor.defaultFormatter": "vscode.typescript-language-features"
+//     // },
+//     // "[typescript]": {
+//     //     "editor.formatOnSave": false
+//     // },
+//     // "[vue]": {
+//     //     "editor.formatOnSave": false
+//     // },
+//     // "eslint.alwaysShowStatus": true,
+//     // /* old */
+//     // // vetur does not support linting of lang=TS script blocks
+//     // "vetur.validation.script": false,
+//     // /* new */
+//     // // "vetur.validation.template": true,
+//     // // "vetur.format.defaultFormatter.html": "prettier",
+//     // // "vetur.format.options.tabSize": 2,
+//     // // "eslint.validate": [
+//     // //     "javascript",
+//     // //     "javascriptreact",
+//     // //     "vue",
+//     // //     "typescript",
+//     // //     "typescriptreact"
+//     // // ],
+//     // "debug.allowBreakpointsEverywhere": true,
+//     // "diffEditor.ignoreTrimWhitespace": false,
+//     // "gitlens.hovers.currentLine.over": "line",
+//     // "gitlens.codeLens.scopes": [
+//     //     "document"
+//     // ],
+//     // "editor.minimap.enabled": false,
+//     // "terminal.integrated.shell.osx": "/bin/bash",
+//     // "terminal.integrated.scrollback": 10000,
+//     //     "eslint.autoFixOnSave": true,
+//     // "eslint.validate": [
+//     //     "vue",
+//     //     "html",
+//     //     "javascript"
+//     // ],
+//     // "vetur.format.enable": false,
+//     // "editor.codeActionsOnSave": {
+//     //     "source.fixAll.eslint": true
+//     // },
+//     // "editor.suggestSelection": "first",
+//     // "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue"
+//     // "editor.formatOnSave": false,
+//     // "vetur.format.defaultFormatter.ts": "vscode-typescript",
+//     // "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
+//     // "eslint.format.enable": true,
+//     // "eslint.codeAction.showDocumentation": {
+//     //     "enable": true
+//     // },
+//     // "editor.codeActionsOnSave": {
+//     //     "source.fixAll.eslint": true
+//     // }
+//     // "editor.formatOnSave": false,
+//     // "editor.codeActionsOnSave": {
+//     //   "source.fixAll.eslint": true,
+//     //   "source.fixAll": true
+//     // },
+//     // "vetur.format.defaultFormatter.html": "prettier",
+//     // "vetur.format.defaultFormatter.html": "prettyhtml",
+//     // "vetur.format.defaultFormatterOptions": {
+//     //   "prettyhtml": {
+//     //     "printWidth": 80,
+//     //     "singleQuote": false,
+//     //     "wrapAttributes": true,
+//     //     "sortAttributes": false
+//     //   }
+//     // },
+//     "eslint.validate": ["vue",
+//         "html", "javascript", "typescript"],
+//     "editor.suggestSelection": "first",
+//     "vetur.format.defaultFormatter.html": "js-beautify-html",
+//     "[html]": {
+//         "editor.defaultFormatter": "vscode.html-language-features"
+//     },
+//     "[vue]": {
+//         // "editor.defaultFormatter": "prettier"
+//         "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+//     },
+//     "editor.codeActionsOnSave": {
+//         "source.fixAll.eslint": true
+//     },
+//     // "vetur.format.defaultFormatter.js": "prettier-eslint"
+//     // "vetur.format.defaultFormatter.ts": "vscode-typescript"
+// }
