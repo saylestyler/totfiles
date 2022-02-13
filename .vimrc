@@ -13,6 +13,9 @@ Plug 'mzlogin/vim-markdown-toc'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
+" coc-nvim 
+" https://github.com/neoclide/coc.nvim
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-commentary'

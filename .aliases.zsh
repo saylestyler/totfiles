@@ -18,6 +18,8 @@ alias valley_development='export $(cat .env-development | xargs)'
 alias valley_staging='export $(cat .env-staging | xargs) && export VALLEY_DB_USER=valley'
 alias valley_production='export $(cat .env-production | xargs) && export VALLEY_DB_USER=valley'
 
+alias pip=" echo 'use either pip3 or pip2', see ~/totfiles/python-notes"
+
 alias serve="browser-sync start -s -f . --no-notify --host $LOCAL_IP --port 9000"
 
 # hot reloading browser-sync based http server
@@ -141,8 +143,10 @@ alias twmail="mail -s '$' e07c124d-9982-4921-b7b9-7a640e3c14bb@inthe.am"
 alias tl="task all"
 alias ta="task add"
 
+# vim, use neovim
+alias vim="nvim"
+
 # nvm
-alias vim='nvim'
 alias nv10="nvm use --delete-prefix v10"
 alias ezrc="nvim ~/totfiles/zsh/.zshrc"
 alias evmrc="nvim ~/.config/nvim/init.vim"
@@ -224,9 +228,6 @@ alias week='date +%V'
 
 # Get macOS Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
 alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup'
-
-# vs
-alias code='open . -a /Applications/Visual Studio Code - Insiders.app'
 
 # Google Chrome
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
