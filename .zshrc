@@ -89,10 +89,10 @@ zplugin light paulirish/git-open
 ##############################################
 
 source ~/totfiles/.aliases.zsh
-source ~/private-dot-files/ssh.sh
 
 # z
-. /usr/local/etc/profile.d/z.sh
+# . /usr/local/etc/profile.d/z.sh
+. $HOME/.z.sh
 
 # histrionics
 HISTFILE=~/.zsh_history
@@ -226,12 +226,6 @@ export NVM_DIR="/Users/tyler/.nvm"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-# piknik aliases
-. /usr/local/etc/profile.d/piknik.sh
-
-# load rbenv & completions
-eval "$(rbenv init -)"
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/Users/tyler/Library/Python/3.7/bin:$PATH"
@@ -244,3 +238,4 @@ export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
 
 export LOCAL_IP=`ipconfig getifaddr en0`
 
+source ~/.profile
