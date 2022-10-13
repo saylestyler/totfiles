@@ -346,6 +346,11 @@ it2prof() {
 };
 
 # Display directory contents after cd.
+function lpenv() {
+  cd /Users/tyler/laasie/loyalty-portal; pbcopy < ~/LOYALTY_PORTAL_ENV; pbpaste > .env
+}
+
+# Display directory contents after cd.
 function c() {
   builtin cd "$@" && ls -F
 }
