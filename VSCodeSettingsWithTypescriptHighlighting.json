@@ -1,0 +1,37 @@
+{
+    "editor.fontFamily": "Agave, Menlo, Monaco, 'Courier New', monospace",
+    "vetur.experimental.templateInterpolationService": false,
+    "javascript.suggest.autoImports": false,
+    "files.trimTrailingWhitespace": true,
+    "editor.renderWhitespace": "trailing",
+    "editor.minimap.enabled": false,
+    "workbench.statusBar.visible": false,
+    "workbench.activityBar.visible": false,
+    "turboConsoleLog.logMessagePrefix": "🟦",
+    "turboConsoleLog.includeFileNameAndLineNum": false,
+    "turboConsoleLog.quote": "'",
+    "workbench.editor.revealIfOpen": true,
+    "editor.useTabStops": false,
+    "editor.tabSize": 2,
+    "[vue]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "explorer.confirmDragAndDrop": false,
+    "gitlens.mode.active": "zen",
+    "zenMode.fullScreen": false,
+    "redhat.telemetry.enabled": false,
+    "colorize.languages": [
+        "javascript",
+        "html"
+      ],
+    "window.title": "${activeEditorLong}",
+    "window.zoomLevel": 3,
+    "workbench.colorTheme": "Vaporizer Golgi Dark",
+    "explorer.confirmDelete": false
+}
