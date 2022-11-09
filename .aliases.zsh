@@ -663,3 +663,7 @@ pkfr() {
 # pkpr : extract clipboard content sent using the pkfr command
 alias pkpr='piknik -paste | tar xzpvf -'
 
+# npm dev servers
+alias npmrssmv='npm run serve:staging:mv'
+alias npmrssb='npm run serve-storybook'
+
