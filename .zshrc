@@ -89,16 +89,17 @@ zplugin light paulirish/git-open
 ##############################################
 
 source ~/totfiles/.aliases.zsh
+source ~/private-dot-files/ssh.sh
 
 # z
-# . /usr/local/etc/profile.d/z.sh
-. $HOME/.z.sh
+. /usr/local/etc/profile.d/z.sh
 
 # histrionics
-HISTFILE=~/.zsh_history
-HISTSIZE=100000
-SAVEHIST=100000
-setopt SHARE_HISTORY
+export HISTFILESIZE=1000000000
+export HISTSIZE=1000000000
+export HISTFILE=~/.zsh_history
+setopt HIST_FIND_NO_DUPS # no dupes
+setopt SHARE_HISTORY # To read the history file everytime history is called upon as well as the functionality from inc_append_history:
 
 # httpstat
 export HTTPSTAT_SHOW_IP=false
@@ -187,7 +188,7 @@ setopt auto_cd
 
 # if [[ "$ZSH_SANEOPT_INSANITY" -gt 0 ]]; then
 #     # in order to use #, ~ and ^ for filename generation grep word
-#     # *~(*.gz|*.bz|*.bz2|*.zip|*.Z) -> searches for word not in compressed files
+#     # *~(*.gz|*.bz|*.bz2|*.zip|*.Z) -> onin compressed files
 #     # don't forget to quote '^', '~' and '#'!
 #     setopt extended_glob
 
@@ -224,7 +225,27 @@ setopt auto_cd
 export NVM_DIR="/Users/tyler/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
+# auto nvm use on dir entry
+# slow
+# autoload -U add-zsh-hook
+# load-nvmrc() {
+#   if [[ -f .nvmrc && -r .nvmrc ]]; then
+#     nvm use
+#   elif [[ $(nvm version) != $(nvm version default)  ]]; then
+#     echo "Reverting to nvm default version"
+#     nvm use default
+#   fi
+# }
+# add-zsh-hook chpwd load-nvmrc
+# load-nvmrc
+
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# piknik aliases
+. /usr/local/etc/profile.d/piknik.sh
+
+# load rbenv & completions
+eval "$(rbenv init -)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export PATH="/usr/local/sbin:$PATH"
@@ -239,3 +260,14 @@ export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
 export LOCAL_IP=`ipconfig getifaddr en0`
 
 source ~/.profile
+
+
+###-tns-completion-start-###
+if [ -f /Users/tyler/.tnsrc ]; then
+    source /Users/tyler/.tnsrc
+fi
+###-tns-completion-end-###
+
+export PATH="/usr/local/opt/openssl@1.0/bin:$PATH"
+export PATH=/bin:/usr/bin:/usr/local/bin
+export PATH="/usr/local/opt/lsof/bin:$PATH"
