@@ -594,6 +594,11 @@ function datauri() {
 function digg() {
   dig +nocmd "$1" any +multiline +noall +answer;
 }
+
+# npmrtu <pathoffile>
+function npmrtu() {
+  nvm use 14; npm run test:unit "${1}" -- --watch
+}
 #
 # # Show all the names (CNs and SANs) listed in the SSL certificate
 # # for a given domain
@@ -667,3 +672,4 @@ alias pkpr='piknik -paste | tar xzpvf -'
 alias npmrssmv='npm run serve:staging:mv'
 alias npmrssb='npm run serve-storybook'
 
+alias cat='bat'
