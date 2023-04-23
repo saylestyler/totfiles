@@ -1,0 +1,560 @@
+#!/usr/bin/env zsh
+#
+# -*- mode: sh; sh-indentation: 2; indent-tabs-mode: nil; sh-basic-offset: 2; -*-
+#
+# Copyright (c) 2010-2016 zsh-syntax-highlighting contributors
+# Copyright (c) 2016-2017 Sebastian Gniazdowski (modifications)
+# Copyright (c) 2021-2022 zdharma-continuum and contributors
+
+
+typeset -gA __hsmw_highlight_main__command_type_cache
+
+# Define default styles.
+typeset -gA HSMW_HIGHLIGHT_STYLES
+: ${HSMW_HIGHLIGHT_STYLES[default]:=none}
+: ${HSMW_HIGHLIGHT_STYLES[unknown-token]:=fg=red,bold}
+: ${HSMW_HIGHLIGHT_STYLES[reserved-word]:=fg=yellow}
+: ${HSMW_HIGHLIGHT_STYLES[alias]:=fg=green}
+: ${HSMW_HIGHLIGHT_STYLES[suffix-alias]:=fg=green}
+: ${HSMW_HIGHLIGHT_STYLES[builtin]:=fg=green}
+: ${HSMW_HIGHLIGHT_STYLES[function]:=fg=green}
+: ${HSMW_HIGHLIGHT_STYLES[command]:=fg=green}
+: ${HSMW_HIGHLIGHT_STYLES[precommand]:=fg=green}
+: ${HSMW_HIGHLIGHT_STYLES[commandseparator]:=none}
+: ${HSMW_HIGHLIGHT_STYLES[hashed-command]:=fg=green}
+: ${HSMW_HIGHLIGHT_STYLES[path]:=fg=magenta}
+: ${HSMW_HIGHLIGHT_STYLES[path_pathseparator]:=}
+: ${HSMW_HIGHLIGHT_STYLES[globbing]:=fg=blue,bold}
+: ${HSMW_HIGHLIGHT_STYLES[history-expansion]:=fg=blue,bold}
+: ${HSMW_HIGHLIGHT_STYLES[single-hyphen-option]:=fg=cyan}
+: ${HSMW_HIGHLIGHT_STYLES[double-hyphen-option]:=fg=cyan}
+: ${HSMW_HIGHLIGHT_STYLES[back-quoted-argument]:=none}
+: ${HSMW_HIGHLIGHT_STYLES[single-quoted-argument]:=fg=yellow}
+: ${HSMW_HIGHLIGHT_STYLES[double-quoted-argument]:=fg=yellow}
+: ${HSMW_HIGHLIGHT_STYLES[dollar-quoted-argument]:=fg=yellow}
+: ${HSMW_HIGHLIGHT_STYLES[back-or-dollar-double-quoted-argument]:=fg=cyan}
+: ${HSMW_HIGHLIGHT_STYLES[back-dollar-quoted-argument]:=fg=cyan}
+: ${HSMW_HIGHLIGHT_STYLES[assign]:=none}
+: ${HSMW_HIGHLIGHT_STYLES[redirection]:=none}
+: ${HSMW_HIGHLIGHT_STYLES[comment]:=fg=black,bold}
+: ${HSMW_HIGHLIGHT_STYLES[newline]:=fg=black,bold}  # '\n' strings
+: ${HSMW_HIGHLIGHT_STYLES[variable]:=none}
+
+
+typeset -gA __HSMW_HIGHLIGHT_TOKENS_TYPES
+
+__HSMW_HIGHLIGHT_TOKENS_TYPES=(
+
+  # Precommand
+
+  'builtin'     1
+  'command'     1
+  'exec'        1
+  'nocorrect'   1
+  'noglob'      1
+  'pkexec'      1 # immune to #121 because it's usually not passed --option flags
+
+  # Control flow
+  # Tokens that, at (naively-determined) "command position", are followed by
+  # a de jure command position.  All of these are reserved words.
+
+  $'\x7b'   2 # block
+  $'\x28'   2 # subshell
+  '()'      2 # anonymous function
+  'while'   2
+  'until'   2
+  'if'      2
+  'then'    2
+  'elif'    2
+  'else'    2
+  'do'      2
+  'time'    2
+  'coproc'  2
+  '!'       2 # reserved word; unrelated to $histchars[1]
+
+  # Command separators
+
+  '|'   3
+  '||'  3
+  ';'   3
+  '&'   3
+  '&&'  3
+  '|&'  3
+  '&!'  3
+  '&|'  3
+)
+
+-hsmw-highlight-main-type() {
+  REPLY=$__hsmw_highlight_main__command_type_cache[(e)$1]
+  [[ -z "$REPLY" ]] && {
+
+    if zmodload -e zsh/parameter; then
+      if (( $+aliases[(e)$1] )); then
+        REPLY=alias
+      elif (( $+functions[(e)$1] )); then
+        REPLY=function
+      elif (( $+builtins[(e)$1] )); then
+        REPLY=builtin
+      elif (( $+commands[(e)$1] )); then
+        REPLY=command
+      elif (( $+saliases[(e)${1##*.}] )); then
+        REPLY='suffix alias'
+      elif (( $reswords[(Ie)$1] )); then
+        REPLY=reserved
+      elif [[ $1 != */* || "${+ZSH_ARGZERO}" = "1" ]] && ! builtin type -w -- $1 >/dev/null 2>&1; then
+        REPLY=none
+      fi
+    fi
+
+    [[ -z "$REPLY" ]] && REPLY="${$(LC_ALL=C builtin type -w -- $1 2>/dev/null)##*: }"
+
+    [[ "$REPLY" = "none" ]] && {
+      [[ -d "$1" ]] && REPLY="dirpath" || {
+        for cdpath_dir in $cdpath; do
+          [[ -d "$cdpath_dir/$1" ]] && { REPLY="dirpath"; break; }
+        done
+      }
+    }
+
+    __hsmw_highlight_main__command_type_cache[(e)$1]=$REPLY
+
+  }
+}
+
+# Check that the top of $braces_stack has the expected value.  If it does, set
+# the style according to $2; otherwise, set style=unknown-token.
+#-hsmw-highlight-stack-pop() {
+
+# Below are variables that must be defined in outer
+# scope so that they are reachable in *-process()
+#
+# local right_brace_is_recognised_everywhere
+# integer path_dirs_was_set
+# integer multi_func_def
+# integer ointeractive_comments
+-hsmw-highlight-fill-option-variables() {
+  if [[ -o ignore_braces ]] || eval '[[ -o ignore_close_braces ]] 2>/dev/null'; then
+    right_brace_is_recognised_everywhere=0
+  else
+    right_brace_is_recognised_everywhere=1
+  fi
+
+  if [[ -o path_dirs ]]; then
+    path_dirs_was_set=1
+  else
+    path_dirs_was_set=0
+  fi
+
+  if [[ -o multi_func_def ]]; then
+    multi_func_def=1
+  else
+    multi_func_def=0
+  fi
+
+  if [[ -o interactive_comments ]]; then
+    ointeractive_comments=1
+  else
+    ointeractive_comments=0
+  fi
+}
+
+# Main syntax highlighting function.
+-hsmw-highlight-process() {
+  emulate -L zsh
+  setopt extendedglob bareglobqual nonomatch noksharrays
+
+  (( path_dirs_was_set )) && setopt PATH_DIRS
+  (( ointeractive_comments )) && local interactive_comments= # _set_ to empty
+
+  # Variable declarations and initializations
+  # in_array_assignment true between 'a=(' and the matching ')'
+  # braces_stack: "R" for round, "Q" for square, "Y" for curly
+  # mybuf, cdpath_dir are used in sub-functions
+  local start_pos="$2" end_pos highlight_glob=1 arg style in_array_assignment=0 MATCH expanded_path braces_stack buf="$1" mybuf cdpath_dir cur_cmd alias_target
+  # arg_type can be 0, 1, 2 or 3, i.e. precommand, control flow, command separator
+  # idx and end_idx are used in sub-functions
+  # for this_word and next_word look below at commented integers and at state machine description
+  integer arg_type=0 MBEGIN MEND in_redirection len=${#buf} already_added offset idx end_idx this_word=1 next_word=0 insane_alias
+  local -a match mbegin mend
+
+  # Processing buffer
+  local proc_buf="$buf" needle
+  for arg in ${interactive_comments-${(z)buf}} ${interactive_comments+${(zZ+c+)buf}}; do
+    # Initialize $next_word to its default value?
+    (( in_redirection )) && (( --in_redirection ))
+    (( in_redirection == 0 )) && next_word=2 # else Stall $next_word.
+
+    already_added=0
+    style=unknown-token
+    if (( this_word & 1 )); then
+      in_array_assignment=0
+      [[ $arg == 'noglob' ]] && highlight_glob=0
+    fi
+
+    # Compute the new $start_pos and $end_pos, skipping over whitespace in $buf.
+    if [[ $arg == ';' ]] ; then
+      needle=$'[;\n]'
+      offset=$(( ${proc_buf[(i)$needle]} - 1 ))
+      (( start_pos += offset ))
+      (( end_pos = start_pos + $#arg ))
+      if [[ "${proc_buf[offset+1]}" = $'\n' ]]; then
+        (( in_array_assignment )) && (( this_word = 2 )) || { (( this_word = 1 )); highlight_glob=1; }
+        in_redirection=0
+        reply+=("$(( start_pos - 1)) $end_pos ${HSMW_HIGHLIGHT_STYLES[newline]}")
+        proc_buf="${proc_buf[offset + $#arg + 1,len]}"
+        start_pos=$end_pos
+        continue
+      else
+        (( in_array_assignment )) && (( this_word = 2 )) || { (( this_word = 1 )); highlight_glob=1; }
+        in_redirection=0
+        [[ "${HSMW_HIGHLIGHT_STYLES[commandseparator]}" != "none" ]] && reply+=("$start_pos $end_pos ${HSMW_HIGHLIGHT_STYLES[commandseparator]}")
+        proc_buf="${proc_buf[offset + $#arg + 1,len]}"
+        start_pos=$end_pos
+        continue
+      fi
+
+      arg_type=3
+    else
+      offset=0
+      if [[ "$proc_buf" = (#b)(#s)(([[:space:]]|\\[[:space:]])##)* ]]; then
+        offset="${mend[1]}"
+      fi
+      ((start_pos+=offset))
+      ((end_pos=start_pos+${#arg}))
+
+      arg_type=${__HSMW_HIGHLIGHT_TOKENS_TYPES[$arg]}
+    fi
+
+    proc_buf="${proc_buf[offset + $#arg + 1,len]}"
+
+    if [[ -n ${interactive_comments+'set'} && $arg[1] == $histchars[3] ]]; then
+      if (( this_word & 3 )); then
+        style=comment
+      else
+        style=unknown-token # prematurely terminated
+      fi
+      reply+=("$start_pos $end_pos ${HSMW_HIGHLIGHT_STYLES[$style]}")
+      start_pos=$end_pos
+      continue
+    fi
+
+    # Analyse the current word.
+    if [[ $arg == (<0-9>|)(\<|\>)* ]] && [[ $arg != (\<|\>)$'\x28'* ]]; then
+      # A '<' or '>', possibly followed by a digit
+      in_redirection=2
+    fi
+
+    # Special-case the first word after 'sudo'.
+    if (( ! in_redirection )); then
+      if (( this_word & 4 )) && [[ $arg != -* ]]; then
+        (( this_word = this_word ^ 4 ))
+      fi
+
+      # Parse the sudo command line
+      if (( this_word & 4 )); then
+        case "$arg" in
+            # Flag that requires an argument
+          '-'[Cgprtu])
+            (( this_word & 1 )) && (( this_word = this_word ^ 1 ))
+            (( next_word = 8 ))
+            ;;
+            # This prevents misbehavior with sudo -u -otherargument
+          '-'*)
+            (( this_word & 1 )) && (( this_word = this_word ^ 1 ))
+            (( next_word = next_word | 1 ))
+            (( next_word = next_word | 4 ))
+            ;;
+          *)           ;;
+        esac
+      elif (( this_word & 8 )); then
+        (( next_word = next_word | 4 ))
+        (( next_word = next_word | 1 ))
+      fi
+    fi
+
+    expanded_path=""
+
+    # The Great Fork: is this a command word?  Is this a non-command word?
+    if (( this_word & 16 )) && [[ $arg == 'always' ]]; then
+      # try-always construct
+      style=reserved-word # de facto a reserved word, although not de jure
+      (( next_word = 1 ))
+    elif (( this_word & 1 )) && (( in_redirection == 0 )); then # $arg is the command word
+      cur_cmd="$arg"
+      if (( arg_type == 1 )); then
+        style=precommand
+      elif [[ "$arg" = "sudo" ]]; then
+        style=precommand
+        (( next_word & 2 )) && (( next_word = next_word ^ 2 ))
+        (( next_word = next_word | 4 ))
+        (( next_word = next_word | 1 ))
+      else
+        if [[ ${arg[1]} == \$ ]] && (( ${+parameters} )) && [[ ${arg:1} = (#m)([a-zA-Z_][a-zA-Z0-9_]#|[0-9]##) ]] && (( ${+parameters[${MATCH}]} )); then
+          -hsmw-highlight-main-type ${(P)MATCH}
+        else
+          : ${expanded_path::=${(Q)~arg}}
+          -hsmw-highlight-main-type $expanded_path
+        fi
+
+        case $REPLY in
+          reserved)       # reserved word
+            style=reserved-word
+            if [[ $arg == $'\x7b' ]]; then
+              braces_stack='Y'"$braces_stack"
+            elif [[ $arg == $'\x7d' && $braces_stack[1] == "Y" ]]; then
+              braces_stack[1]=""
+              style=reserved-word
+              (( next_word = next_word | 16 ))
+            elif [[ $arg == "[[" ]]; then
+              braces_stack='A'"$braces_stack"
+            fi
+            ;;
+          'suffix alias') style=suffix-alias ;;
+          alias)
+            insane_alias=0
+            case $arg in
+              '='*)
+                :
+                ;;
+              *'='*)
+                insane_alias=1
+                ;;
+              *)
+                :
+                ;;
+            esac
+            if (( insane_alias )); then
+              style=unknown-token
+            else
+              style=alias
+              zmodload -e zsh/parameter && alias_target=${aliases[$arg]} || alias_target="${"$(alias -- $arg)"#*=}"
+              [[ ${__HSMW_HIGHLIGHT_TOKENS_TYPES[$alias_target]} = "1" && "$arg_type" != "1" ]] && __HSMW_HIGHLIGHT_TOKENS_TYPES[$arg]="1"
+            fi
+            ;;
+          builtin)
+            style=builtin ;;
+          function)
+            style=() ;;
+          command)
+            style=command ;;
+          hashed)
+            style=hashed-command ;;
+          dirpath)
+            style=path ;;
+          none)
+            if [[ $arg == [[:alpha:]_][[:alnum:]_]#(|\[[^\]]#\])(|[+])=* ]] || [[ $arg == [0-9]##(|[+])=* ]]; then
+              style=assign
+              [[ $arg[-1] == '(' ]] && in_array_assignment=1 || (( next_word = next_word | 1 ))
+            elif [[ $arg[1] = $histchars[1] && -n "${arg[2]}" ]]; then
+              style=history-expansion
+            elif [[ $arg[1] == $histchars[2] ]]; then
+              style=history-expansion
+            elif (( arg_type == 3 )); then
+              (( this_word & 2 )) && style=commandseparator
+            elif [[ $arg[1,2] == '((' ]]; then
+              reply+=("$start_pos $(( start_pos + 2 )) ${HSMW_HIGHLIGHT_STYLES[reserved-word]}")
+              already_added=1
+              [[ $arg[-2,-1] == '))' ]] && reply+=("$(( end_pos - 2 )) $end_pos ${HSMW_HIGHLIGHT_STYLES[reserved-word]}")
+            elif [[ $arg == '()' ]]; then
+              style=reserved-word
+            elif [[ $arg == $'\x28' ]]; then
+              style=reserved-word
+              braces_stack='R'"$braces_stack"
+            elif [[ $arg == $'\x29' ]]; then
+              [[ $braces_stack[1] == "R" ]] && { braces_stack[1]=""; style=reserved-word; }
+            elif (( this_word & 14 )); then
+              style=default
+            fi
+            ;;
+          *)
+            already_added=1
+            ;;
+        esac
+      fi
+    elif (( in_redirection + this_word & 14 )); then
+      case $arg in
+        ']]')
+          style=reserved-word
+          [[ $braces_stack[1] == "A" ]] && braces_stack[1]=""
+          ;;
+        ']')
+          style=builtin
+          ;;
+        $'\x28')
+          style=reserved-word
+          braces_stack='R'"$braces_stack"
+          ;;
+        $'\x29') # subshell or end of array assignment
+          if (( in_array_assignment )); then
+            style=assign
+            in_array_assignment=0
+            (( next_word = next_word | 1 ))
+          elif [[ $braces_stack[1] == "R" ]]; then
+            braces_stack[1]=""
+            style=reserved-word
+          fi ;;
+        $'\x28\x29')
+          (( multi_func_def )) && (( next_word = next_word | 1 ))
+          style=reserved-word
+          reply[-1]=()
+          ;;
+        '--'*)
+          style=double-hyphen-option ;;
+        '-'*)
+          style=single-hyphen-option ;;
+        "'"*)
+          style=single-quoted-argument ;;
+        '"'*)
+          reply+=("$start_pos $end_pos ${HSMW_HIGHLIGHT_STYLES[double-quoted-argument]}")
+          -hsmw-highlight-string
+          already_added=1
+          ;;
+        \$\*)
+          reply+=("$start_pos $end_pos ${HSMW_HIGHLIGHT_STYLES[dollar-quoted-argument]}")
+          -hsmw-highlight-dollar-string
+          already_added=1
+          ;;
+        \$[^\(]*)
+          style=variable
+          ;;
+        '`'*)
+          style=back-quoted-argument
+          ;;
+        [*?]*|*[^\\][*?]*)
+          (( highlight_glob )) && style=globbing || style=default
+          ;;
+        *)
+          if [[ $arg = $'\x7d' && $braces_stack[1] == "Y" ]] && [[ "$right_brace_is_recognised_everywhere" = "1" ]]; then
+            braces_stack[1]=""
+            style=reserved-word
+            (( next_word = next_word | 16 ))
+          elif [[ $arg[1] = $histchars[1] && -n "${arg[2]}" ]]; then
+            style=history-expansion
+          elif (( arg_type == 3 )); then
+            style=commandseparator
+          elif (( in_redirection == 2 )); then
+            style=redirection
+          else
+            if (( __hsmw_no_check_paths == 0 )) && -hsmw-highlight-check-path; then
+              reply+=("$start_pos $end_pos ${HSMW_HIGHLIGHT_STYLES[path]}")
+              already_added=1
+
+
+              if [[ -n "$HSMW_HIGHLIGHT_STYLES[path_pathseparator]" && "$HSMW_HIGHLIGHT_STYLES[path]" != "$HSMW_HIGHLIGHT_STYLES[path_pathseparator]" ]]; then
+                local pos
+                for (( pos = start_pos; pos <= end_pos; pos++ )) ; do
+                  [[ ${buf[pos]} == "/" ]] && reply+=("$(( pos - 1 )) $pos ${HSMW_HIGHLIGHT_STYLES[path_pathseparator]}")
+                done
+              fi
+            else
+              style=default
+            fi
+          fi
+          ;;
+      esac
+    fi
+
+    (( already_added == 0 )) && [[ "${HSMW_HIGHLIGHT_STYLES[$style]}" != "none" ]] && reply+=("$start_pos $end_pos ${HSMW_HIGHLIGHT_STYLES[$style]}")
+
+    if (( arg_type == 3 )); then
+      if [[ $arg == ';' ]] && (( in_array_assignment )); then
+        (( next_word = 2 ))
+      elif [[ -n "${braces_stack[(r)A]}" ]]; then
+        (( next_word = 2 ))
+      else
+        (( next_word = 1 ))
+        highlight_glob=1
+      fi
+    elif (( arg_type == 1 || arg_type == 2 )) && (( this_word & 1 )); then
+      (( next_word = 1 ))
+    elif [[ $arg == "repeat" ]] && (( this_word & 1 )); then
+      in_redirection=2
+      (( thisword = 3 ))
+    fi
+    start_pos=$end_pos
+    (( in_redirection == 0 )) && (( this_word = next_word ))
+  done
+
+  return 0
+}
+
+-hsmw-highlight-check-path() {
+  : ${expanded_path:=${(Q)~arg}}
+  [[ -n "${FAST_BLIST_PATTERNS[(k)$expanded_path]}" ]] && return 1
+
+  [[ -z $expanded_path ]] && return 1
+  [[ -e $expanded_path ]] && return 0
+
+  if [[ "$cur_cmd" = "cd" ]]; then
+    for cdpath_dir in $cdpath ; do
+      if [[ -e "$cdpath_dir/$expanded_path" ]]; then
+        return 0
+      fi
+    done
+  fi
+
+  return 1
+}
+
+-hsmw-highlight-string() {
+  mybuf="$arg"
+  idx=start_pos
+
+  while [[ "$mybuf" = (#b)[^\$\\]#((\$(#B)([a-zA-Z_:][a-zA-Z0-9_:]#|[0-9]##)(#b)(\[[^\]]#\])(#c0,1))|(\$[{](\([a-zA-Z0@%#]##\))(#c0,1)[a-zA-Z0-9_:#]##(\[[^\]]#\])(#c0,1)[}])|[\\][\"\'\$]|[\\](*))(*) ]]; do
+    if [[ -n "${match[7]}" ]]; then
+      idx+=${mbegin[1]}+1
+      mybuf="${match[7]:1}"
+    else
+      idx+=${mbegin[1]}-1
+      end_idx=idx+${mend[1]}-${mbegin[1]}+1
+      mybuf="${match[8]}"
+
+      reply+=("$idx $end_idx ${HSMW_HIGHLIGHT_STYLES[back-or-dollar-double-quoted-argument]}")
+
+      idx=end_idx
+    fi
+  done
+}
+
+-hsmw-highlight-dollar-string() {
+  local i j k style
+  local AA
+  integer c
+  for (( i = 3 ; i < end_pos - start_pos ; i += 1 )); do
+    (( j = i + start_pos - 1 ))
+    (( k = j + 1 ))
+    case $arg[$i] in
+      \\)
+        style=back-dollar-quoted-argument
+        for (( c = i + 1 ; c <= end_pos - start_pos ; c += 1 )); do
+          [[ "$arg[$c]" != ([0-9xXuUa-fA-F]) ]] && break
+        done
+        AA=$arg[$i+1,$c-1]
+        if [[ "$AA" =~ "^(x|X)[0-9a-fA-F]{1,2}" || "$AA" =~ "^[0-7]{1,3}" || "$AA" =~ "^u[0-9a-fA-F]{1,4}" || "$AA" =~ "^U[0-9a-fA-F]{1,8}" ]]; then
+          (( k += $#MATCH ))
+          (( i += $#MATCH ))
+        else
+          if (( $#arg > $i+1 )) && [[ $arg[$i+1] == [xXuU] ]]; then
+            style=unknown-token
+          fi
+          (( k += 1 )) # Color following char too.
+          (( i += 1 )) # Skip parsing the escaped char.
+        fi
+        ;;
+      *)
+        continue
+        ;;
+    esac
+    reply+=("$j $k ${HSMW_HIGHLIGHT_STYLES[$style]}")
+  done
+}
+
+# -------------------------------------------------------------------------------------------------
+# Main highlighter initialization
+# -------------------------------------------------------------------------------------------------
+
+-hsmw-highlight-init() {
+  __hsmw_highlight_main__command_type_cache=()
+}
+
+typeset -g __HSMW_MH_SOURCED=1

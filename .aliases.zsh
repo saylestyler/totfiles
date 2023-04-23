@@ -144,9 +144,6 @@ alias twmail="mail -s '$' e07c124d-9982-4921-b7b9-7a640e3c14bb@inthe.am"
 alias tl="task all"
 alias ta="task add"
 
-# vim, use neovim
-alias vim="nvim"
-
 # nvm
 alias nv10="nvm use --delete-prefix v10"
 alias ezrc="nvim ~/totfiles/zsh/.zshrc"
