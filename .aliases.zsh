@@ -670,3 +670,5 @@ alias npmrssmv='npm run serve:staging:mv'
 alias npmrssb='npm run serve-storybook'
 
 alias cat='bat'
+
+alias tscode='open . -a tscode'
