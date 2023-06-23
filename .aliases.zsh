@@ -662,6 +662,14 @@ pkfr() {
     tar czpvf - ${1:-.} | piknik -copy
 }
 
+# dont show coverage report summary in sw
+jestsw () {
+  local cwd=$(pwd)
+  local FILENAME="$1"
+  shift
+  "$cwd/node_modules/jest/bin/jest.js" --config "$cwd/test/unit/jest.conf.js" --runInBand "$FILENAME" "--" "--watch"
+}
+
 # pkpr : extract clipboard content sent using the pkfr command
 alias pkpr='piknik -paste | tar xzpvf -'
 
