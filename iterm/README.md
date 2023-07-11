@@ -1,0 +1,4 @@
+- in settings > general > preferences select dtofiles iterm folder "load preferences from custom folder" (`/Users/tyler/totfiles/iteerm`)
+- once selected clicking save now will save current settings to a plist in the folder
+- pull the folder and select to load from that one
+- the plist has font, color, and gen preferences
