@@ -113,6 +113,7 @@ alias ppp="pbpaste"
 
 # git guide for the gods https://github.com/k88hudson/git-flight-rules
 alias g="git"
+alias guncommitlocal="git reset --soft HEAD~1"
 alias gd="git diff"
 alias gdc="git diff --cached"
 alias gd="git diff -- ':!package-lock.json' ':!yarn.lock'" # ignore package-lock on git diff
@@ -681,3 +682,5 @@ alias cat='bat'
 
 alias tscode='open . -a tscode'
 alias npmrlds='npm run live-dev-staging'
+
+alias nvm14='nvm use 14.21.3'
