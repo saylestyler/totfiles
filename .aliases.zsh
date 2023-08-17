@@ -684,3 +684,10 @@ alias tscode='open . -a tscode'
 alias npmrlds='npm run live-dev-staging'
 
 alias nvm14='nvm use 14.21.3'
+
+alias projgc='--project="Google Chrome'
+alias projmc='--project="Mobile Chrome'
+alias headed='--headed'
+alias db='--debug'
+alias trace='--trace=on'
+alias pwtest='npx playwright test'
