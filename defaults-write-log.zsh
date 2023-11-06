@@ -18,9 +18,6 @@ defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 # Cons: Aesthetic preference.
 defaults write com.apple.dock mineffect -string "scale" killall Dock
 
-# v fast key repeat
-defaults write NSGlobalDomain KeyRepeat -int 0
-
 # Pros: Additional options for working with disks.
 # Cons: Potentially dangerous operations become available.
 defaults write com.apple.DiskUtility DUDebugMenuEnabled -bool true
