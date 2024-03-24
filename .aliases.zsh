@@ -113,6 +113,7 @@ alias ppp="pbpaste"
 
 # git guide for the gods https://github.com/k88hudson/git-flight-rules
 alias g="git"
+alias guncommitlocal="git reset --soft HEAD~1"
 alias gd="git diff"
 alias gdc="git diff --cached"
 alias gd="git diff -- ':!package-lock.json' ':!yarn.lock'" # ignore package-lock on git diff
@@ -143,9 +144,6 @@ alias staging="git checkout staging"
 alias twmail="mail -s '$' e07c124d-9982-4921-b7b9-7a640e3c14bb@inthe.am"
 alias tl="task all"
 alias ta="task add"
-
-# vim, use neovim
-alias vim="nvim"
 
 # nvm
 alias nv10="nvm use --delete-prefix v10"
@@ -665,6 +663,14 @@ pkfr() {
     tar czpvf - ${1:-.} | piknik -copy
 }
 
+# dont show coverage report summary in sw
+jestsw () {
+  local cwd=$(pwd)
+  local FILENAME="$1"
+  shift
+  "$cwd/node_modules/jest/bin/jest.js" --config "$cwd/test/unit/jest.conf.js" --runInBand "$FILENAME" "--" "--watch"
+}
+
 # pkpr : extract clipboard content sent using the pkfr command
 alias pkpr='piknik -paste | tar xzpvf -'
 
@@ -673,3 +679,15 @@ alias npmrssmv='npm run serve:staging:mv'
 alias npmrssb='npm run serve-storybook'
 
 alias cat='bat'
+
+alias tscode='open . -a tscode'
+alias npmrlds='npm run live-dev-staging'
+
+alias nvm14='nvm use 14.21.3'
+
+alias projgc='--project="Google Chrome'
+alias projmc='--project="Mobile Chrome'
+alias headed='--headed'
+alias db='--debug'
+alias trace='--trace=on'
+alias pwtest='npx playwright test'

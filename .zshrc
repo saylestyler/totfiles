@@ -40,6 +40,8 @@ zplugin light paulirish/git-open
 # Additional configurations
 source ~/totfiles/.aliases.zsh
 source ~/private-dot-files/ssh.sh
+
+# load z
 . /usr/local/etc/profile.d/z.sh
 
 # Environment variables and PATH configuration
@@ -81,3 +83,49 @@ make_video_file_way_smaller() {
   ffmpeg -i "$1" -vcodec libx265 -crf 28 -preset fast -vf "format=yuv420p,fps=30" -tag:v hvc1 "$2"
 }
 
+# pnpm
+export PNPM_HOME="/Users/tyler/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+
+# rust install output (downloaded as part of installing `npm i -g pake-cli`
+# In the Rust development environment, all tools are installed to the ~/.cargo/bin directory, and
+# this is where you will find the Rust toolchain, including rustc, cargo, and rustup.
+#
+# Accordingly, it is customary for Rust developers to include this directory in their PATH
+# environment variable. During installation rustup will attempt to configure the PATH. Because of
+# differences between platforms, command shells, and bugs in rustup, the modifications to PATH may
+# not take effect until the console is restarted, or the user is logged out, or it may not succeed
+# at all.
+#
+# If, after installation, running rustc --version in the console fails, this is the most likely
+#   reason.
+#
+# 130 % pake 'https://app.circleci.com/pipelines/github/staywanderful?filter=all' --icon ~/circle.icns --show-menu
+# ✔ Enter your application name … Circleci
+# ✔ Rust not detected. Install now? … yes
+# info: profile set to 'default'
+# info: default host triple is aarch64-apple-darwin
+# info: latest update on 2023-07-13, rust version 1.71.0 (8ede3aae2 2023-07-12)
+# info: default toolchain set to 'stable-aarch64-apple-darwin'
+# ✹ Downloading Rust...
+#   stable-aarch64-apple-darwin installed - rustc 1.71.0 (8ede3aae2 2023-07-12)
+#
+# Rust is installed now. Great!
+#
+# To get started you may need to restart your current shell.
+# This would reload your PATH environment variable to include
+# Cargo's bin directory ($HOME/.cargo/bin).
+
+# make ./cloudinary_upload globally available
+# source ~/.ssh/MY_SUPER_SECRET_ENV_VARS
+# source ~/.ssh/ENV_VARS_AND_COGNITO_POOLS_AND_LAASIE_URLS.zsh
+# export PATH="$PATH:/Users/tyler/cloudinary_uploader"
+
+# auto use .nvmrc version
+# export NVM_AUTO_USE=true
+# source ~/.zsh-nvm/zsh-nvm.plugin.zsh
