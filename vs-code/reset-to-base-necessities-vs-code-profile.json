@@ -1,0 +1,63 @@
+{
+  // Editor Appearance and Behavior
+  "editor.overviewRulerBorder": false, // Removes the border from the overview ruler
+  "editor.hideCursorInOverviewRuler": true, // Hides the cursor in the overview ruler
+  "editor.fontSize": 17, // Sets the font size for the editor
+  "editor.glyphMargin": false, // Removes the glyph margin used mainly for debugging
+  "explorer.openEditors.visible": 0, // Hides the Open Editors pane in the sidebar
+  "workbench.editor.showIcons": false, // Disables file icons in tabs
+  "editor.minimap.enabled": false, // Disables the minimap
+  "editor.fontFamily": "Input Mono Narrow, agave Nerd Font Mono, SF Mono, MonoLisa, Cascadia Code", // Sets the font family for the editor
+  "window.title": "${activeEditorLong}", // Customizes the window title
+  "workbench.statusBar.visible": false, // Hides the status bar
+  "workbench.colorTheme": "Cosmic Wave Light", // Sets the color theme
+  "workbench.activityBar.location": "hidden", // Hides the activity bar
+  "editor.renderWhitespace": "trailing", // Shows trailing whitespace
+  "files.trimTrailingWhitespace": true, // Trims trailing whitespace on save
+  "explorer.confirmDragAndDrop": false, // Disables confirmation for drag and drop in the explorer
+  "explorer.confirmDelete": false, // Disables confirmation for delete operations in the explorer
+  "editor.useTabStops": false, // Disables tab stops
+  "editor.tabSize": 2, // Sets the tab size to 2 spaces
+  "editor.lineHeight": 20, // Sets the line height
+
+  // Formatting and Linting
+  "eslint.validate": ["vue", "html", "javascript", "typescript"], // Enables ESLint validation for specified languages
+  "eslint.codeAction.showDocumentation": { "enable": true }, // Shows documentation in ESLint code actions
+  "editor.codeActionsOnSave": { "source.fixAll.eslint": "explicit" }, // Applies ESLint fixes on save (explicitly requires setting per language)
+  "editor.formatOnSave": false, // Disables automatic formatting on save
+  "javascript.suggest.autoImports": false, // Disables automatic import suggestions for JavaScript
+  "javascript.format.semicolons": "remove", // Removes semicolons in JavaScript formatting
+  "typescript.format.semicolons": "remove", // Removes semicolons in TypeScript formatting
+
+  // Extensions and Tools
+  "turboConsoleLog.logMessagePrefix": "🟦", // Sets the prefix for turbo console log messages
+  "turboConsoleLog.includeFileNameAndLineNum": false, // Disables including file name and line number in turbo console logs
+  "turboConsoleLog.quote": "`", // Sets the quote character for turbo console logs
+  "github.copilot.enable": { "markdown": "true" }, // Enables GitHub Copilot for Markdown
+  "github.copilot.advanced": {
+    "includeSuggestedEdits": true,
+    "inlineSuggestionCompletionMode": "preview",
+    "showDocumentation": true,
+    "showSuggestionsOnStartup": true,
+    "suggestionsPerRequest": 3
+  }, // Configures advanced settings for GitHub Copilot
+
+  // Language Specific Settings
+  "[vue]": { "editor.defaultFormatter": "octref.vetur" }, // Sets the default formatter for Vue files to Vetur
+  "[javascript]": { "editor.defaultFormatter": "rvest.vs-code-prettier-eslint" }, // Sets the default formatter for JavaScript files to Prettier-ESLint
+  "[typescript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" }, // Sets the default formatter for TypeScript files to Prettier
+  "[jsonc]": { "editor.defaultFormatter": "vscode.json-language-features" }, // Sets the default formatter for JSONC files to VS Code's built-in JSON features
+
+  // Misc Settings
+  "zenMode.fullScreen": false, // Keeps VS Code in windowed mode when entering Zen mode
+  "window.zoomLevel": 1, // Sets the zoom level of the window
+  "gitlens.mode.active": "zen", // Sets the active GitLens mode to Zen
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/**": true,
+    "**/env/**": true,
+    "**/venv/**": true,
+    "env-*": true
+  } // Excludes directories from file watching
+}

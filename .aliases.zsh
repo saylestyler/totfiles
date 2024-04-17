@@ -25,11 +25,12 @@ alias serve="browser-sync start -s -f . --no-notify --host $LOCAL_IP --port 9000
 # hot reloading browser-sync based http server
 alias serve="browser-sync start -s -f . --no-notify --host $LOCAL_IP --port 9000"
 
+alias pub='ga .; gcm blog post / quick commit; git push'
 alias nvm10='. ~/.nvm/nvm.sh; nvm use 10'
 
 alias spaceleft='df -hT /dev/xvda1' # for linux ami machines
 
-# empties all volumes' trashes & clears sys logs for better sh startup
+# empties all volumes trashes & clears sys logs for better sh startup
 alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl"
 
 alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ and print $1'"
@@ -194,11 +195,11 @@ alias p="cd ~/projects"
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
-	colorflag="--color"
-	export LS_COLORS='no=00:fi=00:di=01;31:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.avi=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.ogg=01;35:*.mp3=01;35:*.wav=01;35:'
+  colorflag="--color"
+  export LS_COLORS='no=00:fi=00:di=01;31:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.avi=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.ogg=01;35:*.mp3=01;35:*.wav=01;35:'
 else # macOS `ls`
-	colorflag="-G"
-	export LSCOLORS='BxBxhxDxfxhxhxhxhxcxcx'
+  colorflag="-G"
+  export LSCOLORS='BxBxhxDxfxhxhxhxhxcxcx'
 fi
 
 # List all files colorized in long format
@@ -301,7 +302,7 @@ alias map="xargs -n1"
 
 # One of @janmoesen’s ProTip™s
 for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
-	alias "${method}"="lwp-request -m '${method}'"
+  alias "${method}"="lwp-request -m '${method}'"
 done
 
 # Make Grunt print stack traces by default
@@ -372,29 +373,29 @@ alias hg='history | grep'
 function hist() {
   history |
     awk '''
-    {
-      CMD[$2]++;
-      count++;
-    }
+      {
+        CMD[$2]++;
+        count++;
+      }
     END
     {
       for (a in CMD)
         print CMD[a] " " CMD[a]/count * 100 "% " a;
+      }
+      ''' | grep -v "./" | column -c -s ' ' -t | sort -nr | nl | head -n 20
+      # note that line 16 will ruin everything if u break it up over multiple lines
     }
-  ''' | grep -v "./" | column -c -s ' ' -t | sort -nr | nl | head -n 20
-  # note that line 16 will ruin everything if u break it up over multiple lines
-}
 
-function dashs() {
-  cd $HOME/laasie/analytics-dashboard/; nvm use 14; npm run serve;
-}
+    function dashs() {
+      cd $HOME/laasie/analytics-dashboard/; nvm use 14; npm run serve;
+    }
 
-function shce() {
-  # Read  commands  but  do  not execute them.  This may be
-  # used to check a shell script for syntax  errors.   This
-  # is ignored by interactive shells.
-  bash -n
-}
+    function shce() {
+      # Read  commands  but  do  not execute them.  This may be
+      # used to check a shell script for syntax  errors.   This
+      # is ignored by interactive shells.
+      bash -n
+    }
 
 # kill process running on port <port>
 # use node_module :) kp
@@ -413,7 +414,7 @@ function biggest_loosers() {
     sort -r -n |
     awk '{split("K M G",v); s=1; while($1>1024){$1/=1024; s++} print int($1)" "v[s]"\t"$2}' |
     head -n 20
-}
+  }
 
 # add note
 function n() {
@@ -446,14 +447,14 @@ function dud() {
   du |
     sort -r -n |
     awk '{ split("K M G",v);
-        s=1;
-        while ($1>1024) {
-          $1/=1024; s++
-        }
-        print int($1) " " v[s] "\t" $2
-      }' |
-    head -n 20
-}
+      s=1;
+      while ($1>1024) {
+        $1/=1024; s++
+      }
+      print int($1) " " v[s] "\t" $2
+    }' |
+      head -n 20
+    }
 
 # adds all staged changes followed by commit prompt
 function gall() {
@@ -462,11 +463,11 @@ function gall() {
 
 # `o` with no args opens the current dir, otherwise the loc
 function o() {
-	if [ $# -eq 0 ]; then
-		open .;
-	else
-		open "$@";
-	fi;
+  if [ $# -eq 0 ]; then
+    open .;
+  else
+    open "$@";
+  fi;
 }
 
 # `tre` is a shorthand for `tree` with hidden files and color enabled, ignoring
@@ -474,26 +475,26 @@ function o() {
 # `less` with options to preserve color and line numbers, unless the output is
 # small enough for one screen.
 function tre() {
-	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
+  tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
 
 # # Create a new directory and enter it
 function mkd() {
-    mkdir -p "$@" && cd "$_";
+  mkdir -p "$@" && cd "$_";
 }
 
 # Change working directory to the top-most Finder window location
 function cdf() { # short for `cdfinder`
-	cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')";
+  cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')";
 }
 
 # https://github.com/necolas/dotfiles/blob/master/shell/functions/datauri
 function datauri() {
-    local mimeType=$(file -b --mime-type "$1")
-    if [[ $mimeType == text/* ]]; then
-        mimeType="${mimeType};charset=utf-8"
-    fi
-    printf "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')" | pbcopy | printf "=> data URI copied to pasteboard.\n"
+  local mimeType=$(file -b --mime-type "$1")
+  if [[ $mimeType == text/* ]]; then
+    mimeType="${mimeType};charset=utf-8"
+  fi
+  printf "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')" | pbcopy | printf "=> data URI copied to pasteboard.\n"
 }
 
 # # Create a .tar.gz archive, using `zopfli`, `pigz` or `gzip` for compression
@@ -638,12 +639,12 @@ function npmrtu() {
 
 # pko <content> : copy <content> to the clipboard
 pko() {
-    echo "$*" | piknik -copy
+  echo "$*" | piknik -copy
 }
 
 # pkf <file> : copy the content of <file> to the clipboard
 pkf() {
-    piknik -copy < $1
+  piknik -copy < $1
 }
 
 # pkc : read the content to copy to the clipboard from STDIN
@@ -658,9 +659,12 @@ alias pkm='piknik -move'
 # pkz : delete the clipboard content
 alias pkz='piknik -copy < /dev/null'
 
+# pkpr : extract clipboard content sent using the pkfr command
+alias pkpr='piknik -paste | tar xzpvf -'
+
 # pkfr [<dir>] : send a whole directory to the clipboard, as a tar archive
 pkfr() {
-    tar czpvf - ${1:-.} | piknik -copy
+  tar czpvf - ${1:-.} | piknik -copy
 }
 
 # dont show coverage report summary in sw
@@ -671,14 +675,11 @@ jestsw () {
   "$cwd/node_modules/jest/bin/jest.js" --config "$cwd/test/unit/jest.conf.js" --runInBand "$FILENAME" "--" "--watch"
 }
 
-# pkpr : extract clipboard content sent using the pkfr command
-alias pkpr='piknik -paste | tar xzpvf -'
-
 # npm dev servers
 alias npmrssmv='npm run serve:staging:mv'
 alias npmrssb='npm run serve-storybook'
 
-alias cat='bat'
+# alias cat='bat'
 
 alias tscode='open . -a tscode'
 alias npmrlds='npm run live-dev-staging'
