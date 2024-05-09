@@ -141,6 +141,11 @@ alias gcob="git checkout -b"
 alias gpll="git pull"
 alias staging="git checkout staging"
 
+alias npmrd="npm run dev"
+alias npmrwb="npm run watch:build" # dev mode on tylersayles.com
+alias npmrwb="npm run dev"
+
+
 # task warrior
 alias twmail="mail -s '$' e07c124d-9982-4921-b7b9-7a640e3c14bb@inthe.am"
 alias tl="task all"
@@ -692,3 +697,7 @@ alias headed='--headed'
 alias db='--debug'
 alias trace='--trace=on'
 alias pwtest='npx playwright test'
+
+alias vim=nvim
+alias v=nvim
+alias brew=/opt/homebrew/bin/brew
