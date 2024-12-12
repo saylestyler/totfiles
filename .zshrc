@@ -83,15 +83,6 @@ make_video_file_way_smaller() {
   ffmpeg -i "$1" -vcodec libx265 -crf 28 -preset fast -vf "format=yuv420p,fps=30" -tag:v hvc1 "$2"
 }
 
-# pnpm
-export PNPM_HOME="/Users/tyler/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-
-
 # rust install output (downloaded as part of installing `npm i -g pake-cli`
 # In the Rust development environment, all tools are installed to the ~/.cargo/bin directory, and
 # this is where you will find the Rust toolchain, including rustc, cargo, and rustup.
