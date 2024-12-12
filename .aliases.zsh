@@ -95,7 +95,6 @@ alias npmt="npm test"
 alias npmR="npm run"
 alias npmP="npm publish"
 alias npmI="npm init"
-alias pnpm="node /usr/local/lib/node_modules/pnpm/lib/bin/pnpm.js"
 alias kp="/usr/local/lib/node_modules/kill-port/cli.js"
 alias npme='PATH="$(npm bin)":"$PATH"' # exe cmd from local node_modules folder based on current directory `npmE grunt serve`
 
