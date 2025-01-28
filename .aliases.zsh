@@ -700,3 +700,13 @@ alias pwtest='npx playwright test'
 alias vim=nvim
 alias v=nvim
 alias brew=/opt/homebrew/bin/brew
+
+alias cloutinarystart="cd cloutinary; node cloutinary.js --watch --delete --copy --dir=/Users/tyler/Screenshots"
+alias pnpmrd="pnpm run dev"
+
+alias betty="$HOME/betty/main.rb"
+
+alias ytdl-best-audio-quality__flac="yt-dlp -f bestaudio --extract-audio --audio-format flac --audio-quality 0"
+alias ytdl-best-audio-quality__wav="yt-dlp -f bestaudio --extract-audio --audio-format wav --audio-quality 0"
+
+
